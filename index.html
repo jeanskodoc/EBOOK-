@@ -1100,19 +1100,19 @@
                             <div class="level-body">
                                 <div class="class-list">
                                     <div class="class-item" data-class="6eme" data-level="college">
-                                        <i class="fas fa-1"></i>
+                                        <i class="fas fa-"></i>
                                         <div class="class-name">6ème</div>
                                     </div>
                                     <div class="class-item" data-class="5eme" data-level="college">
-                                        <i class="fas fa-2"></i>
+                                        <i class="fas fa-"></i>
                                         <div class="class-name">5ème</div>
                                     </div>
                                     <div class="class-item" data-class="4eme" data-level="college">
-                                        <i class="fas fa-3"></i>
+                                        <i class="fas fa-"></i>
                                         <div class="class-name">4ème</div>
                                     </div>
                                     <div class="class-item" data-class="3eme" data-level="college">
-                                        <i class="fas fa-4"></i>
+                                        <i class="fas fa-"></i>
                                         <div class="class-name">3ème</div>
                                     </div>
                                 </div>
@@ -1295,7 +1295,7 @@
                     <div class="contact-info">
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>Ministère de l'Éducation Nationale, Lomé, Togo</span>
+                            <span>ESODI, KARA, Togo</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
@@ -1352,34 +1352,55 @@
         const subjectsData = {
             "6eme": [
                 { name: "Mathématiques", icon: "calculator", link: "mathematiques_6eme.html" },
-                 { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_5eme.html" },,
-                { name: "SVT", icon: "seedling", link: "svt_6eme.html" },
+                 { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_5eme.html" },
             ],
             "5eme": [
                 { name: "Mathématiques", icon: "calculator", link: "mathematiques_5eme.html" },
                 { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_5eme.html" },
-                { name: "SVT", icon: "seedling", link: "svt_5eme.html" }
             ],
             "4eme": [
                 { name: "Mathématiques", icon: "calculator", link: "mathematiques_4eme.html" },
                 { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_4eme.html" },
-                { name: "SVT", icon: "seedling", link: "svt_4eme.html" }
             ],
             "3eme": [
                 { name: "Mathématiques", icon: "calculator", link: "mathematiques_3eme.html" },
                 { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_3eme.html" },
                 { name: "SVT", icon: "seedling", link: "svt_3eme.html" }
             ],
-            "2nde": [
+            "2ndeCD": [
                 { name: "Mathématiques", icon: "calculator", link: "mathematiques_2nde.html" },
                 { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_2nde.html" },
             ],
-            "1ere": [
+             "2ndeL": [
+                { name: "Mathématiques", icon: "calculator", link: "mathematiques_2nde.html" },
+                { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_2nde.html" },
+            ],
+            "1ereA4": [
                 { name: "Mathématiques", icon: "calculator", link: "mathematiques_1ere.html" },
                 { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_1ere.html" },
                 { name: "SVT", icon: "seedling", link: "svt_1ere.html" }
             ],
-            "tle": [
+             "1ereC4": [
+                { name: "Mathématiques", icon: "calculator", link: "mathematiques_1ere.html" },
+                { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_1ere.html" },
+                { name: "SVT", icon: "seedling", link: "svt_1ere.html" }
+            ],
+             "1ereD": [
+                { name: "Mathématiques", icon: "calculator", link: "mathematiques_1ere.html" },
+                { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_1ere.html" },
+                { name: "SVT", icon: "seedling", link: "svt_1ere.html" }
+            ],
+            "tleA4": [
+                { name: "Mathématiques", icon: "calculator", link: "mathematiques_tle.html" },
+                { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_tle.html" },
+                { name: "SVT", icon: "seedling", link: "svt_tle.html" }
+            ]
+            "tleC4": [
+                { name: "Mathématiques", icon: "calculator", link: "mathematiques_tle.html" },
+                { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_tle.html" },
+                { name: "SVT", icon: "seedling", link: "svt_tle.html" }
+            ]
+        "tleD": [
                 { name: "Mathématiques", icon: "calculator", link: "mathematiques_tle.html" },
                 { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_tle.html" },
                 { name: "SVT", icon: "seedling", link: "svt_tle.html" }
@@ -1402,9 +1423,14 @@
             "5eme": "Cinquième (5ème)",
             "4eme": "Quatrième (4ème)",
             "3eme": "Troisième (3ème)",
-            "2nde": "Seconde (2nde)",
-            "1ere": "Première (1ère)",
-            "tle": "Terminale (Tle)"
+            "2ndeCD": "Seconde (2ndeCD)",
+            "2ndeL": "Seconde (2ndeL)",
+            "1ereA4": "Première (1èreA4)",
+            "1ereC4": "Première (1èreC4)",
+            "1ereD": "Première (1èreD)",
+             "tleA4": "Terminale (TleA4)"
+             "tleC4": "Terminale (TleC4)"
+             "tleD": "Terminale (TleD)"
         };
 
         // Variables globales

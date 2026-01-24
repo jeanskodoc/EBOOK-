@@ -1255,7 +1255,7 @@
                                     <li><i class="fas fa-check"></i> Corrigés détaillés</li>
                                     <li><i class="fas fa-check"></i> Format PDF/LaTeX</li>
                                 </ul>
-                                <button class="https://jeanskodoc.github.io/CORRIG-PLUS/" onclick="selectService('epreuves')">
+                                <button class="btn btn-order" onclick="selectService('epreuves')">
                                     <i class="fas fa-shopping-cart"></i> Commander
                                 </button>
                             </div>
@@ -1274,7 +1274,7 @@
                                     <li><i class="fas fa-check"></i> Format LaTeX/PDF</li>
                                     <li><i class="fas fa-check"></i> Figures et graphiques</li>
                                 </ul>
-                                <button class="https://jeanskodoc.github.io/CORRIG-PLUS/" onclick="selectService('documents')">
+                                <button class="btn btn-order" onclick="selectService('documents')">
                                     <i class="fas fa-shopping-cart"></i> Commander
                                 </button>
                             </div>
@@ -1293,7 +1293,7 @@
                                     <li><i class="fas fa-check"></i> Mise en page professionnelle</li>
                                     <li><i class="fas fa-check"></i> Bibliographie complète</li>
                                 </ul>
-                                <button class="https://jeanskodoc.github.io/CORRIG-PLUS/" onclick="selectService('memoires')">
+                                <button class="btn btn-order" onclick="selectService('memoires')">
                                     <i class="fas fa-shopping-cart"></i> Commander
                                 </button>
                             </div>
@@ -1312,7 +1312,7 @@
                                     <li><i class="fas fa-check"></i> Conforme aux normes</li>
                                     <li><i class="fas fa-check"></i> Livraison sous 7 jours</li>
                                 </ul>
-                                <button class="https://jeanskodoc.github.io/CORRIG-PLUS/" onclick="selectService('rapports')">
+                                <button class="btn btn-order" onclick="selectService('rapports')">
                                     <i class="fas fa-shopping-cart"></i> Commander
                                 </button>
                             </div>
@@ -1331,7 +1331,7 @@
                                     <li><i class="fas fa-check"></i> Tableaux et matrices</li>
                                     <li><i class="fas fa-check"></i> Code source fourni</li>
                                 </ul>
-                                <button class="https://jeanskodoc.github.io/CORRIG-PLUS/" onclick="selectService('latex')">
+                                <button class="btn btn-order" onclick="selectService('latex')">
                                     <i class="fas fa-shopping-cart"></i> Commander
                                 </button>
                             </div>
@@ -1350,11 +1350,111 @@
                                     <li><i class="fas fa-check"></i> Mise aux normes</li>
                                     <li><i class="fas fa-check"></i> Service express (48h)</li>
                                 </ul>
-                                <button class="https://jeanskodoc.github.io/CORRIG-PLUS/" onclick="selectService('correction')">
+                                <button class="btn btn-order" onclick="selectService('correction')">
                                     <i class="fas fa-shopping-cart"></i> Commander
                                 </button>
                             </div>
                         </div>
+                    </div>
+                    
+                    <!-- Formulaire de commande -->
+                    <div class="order-form" id="orderFormSection" style="display: none;">
+                        <h2 class="form-title" id="serviceTitle">Commander un service</h2>
+                        
+                        <form id="orderForm">
+                            <div class="form-group">
+                                <label for="serviceType">Type de service *</label>
+                                <select class="form-control" id="serviceType" name="serviceType" required>
+                                    <option value="">Sélectionnez un service</option>
+                                    <option value="epreuves">Épreuves corrigées</option>
+                                    <option value="documents">Documents scientifiques</option>
+                                    <option value="memoires">Mémoires et thèses</option>
+                                    <option value="rapports">Rapports de stage</option>
+                                    <option value="latex">Saisie LaTeX</option>
+                                    <option value="correction">Correction et relecture</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="fullName">Nom complet *</label>
+                                    <input type="text" class="form-control" id="fullName" name="fullName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Adresse email *</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="phone">Téléphone *</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="deadline">Délai de livraison *</label>
+                                    <select class="form-control" id="deadline" name="deadline" required>
+                                        <option value="">Choisir un délai</option>
+                                        <option value="urgent">Urgent (24-48h)</option>
+                                        <option value="normal">Normal (3-5 jours)</option>
+                                        <option value="standard">Standard (7 jours)</option>
+                                        <option value="long">Long (10-15 jours)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="description">Description détaillée *</label>
+                                <textarea class="form-control" id="description" name="description" placeholder="Décrivez votre commande en détail (matière, niveau, nombre de pages, exigences spécifiques...)" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Télécharger des fichiers (optionnel)</label>
+                                <div class="file-upload" onclick="document.getElementById('fileUpload').click()">
+                                    <div class="upload-icon">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                    </div>
+                                    <p>Cliquez pour télécharger des fichiers</p>
+                                    <p class="small-text">Formats acceptés: PDF, DOC, DOCX, LaTeX, images</p>
+                                    <input type="file" id="fileUpload" multiple style="display: none;">
+                                </div>
+                                <div id="fileList"></div>
+                            </div>
+                            
+                            <div class="price-calculator">
+                                <h4>Estimation du prix</h4>
+                                <div class="price-item">
+                                    <span>Service de base:</span>
+                                    <span id="basePrice">0 FCFA</span>
+                                </div>
+                                <div class="price-item">
+                                    <span>Supplément urgence:</span>
+                                    <span id="urgencyPrice">0 FCFA</span>
+                                </div>
+                                <div class="price-item">
+                                    <span>Frais de traitement:</span>
+                                    <span>5 000 FCFA</span>
+                                </div>
+                                <div class="price-total">
+                                    <span>Total estimé:</span>
+                                    <span id="totalPrice">0 FCFA</span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="notes">Notes supplémentaires</label>
+                                <textarea class="form-control" id="notes" name="notes" placeholder="Instructions particulières, préférences de format, etc."></textarea>
+                            </div>
+                            
+                            <div style="text-align: center; margin-top: 2rem;">
+                                <button type="submit" class="btn btn-success" style="padding: 1rem 3rem; font-size: 1.1rem;">
+                                    <i class="fas fa-paper-plane"></i> Envoyer la commande
+                                </button>
+                                <button type="button" class="btn btn-danger" onclick="cancelOrder()" style="margin-left: 1rem;">
+                                    <i class="fas fa-times"></i> Annuler
+                                </button>
+                            </div>
+                        </form>
                     </div>
                     
                     <!-- Section CORRIG-PLUS -->

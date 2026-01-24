@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocumentSecure Pro | Consultation de Documents en Ligne</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3a0ca3;
+            --accent-color: #4cc9f0;
+            --success-color: #4ade80;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --dark-color: #1e293b;
+            --light-color: #f8fafc;
+            --gray-color: #64748b;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1300px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        header {
+            text-align: center;
+            color: white;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow);
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+            background: linear-gradient(90deg, #fff, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .card {
+            flex: 1;
+            min-width: 320px;
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 35px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .documents-section {
+            flex: 2;
+            min-width: 350px;
+            background-color: white;
+            border-radius: var(--radius);
+            padding: 35px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-title {
+            color: var(--dark-color);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--accent-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .section-title .badge {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .form-group label.required::after {
+            content: " *";
+            color: var(--danger-color);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            padding-right: 50px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: #f8fafc;
+        }
+        
+        .form-control:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(76, 201, 240, 0.1);
+        }
+        
+        .form-control.password-field {
+            font-family: 'Arial', sans-serif;
+            letter-spacing: 2px;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 16px;
+            top: 42px;
+            background: none;
+            border: none;
+            color: var(--gray-color);
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            padding: 5px;
+            border-radius: 4px;
+        }
+        
+        .password-toggle:hover {
+            color: var(--primary-color);
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            text-decoration: none;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .btn-external {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            margin-top: 20px;
+            position: relative;
+        }
+        
+        .btn-external.unlocked {
+            background: linear-gradient(135deg, var(--success-color), #16a34a);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(74, 222, 128, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+        }
+        
+        .btn-external.locked {
+            background: linear-gradient(135deg, var(--gray-color), #475569);
+            cursor: not-allowed;
+            pointer-events: none;
+            opacity: 0.8;
+        }
+        
+        .btn-external i {
+            margin-right: 10px;
+        }
+        
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            margin-top: 20px;
+        }
+        
+        .btn-logout {
+            background: linear-gradient(135deg, var(--danger-color), #dc2626);
+        }
+        
+        .message {
+            margin-top: 15px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-weight: 500;
+            text-align: center;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .error-message {
+            color: var(--danger-color);
+            background-color: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid var(--danger-color);
+        }
+        
+        .success-message {
+            color: var(--success-color);
+            background-color: rgba(74, 222, 128, 0.1);
+            border-left: 4px solid var(--success-color);
+        }
+        
+        .warning-message {
+            color: var(--warning-color);
+            background-color: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid var(--warning-color);
+        }
+        
+        .access-info {
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), rgba(76, 201, 240, 0.05));
+            border: 1px solid rgba(67, 97, 238, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 25px;
+            text-align: center;
+        }
+        
+        .access-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .access-restricted {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: var(--danger-color);
+            font-weight: 600;
+            margin-top: 10px;
+            padding: 8px 12px;
+            background-color: rgba(239, 68, 68, 0.1);
+            border-radius: 6px;
+        }
+        
+        .accounts-info {
+            background-color: #f8fafc;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .accounts-info h4 {
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+        
+        .accounts-list {
+            list-style-type: none;
+        }
+        
+        .accounts-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+        
+        .accounts-list li:hover {
+            background-color: rgba(76, 201, 240, 0.05);
+            padding-left: 10px;
+            border-radius: 6px;
+        }
+        
+        .account-status {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+        
+        .account-status.active {
+            background-color: var(--success-color);
+            box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.3);
+        }
+        
+        .account-status.expired {
+            background-color: var(--danger-color);
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+        }
+        
+        .account-status.expiring {
+            background-color: var(--warning-color);
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.3);
+        }
+        
+        .account-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .account-info {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .account-username {
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .account-expiry {
+            font-size: 0.8rem;
+            color: var(--gray-color);
+        }
+        
+        .account-expiry.expired {
+            color: var(--danger-color);
+            font-weight: 600;
+        }
+        
+        .password-strength {
+            height: 6px;
+            background-color: #e2e8f0;
+            border-radius: 3px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        
+        .password-strength-bar {
+            height: 100%;
+            width: 0%;
+            transition: var(--transition);
+            border-radius: 3px;
+        }
+        
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .document-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            border: 1px solid #e2e8f0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .document-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent-color);
+        }
+        
+        .document-icon {
+            font-size: 2.8rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, rgba(76, 201, 240, 0.1), rgba(67, 97, 238, 0.1));
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .document-title {
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+        }
+        
+        .document-description {
+            color: var(--gray-color);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .document-category {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            background-color: rgba(76, 201, 240, 0.1);
+            padding: 5px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .user-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .user-details h3 {
+            color: var(--dark-color);
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+        
+        .user-expiry {
+            font-size: 0.95rem;
+            color: var(--gray-color);
+        }
+        
+        .user-expiry.expiring {
+            color: var(--warning-color);
+            font-weight: 600;
+        }
+        
+        .user-expiry.expired {
+            color: var(--danger-color);
+            font-weight: 600;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            background-color: #f1f5f9;
+            padding: 5px;
+            border-radius: 10px;
+        }
+        
+        .nav-btn {
+            flex: 1;
+            padding: 12px;
+            background: none;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--dark-color);
+            transition: var(--transition);
+        }
+        
+        .nav-btn.active {
+            background-color: white;
+            color: var(--primary-color);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .whatsapp-info {
+            background: linear-gradient(135deg, rgba(37, 211, 102, 0.05), rgba(18, 140, 126, 0.05));
+            border: 1px solid rgba(37, 211, 102, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 25px;
+            text-align: center;
+        }
+        
+        .whatsapp-info h4 {
+            color: #128C7E;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .whatsapp-info a {
+            color: #128C7E;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+        
+        .whatsapp-info a:hover {
+            color: #25D366;
+            text-decoration: underline;
+        }
+        
+        footer {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            font-size: 0.9rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .demo-note {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.05));
+            border-left: 4px solid var(--warning-color);
+            padding: 15px;
+            margin-top: 25px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #92400e;
+        }
+        
+        .access-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: var(--success-color);
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        
+        .access-badge.locked {
+            background-color: var(--danger-color);
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 992px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .card, .documents-section {
+                min-width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .documents-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .user-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .user-details h3 {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .card, .documents-section {
+                padding: 25px;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .btn {
+                padding: 12px 20px;
+            }
+        }
+        
+        /* Scrollbar personnalisée */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 10px;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-shield-alt"></i> DocumentSecure Pro</h1>
+            <p>Plateforme sécurisée de consultation de documents avec authentification et gestion des accès</p>
+        </header>
+        
+        <div class="main-content">
+            <!-- Section d'authentification -->
+            <section class="card" id="authSection">
+                <div class="nav-buttons">
+                    <button class="nav-btn active" id="loginTabBtn">
+                        <i class="fas fa-sign-in-alt"></i> Connexion
+                    </button>
+                    <button class="nav-btn" id="registerTabBtn">
+                        <i class="fas fa-user-plus"></i> Nouveau Compte
+                    </button>
+                </div>
+                
+                <h2 class="section-title"><i class="fas fa-lock"></i> Authentification Sécurisée</h2>
+                
+                <div class="access-info">
+                    <h4><i class="fas fa-info-circle"></i> Accès Restreint</h4>
+                    <p>L'accès au document externe est strictement réservé aux utilisateurs connectés avec un compte actif et non expiré.</p>
+                    <div class="access-restricted">
+                        <i class="fas fa-lock"></i>
+                        <span>Authentification requise</span>
+                    </div>
+                </div>
+                
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username" class="required"><i class="fas fa-user"></i> Identifiant</label>
+                        <input type="text" id="username" class="form-control" placeholder="Entrez votre identifiant" required autocomplete="username">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password" class="required"><i class="fas fa-key"></i> Mot de passe</label>
+                        <input type="password" id="password" class="form-control password-field" placeholder="Entrez votre mot de passe" required autocomplete="current-password">
+                        <button type="button" class="password-toggle" id="passwordToggle">
+                            <i class="far fa-eye"></i>
+                        </button>
+                        <div class="password-strength">
+                            <div class="password-strength-bar" id="passwordStrength"></div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn" id="loginBtn">
+                        <span id="loginBtnText"><i class="fas fa-sign-in-alt"></i> Se connecter</span>
+                        <span id="loginBtnLoading" style="display: none;"><div class="loading"></div> Connexion...</span>
+                    </button>
+                    
+                    <div class="error-message" id="errorMessage">
+                        <i class="fas fa-exclamation-circle"></i> Identifiant ou mot de passe incorrect
+                    </div>
+                    
+                    <div class="warning-message" id="expirationMessage">
+                        <i class="fas fa-exclamation-triangle"></i> Votre compte a expiré ou expire bientôt
+                    </div>
+                    
+                    <div class="success-message" id="successMessage">
+                        <i class="fas fa-check-circle"></i> Connexion réussie! Redirection en cours...
+                    </div>
+                    
+                    <a href="#" class="btn btn-external locked" id="externalLinkBtn">
+                        <i class="fas fa-external-link-alt"></i> Accéder au document externe
+                        <div class="access-badge locked">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                    </a>
+                    <p style="text-align: center; font-size: 0.85rem; color: var(--gray-color); margin-top: 10px; padding: 0 10px;">
+                        <i class="fas fa-info-circle"></i> Connectez-vous avec un compte actif pour déverrouiller l'accès
+                    </p>
+                </form>
+                
+                <div class="demo-note">
+                    <i class="fas fa-lightbulb"></i> <strong>Note de démonstration :</strong> Les comptes expirent automatiquement après 30 jours d'activation. Utilisez les identifiants ci-dessous pour tester.
+                </div>
+                
+                <div class="accounts-info">
+                    <h4><i class="fas fa-users"></i> Comptes de démonstration 
+                        <span class="badge" id="activeAccountsCount">5 actifs</span>
+                    </h4>
+                    <ul class="accounts-list" id="accountsList">
+                        <!-- Les comptes seront ajoutés par JavaScript -->
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- Section d'inscription -->
+            <section class="card" id="registrationSection" style="display: none;">
+                <div class="nav-buttons">
+                    <button class="nav-btn" id="loginTabBtn2">
+                        <i class="fas fa-sign-in-alt"></i> Connexion
+                    </button>
+                    <button class="nav-btn active" id="registerTabBtn2">
+                        <i class="fas fa-user-plus"></i> Nouveau Compte
+                    </button>
+                </div>
+                
+                <h2 class="section-title"><i class="fas fa-user-plus"></i> Demande de Compte</h2>
+                
+                <form id="registrationForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName" class="required"><i class="fas fa-user"></i> Prénom</label>
+                            <input type="text" id="firstName" class="form-control" placeholder="Votre prénom" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lastName" class="required"><i class="fas fa-user"></i> Nom</label>
+                            <input type="text" id="lastName" class="form-control" placeholder="Votre nom" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="required"><i class="fas fa-envelope"></i> Adresse email</label>
+                        <input type="email" id="email" class="form-control" placeholder="votre.email@exemple.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone" class="required"><i class="fas fa-phone"></i> Numéro de téléphone</label>
+                        <input type="tel" id="phone" class="form-control" placeholder="+228 XX XX XX XX" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="organization"><i class="fas fa-building"></i> Organisation</label>
+                        <input type="text" id="organization" class="form-control" placeholder="Votre entreprise ou organisation">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="purpose" class="required"><i class="fas fa-question-circle"></i> Motif de la demande</label>
+                        <textarea id="purpose" class="form-control" rows="4" placeholder="Expliquez pourquoi vous avez besoin d'accéder à ces documents..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="duration" class="required"><i class="fas fa-calendar-alt"></i> Durée d'accès souhaitée</label>
+                        <select id="duration" class="form-control" required>
+                            <option value="">Sélectionnez une durée</option>
+                            <option value="15">15 jours</option>
+                            <option value="30" selected>30 jours (standard)</option>
+                            <option value="60">60 jours</option>
+                            <option value="90">90 jours</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-whatsapp" id="sendRequestBtn">
+                        <span id="sendBtnText"><i class="fab fa-whatsapp"></i> Envoyer la demande par WhatsApp</span>
+                        <span id="sendBtnLoading" style="display: none;"><div class="loading"></div> Préparation...</span>
+                    </button>
+                    
+                    <div class="success-message" id="registrationSuccess">
+                        <i class="fas fa-check-circle"></i> Demande envoyée avec succès! Vous recevrez vos identifiants par email.
+                    </div>
+                    
+                    <div class="error-message" id="registrationError">
+                        <i class="fas fa-exclamation-circle"></i> Veuillez remplir tous les champs obligatoires correctement.
+                    </div>
+                </form>
+                
+                <div class="whatsapp-info">
+                    <h4><i class="fab fa-whatsapp"></i> Contact WhatsApp</h4>
+                    <p>Votre demande sera envoyée au numéro suivant :</p>
+                    <p><a href="https://wa.me/22892871605" target="_blank" id="whatsappLink">+228 92 87 16 05</a></p>
+                    <p><small>Vous recevrez une réponse sous 24-48 heures ouvrables.</small></p>
+                </div>
+            </section>
+            
+            <!-- Section des documents (visible après authentification) -->
+            <section class="documents-section" id="documentsSection">
+                <div class="user-info">
+                    <div class="user-details">
+                        <h3 id="welcomeMessage">Bienvenue, </h3>
+                        <div id="userExpiryInfo" class="user-expiry"></div>
+                    </div>
+                    <button class="btn btn-logout" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> Déconnexion
+                    </button>
+                </div>
+                
+                <h2 class="section-title"><i class="fas fa-folder-open"></i> Documents disponibles</h2>
+                <p style="color: var(--gray-color); margin-bottom: 10px;">Sélectionnez un document pour le consulter :</p>
+                
+                <div class="documents-grid" id="documentsGrid">
+                    <!-- Les documents seront ajoutés par JavaScript -->
+                </div>
+                
+                <a href="#" class="btn btn-external locked" id="documentsExternalLink" style="margin-top: 40px;">
+                    <i class="fas fa-external-link-alt"></i> Accéder au document externe (ujhy.tiiny.site)
+                    <div class="access-badge locked" id="accessBadge">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                </a>
+                
+                <div class="warning-message" id="documentsExpirationWarning" style="display: none; margin-top: 20px;">
+                    <i class="fas fa-exclamation-triangle"></i> Attention : Votre compte expire bientôt. Contactez l'administrateur pour le renouveler.
+                </div>
+            </section>
+        </div>
+        
+        <footer>
+            <p>&copy; 2023 DocumentSecure Pro. Tous droits réservés.</p>
+            <p style="margin-top: 5px; font-size: 0.8rem;">
+                <i class="fas fa-shield-alt"></i> Accès sécurisé • 
+                <i class="fas fa-clock"></i> Expiration automatique après 30 jours • 
+                <i class="fas fa-lock"></i> Authentification requise
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Comptes utilisateurs prédéfinis avec dates d'expiration
+        const accounts = [
+            { 
+                username: "admin", 
+                password: "AdminSecure2023!", 
+                fullName: "Administrateur Système", 
+                role: "Administrateur",
+                creationDate: "2023-10-01",
+                expiryDate: null, // Admin n'expire pas
+                active: true,
+                externalAccess: true
+            },
+            { 
+                username: "manager", 
+                password: "ManagerPass123#", 
+                fullName: "Responsable Département", 
+                role: "Gestionnaire",
+                creationDate: "2023-11-15",
+                expiryDate: "2024-01-14", // 30 jours à partir d'aujourd'hui
+                active: true,
+                externalAccess: true
+            },
+            { 
+                username: "employe1", 
+                password: "Emp@2023Secure", 
+                fullName: "Jean Dupont", 
+                role: "Employé",
+                creationDate: "2023-11-20",
+                expiryDate: "2024-01-19", // 30 jours à partir d'aujourd'hui
+                active: true,
+                externalAccess: true
+            },
+            { 
+                username: "employe2", 
+                password: "Secure456$Emp", 
+                fullName: "Marie Martin", 
+                role: "Employé",
+                creationDate: "2023-11-01",
+                expiryDate: "2023-12-01",
+                active: false, // Expiré
+                externalAccess: false
+            },
+            { 
+                username: "client", 
+                password: "ClientAccess789!", 
+                fullName: "Pierre Lambert", 
+                role: "Client Premium",
+                creationDate: "2023-11-25",
+                expiryDate: "2024-01-24", // 30 jours à partir d'aujourd'hui
+                active: true,
+                externalAccess: true
+            }
+        ];
+
+        // Documents disponibles
+        const documents = [
+            { 
+                id: 1, 
+                title: "Rapport Annuel 2023", 
+                description: "Rapport financier et d'activité complet pour l'année 2023 avec analyse détaillée des performances.",
+                icon: "fas fa-chart-line",
+                category: "Finances",
+                restricted: ["Administrateur", "Gestionnaire"]
+            },
+            { 
+                id: 2, 
+                title: "Manuel d'Utilisation", 
+                description: "Guide complet d'utilisation des systèmes internes avec procédures détaillées et exemples.",
+                icon: "fas fa-book",
+                category: "Documentation",
+                restricted: []
+            },
+            { 
+                id: 3, 
+                title: "Politique de Confidentialité", 
+                description: "Document officiel sur la gestion des données personnelles conforme au RGPD.",
+                icon: "fas fa-shield-alt",
+                category: "Juridique",
+                restricted: []
+            },
+            { 
+                id: 4, 
+                title: "Présentation Stratégique", 
+                description: "Plan stratégique de l'entreprise pour les 5 prochaines années avec objectifs et roadmap.",
+                icon: "fas fa-bullseye",
+                category: "Stratégie",
+                restricted: ["Administrateur", "Gestionnaire"]
+            },
+            { 
+                id: 5, 
+                title: "Guide des Procédures", 
+                description: "Procédures opérationnelles standard pour tous les départements avec checklists.",
+                icon: "fas fa-tasks",
+                category: "Opérations",
+                restricted: ["Employé", "Gestionnaire", "Administrateur"]
+            },
+            { 
+                id: 6, 
+                title: "Étude de Marché", 
+                description: "Analyse approfondie du marché actuel et des tendances avec prévisions détaillées.",
+                icon: "fas fa-chart-pie",
+                category: "Recherche",
+                restricted: ["Gestionnaire", "Administrateur"]
+            }
+        ];
+
+        // Références aux éléments DOM
+        const loginForm = document.getElementById('loginForm');
+        const authSection = document.getElementById('authSection');
+        const documentsSection = document.getElementById('documentsSection');
+        const registrationSection = document.getElementById('registrationSection');
+        const errorMessage = document.getElementById('errorMessage');
+        const expirationMessage = document.getElementById('expirationMessage');
+        const successMessage = document.getElementById('successMessage');
+        const accountsList = document.getElementById('accountsList');
+        const documentsGrid = document.getElementById('documentsGrid');
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const passwordToggle = document.getElementById('passwordToggle');
+        const passwordField = document.getElementById('password');
+        const passwordStrength = document.getElementById('passwordStrength');
+        const loginTabBtn = document.getElementById('loginTabBtn');
+        const registerTabBtn = document.getElementById('registerTabBtn');
+        const loginTabBtn2 = document.getElementById('loginTabBtn2');
+        const registerTabBtn2 = document.getElementById('registerTabBtn2');
+        const registrationForm = document.getElementById('registrationForm');
+        const registrationSuccess = document.getElementById('registrationSuccess');
+        const registrationError = document.getElementById('registrationError');
+        const externalLinkBtn = document.getElementById('externalLinkBtn');
+        const documentsExternalLink = document.getElementById('documentsExternalLink');
+        const documentsExpirationWarning = document.getElementById('documentsExpirationWarning');
+        const userExpiryInfo = document.getElementById('userExpiryInfo');
+        const activeAccountsCount = document.getElementById('activeAccountsCount');
+        const accessBadge = document.getElementById('accessBadge');
+        const loginBtnText = document.getElementById('loginBtnText');
+        const loginBtnLoading = document.getElementById('loginBtnLoading');
+        const sendBtnText = document.getElementById('sendBtnText');
+        const sendBtnLoading = document.getElementById('sendBtnLoading');
+        const whatsappLink = document.getElementById('whatsappLink');
+        
+        let currentUser = null;
+
+        // Fonction pour vérifier si un compte a expiré
+        function isAccountExpired(expiryDate) {
+            if (!expiryDate) return false; // Admin n'expire pas
+            
+            const today = new Date();
+            const expiry = new Date(expiryDate);
+            
+            return today > expiry;
+        }
+
+        // Fonction pour vérifier si un compte expire bientôt (dans les 7 jours)
+        function isAccountExpiringSoon(expiryDate) {
+            if (!expiryDate) return false;
+            
+            const today = new Date();
+            const expiry = new Date(expiryDate);
+            const daysUntilExpiry = Math.floor((expiry - today) / (1000 * 60 * 60 * 24));
+            
+            return daysUntilExpiry > 0 && daysUntilExpiry <= 7;
+        }
+
+        // Fonction pour formater la date
+        function formatDate(dateString) {
+            if (!dateString) return "Illimité";
+            
+            const date = new Date(dateString);
+            return date.toLocaleDateString('fr-FR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+        }
+
+        // Fonction pour calculer les jours restants
+        function getDaysRemaining(expiryDate) {
+            if (!expiryDate) return "Illimité";
+            
+            const today = new Date();
+            const expiry = new Date(expiryDate);
+            const daysRemaining = Math.floor((expiry - today) / (1000 * 60 * 60 * 24));
+            
+            if (daysRemaining < 0) return "Expiré";
+            return `${daysRemaining} jour(s)`;
+        }
+
+        // Fonction pour obtenir les initiales d'un nom
+        function getInitials(fullName) {
+            return fullName.split(' ').map(name => name[0]).join('').toUpperCase();
+        }
+
+        // Mettre à jour l'état du bouton externe
+        function updateExternalButtonState(user, elementId = 'externalLinkBtn') {
+            const button = document.getElementById(elementId);
+            const badge = button.querySelector('.access-badge');
+            
+            if (user && user.externalAccess && !isAccountExpired(user.expiryDate)) {
+                // Utilisateur connecté avec accès autorisé
+                button.href = "https://ujhy.tiiny.site";
+                button.target = "_blank";
+                button.classList.remove('locked');
+                button.classList.add('unlocked');
+                
+                // Mettre à jour le badge
+                if (badge) {
+                    badge.innerHTML = '<i class="fas fa-unlock"></i>';
+                    badge.classList.remove('locked');
+                }
+            } else {
+                // Utilisateur non connecté ou sans accès
+                button.href = "#";
+                button.removeAttribute('target');
+                button.classList.add('locked');
+                button.classList.remove('unlocked');
+                
+                // Mettre à jour le badge
+                if (badge) {
+                    badge.innerHTML = '<i class="fas fa-lock"></i>';
+                    badge.classList.add('locked');
+                }
+            }
+        }
+
+        // Afficher la liste des comptes disponibles
+        function displayAccounts() {
+            accountsList.innerHTML = '';
+            let activeCount = 0;
+            
+            accounts.forEach((account) => {
+                const expired = isAccountExpired(account.expiryDate);
+                const expiringSoon = isAccountExpiringSoon(account.expiryDate);
+                
+                if (!expired && account.active) activeCount++;
+                
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                    <div class="account-status ${expired ? 'expired' : (expiringSoon ? 'expiring' : 'active')}"></div>
+                    <div class="account-icon">${getInitials(account.fullName)}</div>
+                    <div class="account-info">
+                        <div class="account-username">${account.username} <small>(${account.role})</small></div>
+                        <div class="account-expiry ${expired ? 'expired' : ''}">
+                            ${expired ? '<i class="fas fa-ban"></i> Expiré le ' : '<i class="fas fa-clock"></i> Expire le '}${formatDate(account.expiryDate)}
+                        </div>
+                    </div>
+                `;
+                accountsList.appendChild(listItem);
+            });
+            
+            activeAccountsCount.textContent = `${activeCount} actif(s)`;
+        }
+
+        // Afficher les documents selon le rôle de l'utilisateur
+        function displayDocuments(userRole) {
+            documentsGrid.innerHTML = '';
+            
+            // Filtrer les documents accessibles selon le rôle
+            const accessibleDocuments = documents.filter(doc => {
+                return doc.restricted.length === 0 || doc.restricted.includes(userRole);
+            });
+            
+            if (accessibleDocuments.length === 0) {
+                documentsGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 50px 20px;">
+                        <i class="fas fa-lock" style="font-size: 4rem; color: #e2e8f0; margin-bottom: 20px;"></i>
+                        <h3 style="color: var(--gray-color); margin-bottom: 10px;">Aucun document accessible</h3>
+                        <p style="color: var(--gray-color);">Votre rôle (${userRole}) ne vous permet pas d'accéder aux documents pour le moment.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            accessibleDocuments.forEach(doc => {
+                const documentCard = document.createElement('div');
+                documentCard.className = 'document-card';
+                
+                // Vérifier si le document est restreint
+                const isRestricted = doc.restricted.length > 0;
+                const restrictionNote = isRestricted ? `<div style="font-size: 0.75rem; color: var(--warning-color); margin-top: 5px;">
+                    <i class="fas fa-user-shield"></i> Accès restreint
+                </div>` : '';
+                
+                documentCard.innerHTML = `
+                    <div class="document-icon">
+                        <i class="${doc.icon}"></i>
+                    </div>
+                    <div class="document-category">${doc.category}</div>
+                    <h3 class="document-title">${doc.title}</h3>
+                    <p class="document-description">${doc.description}</p>
+                    ${restrictionNote}
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+                        <button class="btn" style="padding: 10px 18px; font-size: 0.9rem; width: 100%;" onclick="viewDocument(${doc.id})">
+                            <i class="fas fa-eye"></i> Consulter le document
+                        </button>
+                    </div>
+                `;
+                documentsGrid.appendChild(documentCard);
+            });
+        }
+
+        // Gérer l'affichage/masquage du mot de passe
+        passwordToggle.addEventListener('click', function() {
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+            this.innerHTML = type === 'password' ? '<i class="far fa-eye"></i>' : '<i class="far fa-eye-slash"></i>';
+        });
+
+        // Simuler la vérification de la force du mot de passe
+        passwordField.addEventListener('input', function() {
+            const password = this.value;
+            let strength = 0;
+            
+            if (password.length >= 8) strength += 25;
+            if (/[A-Z]/.test(password)) strength += 25;
+            if (/[0-9]/.test(password)) strength += 25;
+            if (/[^A-Za-z0-9]/.test(password)) strength += 25;
+            
+            passwordStrength.style.width = `${strength}%`;
+            
+            // Couleur en fonction de la force
+            if (strength < 50) {
+                passwordStrength.style.backgroundColor = 'var(--danger-color)';
+            } else if (strength < 75) {
+                passwordStrength.style.backgroundColor = 'var(--warning-color)';
+            } else {
+                passwordStrength.style.backgroundColor = 'var(--success-color)';
+            }
+        });
+
+        // Gérer la connexion
+        loginForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            
+            // Afficher l'indicateur de chargement
+            loginBtnText.style.display = 'none';
+            loginBtnLoading.style.display = 'inline-block';
+            
+            // Simuler un délai réseau
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Vérifier les identifiants
+            const user = accounts.find(account => 
+                account.username === username && account.password === password
+            );
+            
+            if (user) {
+                // Vérifier si le compte est actif
+                if (!user.active) {
+                    errorMessage.style.display = 'none';
+                    expirationMessage.style.display = 'block';
+                    expirationMessage.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Compte désactivé. Contactez l'administrateur.`;
+                    successMessage.style.display = 'none';
+                    
+                    // Mettre à jour le bouton externe
+                    updateExternalButtonState(null);
+                    
+                    // Masquer l'indicateur de chargement
+                    loginBtnText.style.display = 'inline-block';
+                    loginBtnLoading.style.display = 'none';
+                    
+                    // Masquer le message après 5 secondes
+                    setTimeout(() => {
+                        expirationMessage.style.display = 'none';
+                    }, 5000);
+                    return;
+                }
+                
+                // Vérifier si le compte a expiré
+                const expired = isAccountExpired(user.expiryDate);
+                const expiringSoon = isAccountExpiringSoon(user.expiryDate);
+                
+                if (expired) {
+                    errorMessage.style.display = 'none';
+                    expirationMessage.style.display = 'block';
+                    expirationMessage.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Votre compte a expiré le ${formatDate(user.expiryDate)}. Contactez l'administrateur pour le renouveler.`;
+                    successMessage.style.display = 'none';
+                    
+                    // Mettre à jour le bouton externe (accès refusé)
+                    updateExternalButtonState(null);
+                    
+                    // Masquer l'indicateur de chargement
+                    loginBtnText.style.display = 'inline-block';
+                    loginBtnLoading.style.display = 'none';
+                    
+                    // Masquer le message après 5 secondes
+                    setTimeout(() => {
+                        expirationMessage.style.display = 'none';
+                    }, 5000);
+                    return;
+                }
+                
+                // Connexion réussie
+                currentUser = user;
+                errorMessage.style.display = 'none';
+                expirationMessage.style.display = 'none';
+                successMessage.style.display = 'block';
+                
+                // Simuler un délai pour la redirection
+                setTimeout(() => {
+                    // Afficher la section des documents
+                    authSection.style.display = 'none';
+                    registrationSection.style.display = 'none';
+                    documentsSection.style.display = 'block';
+                    
+                    // Mettre à jour le message de bienvenue
+                    welcomeMessage.textContent = `${user.fullName} (${user.role})`;
+                    
+                    // Afficher les informations d'expiration
+                    const daysRemaining = getDaysRemaining(user.expiryDate);
+                    userExpiryInfo.textContent = `Accès valide jusqu'au ${formatDate(user.expiryDate)} (${daysRemaining})`;
+                    userExpiryInfo.className = `user-expiry ${expiringSoon ? 'expiring' : ''}`;
+                    
+                    // Afficher l'avertissement si le compte expire bientôt
+                    if (expiringSoon) {
+                        documentsExpirationWarning.style.display = 'block';
+                    } else {
+                        documentsExpirationWarning.style.display = 'none';
+                    }
+                    
+                    // Mettre à jour le bouton externe (accès accordé si autorisé)
+                    updateExternalButtonState(user, 'documentsExternalLink');
+                    updateExternalButtonState(user, 'externalLinkBtn');
+                    
+                    // Afficher les documents appropriés
+                    displayDocuments(user.role);
+                    
+                    // Réinitialiser le formulaire
+                    loginForm.reset();
+                    passwordStrength.style.width = '0%';
+                    successMessage.style.display = 'none';
+                    
+                    // Masquer l'indicateur de chargement
+                    loginBtnText.style.display = 'inline-block';
+                    loginBtnLoading.style.display = 'none';
+                }, 1000);
+            } else {
+                // Identifiants incorrects
+                errorMessage.style.display = 'block';
+                expirationMessage.style.display = 'none';
+                successMessage.style.display = 'none';
+                
+                // Effet de secousse pour le formulaire
+                loginForm.style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    loginForm.style.animation = '';
+                }, 500);
+                
+                // Masquer l'indicateur de chargement
+                loginBtnText.style.display = 'inline-block';
+                loginBtnLoading.style.display = 'none';
+                
+                // Masquer le message d'erreur après 3 secondes
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 3000);
+            }
+        });
+
+        // Gérer la déconnexion
+        logoutBtn.addEventListener('click', function() {
+            // Revenir à la section d'authentification
+            documentsSection.style.display = 'none';
+            registrationSection.style.display = 'none';
+            authSection.style.display = 'block';
+            
+            // Réinitialiser l'utilisateur courant
+            currentUser = null;
+            
+            // Mettre à jour le bouton externe (verrouillé)
+            updateExternalButtonState(null, 'documentsExternalLink');
+            updateExternalButtonState(null, 'externalLinkBtn');
+            
+            // Afficher un message de déconnexion
+            const logoutMsg = document.createElement('div');
+            logoutMsg.className = 'success-message';
+            logoutMsg.innerHTML = `<i class="fas fa-check-circle"></i> Déconnexion réussie. Accès externe verrouillé.`;
+            logoutMsg.style.display = 'block';
+            authSection.appendChild(logoutMsg);
+            
+            // Masquer le message après 3 secondes
+            setTimeout(() => {
+                logoutMsg.style.display = 'none';
+            }, 3000);
+        });
+
+        // Navigation entre les onglets
+        function switchToLogin() {
+            authSection.style.display = 'block';
+            registrationSection.style.display = 'none';
+            loginTabBtn.classList.add('active');
+            registerTabBtn.classList.remove('active');
+            loginTabBtn2.classList.add('active');
+            registerTabBtn2.classList.remove('active');
+        }
+        
+        function switchToRegister() {
+            authSection.style.display = 'none';
+            registrationSection.style.display = 'block';
+            loginTabBtn.classList.remove('active');
+            registerTabBtn.classList.add('active');
+            loginTabBtn2.classList.remove('active');
+            registerTabBtn2.classList.add('active');
+        }
+        
+        loginTabBtn.addEventListener('click', switchToLogin);
+        registerTabBtn.addEventListener('click', switchToRegister);
+        loginTabBtn2.addEventListener('click', switchToLogin);
+        registerTabBtn2.addEventListener('click', switchToRegister);
+
+        // Gérer l'envoi du formulaire d'inscription via WhatsApp
+        registrationForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Récupérer les valeurs du formulaire
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const organization = document.getElementById('organization').value.trim();
+            const purpose = document.getElementById('purpose').value.trim();
+            const duration = document.getElementById('duration').value;
+            
+            // Validation des champs
+            let isValid = true;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (!firstName || firstName.length < 2) isValid = false;
+            if (!lastName || lastName.length < 2) isValid = false;
+            if (!email || !emailRegex.test(email)) isValid = false;
+            if (!phone || phone.length < 8) isValid = false;
+            if (!purpose || purpose.length < 10) isValid = false;
+            if (!duration) isValid = false;
+            
+            if (!isValid) {
+                registrationError.style.display = 'block';
+                registrationSuccess.style.display = 'none';
+                
+                setTimeout(() => {
+                    registrationError.style.display = 'none';
+                }, 3000);
+                return;
+            }
+            
+            // Afficher l'indicateur de chargement
+            sendBtnText.style.display = 'none';
+            sendBtnLoading.style.display = 'inline-block';
+            
+            // Simuler un délai de traitement
+            await new Promise(resolve => setTimeout(resolve, 800));
+            
+            // Créer le message WhatsApp
+            const message = `*DEMANDE DE COMPTE - DocumentSecure Pro*%0A%0A` +
+                           `*Nom complet:* ${firstName} ${lastName}%0A` +
+                           `*Email:* ${email}%0A` +
+                           `*Téléphone:* ${phone}%0A` +
+                           `*Organisation:* ${organization || 'Non spécifié'}%0A` +
+                           `*Motif de la demande:* ${purpose}%0A` +
+                           `*Durée souhaitée:* ${duration} jours%0A` +
+                           `*Accès document externe:* Oui%0A%0A` +
+                           `*Demande envoyée le:* ${new Date().toLocaleDateString('fr-FR')} à ${new Date().toLocaleTimeString('fr-FR')}`;
+            
+            // Mettre à jour le lien WhatsApp
+            const whatsappUrl = `https://wa.me/22892871605?text=${message}`;
+            whatsappLink.href = whatsappUrl;
+            
+            // Ouvrir WhatsApp avec le message pré-rempli
+            window.open(whatsappUrl, '_blank');
+            
+            // Afficher le message de succès
+            registrationSuccess.style.display = 'block';
+            registrationError.style.display = 'none';
+            
+            // Réinitialiser le formulaire
+            registrationForm.reset();
+            
+            // Masquer l'indicateur de chargement
+            sendBtnText.style.display = 'inline-block';
+            sendBtnLoading.style.display = 'none';
+            
+            // Masquer le message de succès après 5 secondes
+            setTimeout(() => {
+                registrationSuccess.style.display = 'none';
+                // Revenir à l'onglet de connexion
+                switchToLogin();
+            }, 5000);
+        });
+
+        // Simuler la consultation d'un document
+        function viewDocument(docId) {
+            const doc = documents.find(d => d.id === docId);
+            if (doc) {
+                // Vérifier l'accès
+                if (doc.restricted.length > 0 && currentUser && !doc.restricted.includes(currentUser.role)) {
+                    alert(`Accès refusé!\n\nLe document "${doc.title}" est restreint aux rôles suivants: ${doc.restricted.join(', ')}`);
+                    return;
+                }
+                
+                // Simulation d'ouverture de document
+                const modal = document.createElement('div');
+                modal.style.cssText = `
+                    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                    background: rgba(0,0,0,0.8); display: flex; align-items: center;
+                    justify-content: center; z-index: 1000; animation: fadeIn 0.3s;
+                `;
+                
+                modal.innerHTML = `
+                    <div style="background: white; border-radius: 12px; padding: 30px; max-width: 500px; width: 90%;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h3 style="color: var(--dark-color);">${doc.title}</h3>
+                            <button onclick="this.parentElement.parentElement.remove()" style="background: none; border: none; font-size: 1.5rem; color: var(--gray-color); cursor: pointer;">&times;</button>
+                        </div>
+                        <p style="color: var(--gray-color); margin-bottom: 20px;">${doc.description}</p>
+                        <div style="display: flex; gap: 10px;">
+                            <button onclick="this.parentElement.parentElement.parentElement.remove()" style="flex: 1; padding: 12px; background: var(--primary-color); color: white; border: none; border-radius: 6px; cursor: pointer;">Fermer</button>
+                            <button onclick="alert('Fonctionnalité de téléchargement simulée\\n\\nDocument: ${doc.title}')" style="flex: 1; padding: 12px; background: var(--success-color); color: white; border: none; border-radius: 6px; cursor: pointer;"><i class="fas fa-download"></i> Télécharger</button>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) this.remove();
+                });
+                
+                // Enregistrer l'accès au document (simulation)
+                console.log(`Document consulté: ${doc.title} (ID: ${docId}) par ${currentUser ? currentUser.username : 'Utilisateur inconnu'}`);
+            }
+        }
+
+        // Initialiser l'application
+        function initApp() {
+            displayAccounts();
+            
+            // Initialiser les boutons externes comme verrouillés
+            updateExternalButtonState(null, 'documentsExternalLink');
+            updateExternalButtonState(null, 'externalLinkBtn');
+            
+            // Ajouter l'animation de secousse
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                    20%, 40%, 60%, 80% { transform: translateX(5px); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Pour les besoins de démonstration, pré-remplir un compte
+            document.getElementById('username').value = 'employe1';
+            document.getElementById('password').value = 'Emp@2023Secure';
+            
+            // Déclencher l'événement input pour afficher la force du mot de passe
+            passwordField.dispatchEvent(new Event('input'));
+            
+            // Pré-remplir le formulaire d'inscription pour les tests
+            document.getElementById('firstName').value = 'John';
+            document.getElementById('lastName').value = 'Doe';
+            document.getElementById('email').value = 'john.doe@example.com';
+            document.getElementById('phone').value = '+228 12 34 56 78';
+            document.getElementById('organization').value = 'Test Company';
+            document.getElementById('purpose').value = 'Test d\'accès à la plateforme';
+        }
+
+        // Initialiser l'application au chargement
+        document.addEventListener('DOMContentLoaded', initApp);
+        
+        // Exposer la fonction viewDocument globalement
+        window.viewDocument = viewDocument;
+    </script>
+</body>
+</html>

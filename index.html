@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESODI-SCIENCES GRENIER - Bibliothèque de Sciences</title>
+    <title>ESODI-SCIENCES GRENIER - Système Éducatif Togolais</title>
     <style>
         :root {
             --primary-color: #1a5276;
@@ -14,6 +14,12 @@
             --success-color: #28b463;
             --warning-color: #f39c12;
             --gold-color: #f1c40f;
+            --teacher-color: #8e44ad;
+            --student-color: #27ae60;
+            --order-color: #e67e22;
+            --togo-green: #006400;
+            --togo-yellow: #fcd116;
+            --togo-red: #d21034;
         }
         
         * {
@@ -24,362 +30,690 @@
         }
         
         body {
-            background-color: #f5f7fa;
+            background-color: #f5f9fc;
             color: #333;
             line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .top-bar {
+            background: linear-gradient(90deg, var(--togo-green), var(--togo-yellow), var(--togo-red));
+            height: 8px;
+            width: 100%;
         }
         
         header {
-            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
-            color: white;
+            background-color: white;
+            color: var(--primary-color);
             padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
         }
         
         .container {
-            width: 90%;
-            max-width: 1200px;
+            width: 95%;
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 0 15px;
         }
         
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
         
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
             display: flex;
             align-items: center;
+            gap: 15px;
         }
         
         .logo-icon {
-            font-size: 2rem;
-            margin-right: 0.5rem;
-            color: var(--gold-color);
+            font-size: 2.5rem;
+            color: var(--togo-green);
         }
         
-        .logo span {
-            color: var(--gold-color);
+        .logo-text {
+            display: flex;
+            flex-direction: column;
         }
         
-        .logo-subtitle {
+        .logo-main {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+        
+        .logo-sub {
             font-size: 0.9rem;
-            font-weight: normal;
-            margin-left: 0.5rem;
-            opacity: 0.8;
+            color: var(--togo-red);
+            font-weight: 500;
+        }
+        
+        .logo-tagline {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 3px;
+        }
+        
+        .system-info {
+            text-align: center;
+            padding: 5px;
+            background: linear-gradient(90deg, #f0f8ff, #e6f2ff);
+            border-radius: 5px;
+            margin: 5px 0;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            border-left: 4px solid var(--togo-yellow);
         }
         
         nav ul {
             display: flex;
             list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 1.5rem;
+            flex-wrap: wrap;
+            gap: 5px;
         }
         
         nav ul li a {
-            color: white;
+            color: var(--primary-color);
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            padding: 0.5rem 0;
-            position: relative;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            display: block;
         }
         
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--gold-color);
-            transition: width 0.3s;
-        }
-        
-        nav ul li a:hover {
-            color: var(--gold-color);
-        }
-        
-        nav ul li a:hover::after {
-            width: 100%;
+        nav ul li a:hover, nav ul li a.active {
+            background-color: var(--primary-color);
+            color: white;
         }
         
         .hero {
-            background: linear-gradient(rgba(26, 82, 118, 0.85), rgba(21, 67, 96, 0.9)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(rgba(26, 82, 118, 0.9), rgba(21, 67, 96, 0.95)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 4rem 0;
+            padding: 3rem 0;
             text-align: center;
+            border-bottom: 5px solid var(--togo-yellow);
         }
         
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         
         .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
+            font-size: 1.1rem;
+            max-width: 800px;
             margin: 0 auto 2rem;
+            opacity: 0.95;
         }
         
-        .search-bar {
-            display: flex;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .search-bar input {
-            flex: 1;
-            padding: 0.8rem 1rem;
-            border: none;
-            border-radius: 4px 0 0 4px;
-            font-size: 1rem;
-        }
-        
-        .search-bar button {
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            padding: 0 1.5rem;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .search-bar button:hover {
-            background-color: #2471a3;
-        }
-        
-        .filters {
+        .stats-bar {
             background-color: white;
-            padding: 1.5rem 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        
-        .filter-options {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        
-        .filter-group {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .filter-group label {
-            font-weight: 500;
-        }
-        
-        .filter-group select {
-            padding: 0.5rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        
-        .books-section {
-            padding: 3rem 0;
-        }
-        
-        .section-title {
-            text-align: center;
+            padding: 1rem 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
             margin-bottom: 2rem;
-            color: var(--primary-color);
-            position: relative;
         }
         
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 3px;
-            background-color: var(--secondary-color);
-            margin: 0.5rem auto;
-        }
-        
-        .books-grid {
+        .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            text-align: center;
         }
         
-        .book-card {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            flex-direction: column;
+        .stat-item {
+            padding: 1rem;
+            border-right: 1px solid #eee;
         }
         
-        .book-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        .stat-item:last-child {
+            border-right: none;
         }
         
-        .book-image {
-            height: 200px;
-            background-color: #eee;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #777;
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+            line-height: 1;
+        }
+        
+        .stat-label {
             font-size: 0.9rem;
-            background-size: cover;
-            background-position: center;
-            position: relative;
+            color: #666;
+            margin-top: 0.5rem;
         }
         
-        .book-image::after {
+        .main-container {
+            flex: 1;
+            padding: 2rem 0;
+        }
+        
+        .tab-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        
+        .tab-header {
+            display: flex;
+            background: linear-gradient(90deg, var(--togo-green), var(--togo-yellow));
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        
+        .tab-header::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .tab-button {
+            padding: 1.2rem 2rem;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: white;
+            white-space: nowrap;
+            position: relative;
+            min-width: 200px;
+            text-align: center;
+        }
+        
+        .tab-button::after {
             content: '';
             position: absolute;
             bottom: 0;
-            left: 0;
-            width: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
             height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            background-color: white;
+            transition: width 0.3s;
         }
         
-        .book-info {
+        .tab-button.active::after {
+            width: 80%;
+        }
+        
+        .tab-button.student {
+            background-color: rgba(39, 174, 96, 0.9);
+        }
+        
+        .tab-button.teacher {
+            background-color: rgba(142, 68, 173, 0.9);
+        }
+        
+        .tab-button.order {
+            background-color: rgba(230, 126, 34, 0.9);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 2rem;
+            animation: fadeIn 0.5s;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .welcome-message {
+            text-align: center;
+            margin-bottom: 2rem;
             padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 10px;
+            border-left: 5px solid var(--togo-green);
         }
         
-        .book-title {
-            font-weight: bold;
+        .welcome-message h2 {
+            color: var(--primary-color);
             margin-bottom: 0.5rem;
+        }
+        
+        .welcome-message p {
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .education-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .level-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #eaeaea;
+        }
+        
+        .level-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        
+        .level-header {
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+        }
+        
+        .level-header h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .level-header .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .level-body {
+            padding: 1.5rem;
+        }
+        
+        .class-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+        
+        .class-item {
+            text-align: center;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .class-item:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.05);
+            border-color: var(--togo-yellow);
+        }
+        
+        .class-item i {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .class-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .subject-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border-top: 4px solid var(--togo-green);
+        }
+        
+        .subject-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+        
+        .subject-header {
+            padding: 1.2rem;
+            background: #f8f9fa;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .subject-icon {
+            font-size: 2.2rem;
+            margin-bottom: 0.8rem;
             color: var(--primary-color);
         }
         
-        .book-author {
-            color: #666;
+        .subject-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.3rem;
+        }
+        
+        .subject-level {
             font-size: 0.9rem;
+            color: #666;
+            background: #e9ecef;
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            display: inline-block;
+        }
+        
+        .subject-body {
+            padding: 1.2rem;
+        }
+        
+        .resource-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        
+        .resource-link {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem;
+            background: #f8f9fa;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+        
+        .resource-link:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateX(5px);
+            border-left-color: var(--togo-yellow);
+        }
+        
+        .resource-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            width: 25px;
+            text-align: center;
+        }
+        
+        .resource-text {
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        /* Styles spécifiques pour l'onglet Commander */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border-top: 4px solid var(--order-color);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        
+        .service-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--order-color), #f39c12);
+            color: white;
+            text-align: center;
+        }
+        
+        .service-header h3 {
+            font-size: 1.4rem;
             margin-bottom: 0.5rem;
         }
         
-        .book-details {
+        .service-body {
+            padding: 1.5rem;
+        }
+        
+        .service-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
             display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            color: #777;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .service-features li i {
+            color: var(--order-color);
+        }
+        
+        .order-form {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+        
+        .form-title {
+            color: var(--order-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #444;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--order-color);
+            box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .file-upload {
+            border: 2px dashed #ddd;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .file-upload:hover {
+            border-color: var(--order-color);
+            background: rgba(230, 126, 34, 0.05);
+        }
+        
+        .file-upload input {
+            display: none;
+        }
+        
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--order-color);
             margin-bottom: 1rem;
         }
         
-        .book-level {
-            background-color: var(--light-color);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            display: inline-block;
-            margin-top: auto;
+        .price-calculator {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
         }
         
-        .book-actions {
+        .price-item {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .price-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--order-color);
             margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--order-color);
         }
         
         .btn {
-            padding: 0.5rem 1rem;
+            padding: 0.8rem 1.8rem;
             border: none;
-            border-radius: 4px;
+            border-radius: 30px;
             cursor: pointer;
-            font-weight: 500;
+            font-weight: 600;
             transition: all 0.3s;
             text-decoration: none;
-            display: inline-block;
-            text-align: center;
-            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 1rem;
         }
         
         .btn-primary {
-            background-color: var(--secondary-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
         }
         
         .btn-primary:hover {
-            background-color: #2471a3;
-            transform: translateY(-2px);
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 1px solid var(--secondary-color);
-            color: var(--secondary-color);
-        }
-        
-        .btn-outline:hover {
-            background-color: var(--secondary-color);
-            color: white;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(26, 82, 118, 0.3);
         }
         
         .btn-success {
-            background-color: var(--success-color);
+            background: linear-gradient(135deg, var(--success-color), #2ecc71);
             color: white;
-        }
-        
-        .btn-success:hover {
-            background-color: #239b56;
-            transform: translateY(-2px);
         }
         
         .btn-warning {
-            background-color: var(--warning-color);
+            background: linear-gradient(135deg, var(--warning-color), #f1c40f);
             color: white;
-        }
-        
-        .btn-warning:hover {
-            background-color: #e67e22;
-            transform: translateY(-2px);
-        }
-        
-        .btn-gold {
-            background-color: var(--gold-color);
-            color: var(--dark-color);
-        }
-        
-        .btn-gold:hover {
-            background-color: #f7dc6f;
-            transform: translateY(-2px);
         }
         
         .btn-danger {
-            background-color: var(--accent-color);
+            background: linear-gradient(135deg, var(--togo-red), #e74c3c);
             color: white;
         }
         
-        .btn-danger:hover {
-            background-color: #c0392b;
-            transform: translateY(-2px);
+        .btn-order {
+            background: linear-gradient(135deg, var(--order-color), #f39c12);
+            color: white;
+        }
+        
+        .btn-order:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3);
+        }
+        
+        .corrig-plus-section {
+            background: linear-gradient(135deg, #1a5276, #154360);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .corrig-plus-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .corrig-plus-section p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn-corrig-plus {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            margin-top: 1rem;
         }
         
         footer {
             background: linear-gradient(135deg, var(--dark-color), var(--primary-color));
             color: white;
             padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
         }
         
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-bottom: 2rem;
         }
@@ -388,6 +722,7 @@
             margin-bottom: 1.5rem;
             position: relative;
             padding-bottom: 0.5rem;
+            color: var(--togo-yellow);
         }
         
         .footer-column h3::after {
@@ -396,8 +731,8 @@
             left: 0;
             bottom: 0;
             width: 40px;
-            height: 2px;
-            background-color: var(--gold-color);
+            height: 3px;
+            background-color: var(--togo-yellow);
         }
         
         .footer-column ul {
@@ -412,10 +747,27 @@
             color: #bbb;
             text-decoration: none;
             transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .footer-column ul li a:hover {
             color: white;
+            padding-left: 5px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #bbb;
         }
         
         .copyright {
@@ -426,6 +778,21 @@
             font-size: 0.9rem;
         }
         
+        .togo-flag {
+            display: flex;
+            height: 6px;
+            margin: 1rem 0;
+        }
+        
+        .togo-flag div {
+            flex: 1;
+        }
+        
+        .togo-flag .green { background-color: var(--togo-green); }
+        .togo-flag .yellow { background-color: var(--togo-yellow); }
+        .togo-flag .red { background-color: var(--togo-red); }
+        
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -437,264 +804,229 @@
             z-index: 1000;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
         
         .modal-content {
             background-color: white;
             padding: 2rem;
-            border-radius: 8px;
+            border-radius: 15px;
             max-width: 800px;
-            width: 90%;
+            width: 100%;
             max-height: 90vh;
             overflow-y: auto;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: modalFade 0.3s;
+        }
+        
+        @keyframes modalFade {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
         
         .close-modal {
             float: right;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
             color: #777;
             transition: color 0.3s;
+            line-height: 1;
         }
         
         .close-modal:hover {
             color: var(--accent-color);
         }
         
-        .book-detail {
-            margin-top: 1rem;
-        }
-        
-        .book-detail img {
-            max-width: 200px;
-            float: left;
-            margin-right: 1.5rem;
-            margin-bottom: 1rem;
-            border-radius: 4px;
-        }
-        
-        .book-detail h3 {
-            margin-bottom: 1rem;
+        .modal-title {
             color: var(--primary-color);
-        }
-        
-        .book-detail p {
-            margin-bottom: 0.5rem;
-        }
-        
-        .document-viewer {
-            margin-top: 2rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        .document-viewer iframe {
-            width: 100%;
-            height: 500px;
-            border: none;
-        }
-        
-        .document-actions {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .stats {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            text-align: center;
-        }
-        
-        .stat-item {
-            padding: 1rem;
-        }
-        
-        .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-        
-        .stat-label {
-            font-size: 0.9rem;
-            color: #666;
-        }
-        
-        /* Styles pour le formulaire de commande */
-        .order-form {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-        }
-        
-        .order-form h3 {
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-            text-align: center;
-        }
-        
-        .form-group {
-            margin-bottom: 1rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-        
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-        
-        .form-row {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .form-row .form-group {
-            flex: 1;
-        }
-        
-        .gps-info {
-            background-color: #e8f4fd;
-            padding: 1rem;
-            border-radius: 4px;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-        }
-        
-        .gps-info.success {
-            background-color: #d4edda;
-            border: 1px solid #c3e6cb;
-            color: #155724;
-        }
-        
-        .gps-info.error {
-            background-color: #f8d7da;
-            border: 1px solid #f5c6cb;
-            color: #721c24;
-        }
-        
-        .order-summary {
-            background-color: #f0f8f0;
-            padding: 1rem;
-            border-radius: 4px;
-            margin-top: 1rem;
-            border-left: 4px solid var(--success-color);
-        }
-        
-        .order-summary h4 {
-            margin-bottom: 0.5rem;
-            color: var(--success-color);
-        }
-        
-        .price-breakdown {
-            margin-top: 1rem;
-            padding: 1rem;
-            background-color: #fff;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-        }
-        
-        .price-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
             padding-bottom: 0.5rem;
-            border-bottom: 1px solid #eee;
+            border-bottom: 2px solid #eee;
         }
         
-        .price-total {
-            display: flex;
-            justify-content: space-between;
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-top: 0.5rem;
-            padding-top: 0.5rem;
-            border-top: 2px solid var(--primary-color);
-            color: var(--primary-color);
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.6rem 1.2rem;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s;
         }
         
-        @media (max-width: 768px) {
+        .back-button:hover {
+            background: #e9ecef;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .container {
+                width: 97%;
+            }
+            
+            .tab-button {
+                min-width: 180px;
+                padding: 1rem 1.5rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
             .header-content {
                 flex-direction: column;
                 text-align: center;
+                gap: 1rem;
             }
             
-            nav ul {
-                margin-top: 1rem;
+            .logo {
                 justify-content: center;
             }
             
-            .filter-options {
+            nav ul {
+                justify-content: center;
+            }
+            
+            .tab-button {
+                min-width: 160px;
+                padding: 0.8rem 1.2rem;
+                font-size: 1rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stat-item {
+                border-right: none;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .education-levels {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .tab-header {
                 flex-direction: column;
-                align-items: center;
             }
             
-            .books-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            .tab-button {
+                min-width: 100%;
+                border-bottom: 1px solid rgba(255,255,255,0.2);
             }
             
-            .book-detail img {
-                float: none;
-                display: block;
-                margin: 0 auto 1rem;
+            .tab-content {
+                padding: 1.5rem;
             }
             
-            .document-actions {
-                flex-direction: column;
+            .class-list {
+                grid-template-columns: repeat(2, 1fr);
             }
             
-            .logo-subtitle {
-                display: block;
-                margin-left: 0;
-                margin-top: 0.2rem;
+            .subject-grid {
+                grid-template-columns: 1fr;
             }
             
             .form-row {
-                flex-direction: column;
-                gap: 0;
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 2rem 0;
+            }
+            
+            .logo-main {
+                font-size: 1.5rem;
+            }
+            
+            .logo-icon {
+                font-size: 2rem;
+            }
+            
+            nav ul li a {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .class-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-number {
+                font-size: 1.5rem;
+            }
+            
+            .resource-link {
+                padding: 0.6rem;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (min-width: 1600px) {
+            .container {
+                max-width: 1500px;
+            }
+            
+            .subject-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <div class="top-bar"></div>
+    
     <header>
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <div class="logo-icon">📚</div>
-                    <div>
-                        ESODI-<span>SCIENCES</span> GRENIER
-                        <div class="logo-subtitle">Bibliothèque Scientifique</div>
+                    <div class="logo-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="logo-text">
+                        <div class="logo-main">ESODI-SCIENCES GRENIER</div>
+                        <div class="logo-sub">MINISTÈRE DES ENSEIGNEMENTS PRIMAIRE, SECONDAIRE ET TECHNIQUE</div>
+                        <div class="logo-tagline">République Togolaise - Système Éducatif National</div>
                     </div>
                 </div>
+                
+                <div class="system-info">
+                    Programme officiel de l'éducation nationale togolaise - Année scolaire 2023/2024
+                </div>
+                
                 <nav>
                     <ul>
-                        <li><a href="#accueil">Accueil</a></li>
-                        <li><a href="#mathematiques">Mathématiques</a></li>
-                        <li><a href="#physique-chimie">Physique-Chimie</a></li>
-                        <li><a href="#college">Collège</a></li>
-                        <li><a href="#lycee">Lycée</a></li>
+                        <li><a href="#accueil" class="active"><i class="fas fa-home"></i> Accueil</a></li>
+                        <li><a href="#eleves"><i class="fas fa-user-graduate"></i> Élèves</a></li>
+                        <li><a href="#enseignants"><i class="fas fa-chalkboard-teacher"></i> Enseignants</a></li>
+                        <li><a href="#commander"><i class="fas fa-shopping-cart"></i> Commander</a></li>
+                        <li><a href="#contact"><i class="fas fa-phone"></i> Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -703,790 +1035,956 @@
 
     <section class="hero" id="accueil">
         <div class="container">
-            <h1>ESODI-SCIENCES GRENIER</h1>
-            <p>Votre bibliothèque numérique de ressources scientifiques pour le collège et le lycée. Découvrez notre collection complète de livres de mathématiques et physique-chimie.</p>
-            <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Rechercher un livre, un auteur ou un thème...">
-                <button id="searchButton">Rechercher</button>
+            <h1><i class="fas fa-flag"></i> Portail Éducatif National du Togo</h1>
+            <p>Plateforme officielle des ressources pédagogiques conformes aux programmes du Ministère de l'Éducation Nationale du Togo. Accès aux cours, exercices, épreuves et corrigés pour tous les niveaux.</p>
+            <div class="togo-flag">
+                <div class="green"></div>
+                <div class="yellow"></div>
+                <div class="red"></div>
             </div>
         </div>
     </section>
 
-    <section class="stats">
+    <div class="stats-bar">
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-number" id="totalBooks">0</div>
-                    <div class="stat-label">Livres disponibles</div>
+                    <span class="stat-number">12</span>
+                    <span class="stat-label">Classes</span>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number" id="mathsBooksCount">0</div>
-                    <div class="stat-label">Livres de Maths</div>
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Matières</span>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number" id="physicsBooksCount">0</div>
-                    <div class="stat-label">Livres de Physique</div>
+                    <span class="stat-number">5000+</span>
+                    <span class="stat-label">Ressources</span>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">6</div>
-                    <div class="stat-label">Niveaux couverts</div>
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Service Commande</span>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section class="filters">
+    <div class="main-container">
         <div class="container">
-            <div class="filter-options">
-                <div class="filter-group">
-                    <label for="subject">Matière:</label>
-                    <select id="subject">
-                        <option value="all">Toutes les matières</option>
-                        <option value="mathematics">Mathématiques</option>
-                        <option value="physics">Physique-Chimie</option>
-                    </select>
+            <div class="tab-container">
+                <div class="tab-header">
+                    <button class="tab-button student active" data-tab="student-tab">
+                        <i class="fas fa-user-graduate"></i> Espace Élèves
+                    </button>
+                    <button class="tab-button teacher" data-tab="teacher-tab">
+                        <i class="fas fa-chalkboard-teacher"></i> Espace Enseignants
+                    </button>
+                    <button class="tab-button order" data-tab="order-tab">
+                        <i class="fas fa-shopping-cart"></i> Commander
+                    </button>
                 </div>
-                <div class="filter-group">
-                    <label for="level">Niveau:</label>
-                    <select id="level">
-                        <option value="all">Tous les niveaux</option>
-                        <option value="6e">6ème</option>
-                        <option value="5e">5ème</option>
-                        <option value="4e">4ème</option>
-                        <option value="3e">3ème</option>
-                        <option value="2nde">Seconde</option>
-                        <option value="1ere">Première</option>
-                        <option value="terminale">Terminale</option>
-                    </select>
+                
+                <!-- Onglet Élèves -->
+                <div id="student-tab" class="tab-content active">
+                    <div class="welcome-message">
+                        <h2><i class="fas fa-graduation-cap"></i> Bienvenue dans l'Espace Élèves</h2>
+                        <p>Accédez aux sujets types, épreuves corrigées et ressources d'apprentissage pour toutes les classes du système éducatif togolais. Sélectionnez votre niveau pour commencer.</p>
+                    </div>
+                    
+                    <div class="education-levels">
+                        <!-- Premier Cycle (Collège) -->
+                        <div class="level-card">
+                            <div class="level-header">
+                                <h3><i class="fas fa-school"></i> Premier Cycle</h3>
+                                <div class="subtitle">Enseignement Secondaire Général - Collège</div>
+                            </div>
+                            <div class="level-body">
+                                <div class="class-list">
+                                    <div class="class-item" data-class="6eme" data-level="college">
+                                        <i class="fas fa-1"></i>
+                                        <div class="class-name">6ème</div>
+                                    </div>
+                                    <div class="class-item" data-class="5eme" data-level="college">
+                                        <i class="fas fa-2"></i>
+                                        <div class="class-name">5ème</div>
+                                    </div>
+                                    <div class="class-item" data-class="4eme" data-level="college">
+                                        <i class="fas fa-3"></i>
+                                        <div class="class-name">4ème</div>
+                                    </div>
+                                    <div class="class-item" data-class="3eme" data-level="college">
+                                        <i class="fas fa-4"></i>
+                                        <div class="class-name">3ème</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Second Cycle (Lycée) -->
+                        <div class="level-card">
+                            <div class="level-header">
+                                <h3><i class="fas fa-university"></i> Second Cycle</h3>
+                                <div class="subtitle">Enseignement Secondaire Général - Lycée</div>
+                            </div>
+                            <div class="level-body">
+                                <div class="class-list">
+                                    <div class="class-item" data-class="2nde" data-level="lycee">
+                                        <i class="fas fa-a"></i>
+                                        <div class="class-name">Seconde</div>
+                                    </div>
+                                    <div class="class-item" data-class="1ere" data-level="lycee">
+                                        <i class="fas fa-b"></i>
+                                        <div class="class-name">Première</div>
+                                    </div>
+                                    <div class="class-item" data-class="tle" data-level="lycee">
+                                        <i class="fas fa-c"></i>
+                                        <div class="class-name">Terminale</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="subject-container">
+                        <!-- Les matières seront chargées ici dynamiquement -->
+                    </div>
                 </div>
-                <div class="filter-group">
-                    <label for="type">Type:</label>
-                    <select id="type">
-                        <option value="all">Tous les types</option>
-                        <option value="manuel">Manuel scolaire</option>
-                        <option value="exercices">Cahier d'exercices</option>
-                        <option value="revision">Livre de révision</option>
-                        <option value="approfondissement">Ouvrage d'approfondissement</option>
-                    </select>
+                
+                <!-- Onglet Enseignants -->
+                <div id="teacher-tab" class="tab-content">
+                    <div class="welcome-message">
+                        <h2><i class="fas fa-chalkboard-teacher"></i> Bienvenue dans l'Espace Enseignants</h2>
+                        <p>Accédez aux ressources pédagogiques, fiches de leçons, progressions annuelles et outils d'évaluation conformes aux programmes officiels de l'Éducation Nationale du Togo.</p>
+                    </div>
+                    
+                    <div class="subject-grid">
+                        <!-- Mathématiques -->
+                        <div class="subject-card">
+                            <div class="subject-header">
+                                <div class="subject-icon"><i class="fas fa-calculator"></i></div>
+                                <div class="subject-name">Mathématiques</div>
+                                <div class="subject-level">Collège & Lycée</div>
+                            </div>
+                            <div class="subject-body">
+                                <div class="resource-links">
+                                    <a href="maths_lecons.html" class="resource-link">
+                                        <div class="resource-icon"><i class="fas fa-chalkboard"></i></div>
+                                        <div class="resource-text">Fiches de Leçons</div>
+                                    </a>
+                                    <a href="maths_exercices.html" class="resource-link">
+                                        <div class="resource-icon"><i class="fas fa-pencil-alt"></i></div>
+                                        <div class="resource-text">Exercices d'Application</div>
+                                    </a>
+                                    <a href="maths_devoirs.html" class="resource-link">
+                                        <div class="resource-icon"><i class="fas fa-home"></i></div>
+                                        <div class="resource-text">Devoirs Maison</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Physique-Chimie -->
+                        <div class="subject-card">
+                            <div class="subject-header">
+                                <div class="subject-icon"><i class="fas fa-atom"></i></div>
+                                <div class="subject-name">Physique-Chimie</div>
+                                <div class="subject-level">Collège & Lycée</div>
+                            </div>
+                            <div class="subject-body">
+                                <div class="resource-links">
+                                    <a href="physique_lecons.html" class="resource-link">
+                                        <div class="resource-icon"><i class="fas fa-vial"></i></div>
+                                        <div class="resource-text">Cours et Expériences</div>
+                                    </a>
+                                    <a href="physique_exercices.html" class="resource-link">
+                                        <div class="resource-icon"><i class="fas fa-bolt"></i></div>
+                                        <div class="resource-text">Exercices Pratiques</div>
+                                    </a>
+                                    <a href="physique_tp.html" class="resource-link">
+                                        <div class="resource-icon"><i class="fas fa-flask"></i></div>
+                                        <div class="resource-text">Travaux Pratiques</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- SVT -->
+                        <div class="subject-card">
+                            <div class="subject-header">
+                                <div class="subject-icon"><i class="fas fa-dna"></i></div>
+                                <div class="subject-name">Sciences de la Vie et de la Terre</div>
+                                <div class="subject-level">Collège & Lycée</div>
+                            </div>
+                            <div class="subject-body">
+                                <div class="resource-links">
+                                    <a href="svt_lecons.html" class="resource-link">
+                                        <div class="resource-icon"><i class="fas fa-seedling"></i></div>
+                                        <div class="resource-text">Fiches de Cours</div>
+                                    </a>
+                                    <a href="svt_exercices.html" class="resource-link">
+                                        <div class="resource-icon"><i class="fas fa-microscope"></i></div>
+                                        <div class="resource-text">Exercices</div>
+                                    </a>
+                                    <a href="svt_tp.html" class="resource-link">
+                                        <div class="resource-icon"><i class="fas fa-leaf"></i></div>
+                                        <div class="resource-text">Travaux Pratiques</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <button id="resetFilters" class="btn btn-outline">Réinitialiser</button>
+                
+                <!-- Onglet Commander -->
+                <div id="order-tab" class="tab-content">
+                    <div class="welcome-message">
+                        <h2><i class="fas fa-shopping-cart"></i> Service de Commande de Documents</h2>
+                        <p>Commander des épreuves corrigées types, des documents scientifiques, mémoires et rapports de stage en LaTeX/PDF. Service professionnel avec livraison rapide.</p>
+                    </div>
+                    
+                    <div class="services-grid">
+                        <!-- Service 1: Épreuves corrigées -->
+                        <div class="service-card">
+                            <div class="service-header">
+                                <h3><i class="fas fa-file-alt"></i> Épreuves Corrigées</h3>
+                            </div>
+                            <div class="service-body">
+                                <ul class="service-features">
+                                    <li><i class="fas fa-check"></i> BEPC toutes séries</li>
+                                    <li><i class="fas fa-check"></i> BAC toutes séries</li>
+                                    <li><i class="fas fa-check"></i> Concours nationaux</li>
+                                    <li><i class="fas fa-check"></i> Corrigés détaillés</li>
+                                    <li><i class="fas fa-check"></i> Format PDF/LaTeX</li>
+                                </ul>
+                                <button class="btn btn-order" onclick="selectService('epreuves')">
+                                    <i class="fas fa-shopping-cart"></i> Commander
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Service 2: Documents scientifiques -->
+                        <div class="service-card">
+                            <div class="service-header">
+                                <h3><i class="fas fa-flask"></i> Documents Scientifiques</h3>
+                            </div>
+                            <div class="service-body">
+                                <ul class="service-features">
+                                    <li><i class="fas fa-check"></i> Articles scientifiques</li>
+                                    <li><i class="fas fa-check"></i> Présentations</li>
+                                    <li><i class="fas fa-check"></i> Rapports de recherche</li>
+                                    <li><i class="fas fa-check"></i> Format LaTeX/PDF</li>
+                                    <li><i class="fas fa-check"></i> Figures et graphiques</li>
+                                </ul>
+                                <button class="btn btn-order" onclick="selectService('documents')">
+                                    <i class="fas fa-shopping-cart"></i> Commander
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Service 3: Mémoires et thèses -->
+                        <div class="service-card">
+                            <div class="service-header">
+                                <h3><i class="fas fa-graduation-cap"></i> Mémoires & Thèses</h3>
+                            </div>
+                            <div class="service-body">
+                                <ul class="service-features">
+                                    <li><i class="fas fa-check"></i> Mémoires de licence</li>
+                                    <li><i class="fas fa-check"></i> Mémoires de master</li>
+                                    <li><i class="fas fa-check"></i> Thèses de doctorat</li>
+                                    <li><i class="fas fa-check"></i> Mise en page professionnelle</li>
+                                    <li><i class="fas fa-check"></i> Bibliographie complète</li>
+                                </ul>
+                                <button class="btn btn-order" onclick="selectService('memoires')">
+                                    <i class="fas fa-shopping-cart"></i> Commander
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Service 4: Rapports de stage -->
+                        <div class="service-card">
+                            <div class="service-header">
+                                <h3><i class="fas fa-briefcase"></i> Rapports de Stage</h3>
+                            </div>
+                            <div class="service-body">
+                                <ul class="service-features">
+                                    <li><i class="fas fa-check"></i> Rapports de stage académique</li>
+                                    <li><i class="fas fa-check"></i> Rapports professionnels</li>
+                                    <li><i class="fas fa-check"></i> Annexes et documents</li>
+                                    <li><i class="fas fa-check"></i> Conforme aux normes</li>
+                                    <li><i class="fas fa-check"></i> Livraison sous 7 jours</li>
+                                </ul>
+                                <button class="btn btn-order" onclick="selectService('rapports')">
+                                    <i class="fas fa-shopping-cart"></i> Commander
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Service 5: Saisie LaTeX -->
+                        <div class="service-card">
+                            <div class="service-header">
+                                <h3><i class="fas fa-keyboard"></i> Saisie LaTeX</h3>
+                            </div>
+                            <div class="service-body">
+                                <ul class="service-features">
+                                    <li><i class="fas fa-check"></i> Saisie d'équations complexes</li>
+                                    <li><i class="fas fa-check"></i> Conversion Word/PDF vers LaTeX</li>
+                                    <li><i class="fas fa-check"></i> Formules mathématiques</li>
+                                    <li><i class="fas fa-check"></i> Tableaux et matrices</li>
+                                    <li><i class="fas fa-check"></i> Code source fourni</li>
+                                </ul>
+                                <button class="btn btn-order" onclick="selectService('latex')">
+                                    <i class="fas fa-shopping-cart"></i> Commander
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Service 6: Correction et relecture -->
+                        <div class="service-card">
+                            <div class="service-header">
+                                <h3><i class="fas fa-spell-check"></i> Correction & Relecture</h3>
+                            </div>
+                            <div class="service-body">
+                                <ul class="service-features">
+                                    <li><i class="fas fa-check"></i> Correction orthographique</li>
+                                    <li><i class="fas fa-check"></i> Vérification scientifique</li>
+                                    <li><i class="fas fa-check"></i> Amélioration de la rédaction</li>
+                                    <li><i class="fas fa-check"></i> Mise aux normes</li>
+                                    <li><i class="fas fa-check"></i> Service express (48h)</li>
+                                </ul>
+                                <button class="btn btn-order" onclick="selectService('correction')">
+                                    <i class="fas fa-shopping-cart"></i> Commander
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Formulaire de commande -->
+                    <div class="order-form" id="orderFormSection" style="display: none;">
+                        <h2 class="form-title" id="serviceTitle">Commander un service</h2>
+                        
+                        <form id="orderForm">
+                            <div class="form-group">
+                                <label for="serviceType">Type de service *</label>
+                                <select class="form-control" id="serviceType" name="serviceType" required>
+                                    <option value="">Sélectionnez un service</option>
+                                    <option value="epreuves">Épreuves corrigées</option>
+                                    <option value="documents">Documents scientifiques</option>
+                                    <option value="memoires">Mémoires et thèses</option>
+                                    <option value="rapports">Rapports de stage</option>
+                                    <option value="latex">Saisie LaTeX</option>
+                                    <option value="correction">Correction et relecture</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="fullName">Nom complet *</label>
+                                    <input type="text" class="form-control" id="fullName" name="fullName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Adresse email *</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="phone">Téléphone *</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="deadline">Délai de livraison *</label>
+                                    <select class="form-control" id="deadline" name="deadline" required>
+                                        <option value="">Choisir un délai</option>
+                                        <option value="urgent">Urgent (24-48h)</option>
+                                        <option value="normal">Normal (3-5 jours)</option>
+                                        <option value="standard">Standard (7 jours)</option>
+                                        <option value="long">Long (10-15 jours)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="description">Description détaillée *</label>
+                                <textarea class="form-control" id="description" name="description" placeholder="Décrivez votre commande en détail (matière, niveau, nombre de pages, exigences spécifiques...)" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Télécharger des fichiers (optionnel)</label>
+                                <div class="file-upload" onclick="document.getElementById('fileUpload').click()">
+                                    <div class="upload-icon">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                    </div>
+                                    <p>Cliquez pour télécharger des fichiers</p>
+                                    <p class="small-text">Formats acceptés: PDF, DOC, DOCX, LaTeX, images</p>
+                                    <input type="file" id="fileUpload" multiple style="display: none;">
+                                </div>
+                                <div id="fileList"></div>
+                            </div>
+                            
+                            <div class="price-calculator">
+                                <h4>Estimation du prix</h4>
+                                <div class="price-item">
+                                    <span>Service de base:</span>
+                                    <span id="basePrice">0 FCFA</span>
+                                </div>
+                                <div class="price-item">
+                                    <span>Supplément urgence:</span>
+                                    <span id="urgencyPrice">0 FCFA</span>
+                                </div>
+                                <div class="price-item">
+                                    <span>Frais de traitement:</span>
+                                    <span>5 000 FCFA</span>
+                                </div>
+                                <div class="price-total">
+                                    <span>Total estimé:</span>
+                                    <span id="totalPrice">0 FCFA</span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="notes">Notes supplémentaires</label>
+                                <textarea class="form-control" id="notes" name="notes" placeholder="Instructions particulières, préférences de format, etc."></textarea>
+                            </div>
+                            
+                            <div style="text-align: center; margin-top: 2rem;">
+                                <button type="submit" class="btn btn-success" style="padding: 1rem 3rem; font-size: 1.1rem;">
+                                    <i class="fas fa-paper-plane"></i> Envoyer la commande
+                                </button>
+                                <button type="button" class="btn btn-danger" onclick="cancelOrder()" style="margin-left: 1rem;">
+                                    <i class="fas fa-times"></i> Annuler
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- Section CORRIG-PLUS -->
+                    <div class="corrig-plus-section">
+                        <h3><i class="fas fa-star"></i> CORRIG-PLUS : Plateforme d'Épreuves Corrigées</h3>
+                        <p>Accédez à notre bibliothèque en ligne d'épreuves corrigées types, exercices résolus et ressources pédagogiques pour tous les niveaux du système éducatif togolais.</p>
+                        
+                        <a href="https://jeanskodoc.github.io/CORRIG-PLUS/" target="_blank" class="btn btn-corrig-plus">
+                            <i class="fas fa-external-link-alt"></i> Visiter CORRIG-PLUS
+                        </a>
+                        
+                        <div style="margin-top: 1.5rem;">
+                            <p><strong>Services disponibles sur CORRIG-PLUS:</strong></p>
+                            <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+                                <span style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 20px;">
+                                    <i class="fas fa-file-pdf"></i> Épreuves BEPC
+                                </span>
+                                <span style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 20px;">
+                                    <i class="fas fa-file-contract"></i> Épreuves BAC
+                                </span>
+                                <span style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 20px;">
+                                    <i class="fas fa-calculator"></i> Exercices résolus
+                                </span>
+                                <span style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 20px;">
+                                    <i class="fas fa-book"></i> Fiches de révision
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section class="books-section" id="mathematiques">
-        <div class="container">
-            <h2 class="section-title">Livres de Mathématiques</h2>
-            <div class="books-grid" id="mathsBooks">
-                <!-- Les livres de maths seront générés ici par JavaScript -->
+    <!-- Modal pour la sélection des matières -->
+    <div id="subjectModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title" id="modalTitle">Sélectionnez une matière</h2>
+            <div id="subjectModalContent">
+                <!-- Contenu chargé dynamiquement -->
             </div>
         </div>
-    </section>
-
-    <section class="books-section" id="physique-chimie">
-        <div class="container">
-            <h2 class="section-title">Livres de Physique-Chimie</h2>
-            <div class="books-grid" id="physicsBooks">
-                <!-- Les livres de physique-chimie seront générés ici par JavaScript -->
-            </div>
-        </div>
-    </section>
+    </div>
 
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>ESODI-SCIENCES GRENIER</h3>
-                    <p>Votre bibliothèque numérique de ressources scientifiques pour le collège et le lycée.</p>
+                    <p>Plateforme officielle du Ministère des Enseignements Primaire, Secondaire et Technique de la République Togolaise.</p>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Ministère de l'Éducation Nationale, Lomé, Togo</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+228 22 21 20 19</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>contact@education.gouv.tg</span>
+                        </div>
+                    </div>
                 </div>
+                
                 <div class="footer-column">
-                    <h3>Navigation</h3>
+                    <h3>Services de Commande</h3>
                     <ul>
-                        <li><a href="#accueil">Accueil</a></li>
-                        <li><a href="#mathematiques">Mathématiques</a></li>
-                        <li><a href="#physique-chimie">Physique-Chimie</a></li>
-                        <li><a href="#college">Collège</a></li>
-                        <li><a href="#lycee">Lycée</a></li>
+                        <li><a href="#commander"><i class="fas fa-file-alt"></i> Épreuves corrigées</a></li>
+                        <li><a href="#commander"><i class="fas fa-flask"></i> Documents scientifiques</a></li>
+                        <li><a href="#commander"><i class="fas fa-graduation-cap"></i> Mémoires et thèses</a></li>
+                        <li><a href="#commander"><i class="fas fa-briefcase"></i> Rapports de stage</a></li>
+                        <li><a href="#commander"><i class="fas fa-keyboard"></i> Saisie LaTeX</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-column">
-                    <h3>Contact</h3>
+                    <h3>Liens Utiles</h3>
                     <ul>
-                        <li>Email: contact@esodi-sciences.fr</li>
-                        <li>Téléphone: +228 92871605</li>
-                        <li>Adresse: kara, Togo</li>
+                        <li><a href="https://jeanskodoc.github.io/CORRIG-PLUS/" target="_blank"><i class="fas fa-external-link-alt"></i> CORRIG-PLUS</a></li>
+                        <li><a href="#"><i class="fas fa-university"></i> Universités du Togo</a></li>
+                        <li><a href="#"><i class="fas fa-newspaper"></i> Actualités Éducatives</a></li>
+                        <li><a href="#"><i class="fas fa-download"></i> Téléchargements</a></li>
+                        <li><a href="#"><i class="fas fa-question-circle"></i> FAQ & Support</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-column">
-                    <h3>Ressources</h3>
+                    <h3>Suivez-nous</h3>
                     <ul>
-                        <li><a href="#">Fiches de révision</a></li>
-                        <li><a href="#">Exercices corrigés</a></li>
-                        <li><a href="#">Vidéos explicatives</a></li>
-                        <li><a href="#">Annales d'examens</a></li>
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                        <li><a href="#"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                        <li><a href="#"><i class="fas fa-rss"></i> Flux RSS</a></li>
                     </ul>
                 </div>
             </div>
+            
             <div class="copyright">
-                <p>&copy; 2023 ESODI-SCIENCES GRENIER - Tous droits réservés</p>
+                <p>&copy; 2023 République Togolaise - Ministère des Enseignements Primaire, Secondaire et Technique. Tous droits réservés.</p>
+                <p>Service de commande disponible 24h/24 et 7j/7. Paiement Mobile Money et virement bancaire acceptés.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Modal pour afficher les détails d'un livre -->
-    <div id="bookModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div id="bookDetailContent" class="book-detail">
-                <!-- Le contenu des détails du livre sera inséré ici -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal pour visualiser un document -->
-    <div id="documentModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeDocumentModal">&times;</span>
-            <div id="documentViewerContent">
-                <!-- Le contenu du visualiseur de document sera inséré ici -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal pour commander un livre -->
-    <div id="orderModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeOrderModal">&times;</span>
-            <div id="orderFormContent">
-                <!-- Le contenu du formulaire de commande sera inséré ici -->
-            </div>
-        </div>
-    </div>
-
     <script>
-        // Données des livres
-        const books = [
-            // Livres de mathématiques
-            {
-                id: 1,
-                title: "Mathématiques 6ème - Nouveau programme",
-                author: "Dupont, Martin",
-                editor: "Éditions ESODI",
-                year: 2023,
-                level: "6ème",
-                subject: "mathematics",
-                type: "manuel",
-                description: "Manuel complet de mathématiques pour la classe de 6ème conforme au nouveau programme. Inclut des exercices progressifs et des problèmes concrets.",
-                image: "https://via.placeholder.com/200x280/3498db/ffffff?text=Maths+6ème",
-                documentUrl: "https://example.com/docs/maths-6eme.pdf",
-                documentType: "pdf",
-                price: 4500
-            },
-            {
-                id: 2,
-                title: "Géométrie et Algèbre 4ème",
-                author: "Leroy, Simon",
-                editor: "ESODI Éditions",
-                year: 2022,
-                level: "4ème",
-                subject: "mathematics",
-                type: "manuel",
-                description: "Approfondissement des notions de géométrie et d'algèbre pour la classe de 4ème. Nombreux exercices d'application.",
-                image: "https://via.placeholder.com/200x280/2ecc71/ffffff?text=Géométrie+4ème",
-                documentUrl: "https://example.com/docs/geometrie-4eme.pdf",
-                documentType: "pdf",
-                price: 5000
-            },
-            {
-                id: 3,
-                title: "Mathématiques Seconde - Réussir son année",
-                author: "Bernard, Moreau",
-                editor: "Éditions ESODI",
-                year: 2023,
-                level: "Seconde",
-                subject: "mathematics",
-                type: "revision",
-                description: "Guide de révision complet pour la classe de Seconde. Méthodes, exercices types et conseils pour réussir.",
-                image: "https://via.placeholder.com/200x280/9b59b6/ffffff?text=Maths+Seconde",
-                documentUrl: "https://example.com/docs/maths-seconde.pdf",
-                documentType: "pdf",
-                price: 5500
-            },
-            {
-                id: 4,
-                title: "Spécialité Mathématiques Terminale",
-                author: "Dubois, Petit",
-                editor: "ESODI Sciences",
-                year: 2023,
-                level: "Terminale",
-                subject: "mathematics",
-                type: "manuel",
-                description: "Manuel complet pour la spécialité Mathématiques en Terminale. Préparation optimale pour le baccalauréat.",
-                image: "https://via.placeholder.com/200x280/e74c3c/ffffff?text=Spé+Maths+Term",
-                documentUrl: "https://example.com/docs/spe-maths-terminale.pdf",
-                documentType: "pdf",
-                price: 6500
-            },
-            {
-                id: 5,
-                title: "Exercices de Mathématiques 5ème",
-                author: "Morel, Durand",
-                editor: "ESODI Exercices",
-                year: 2023,
-                level: "5ème",
-                subject: "mathematics",
-                type: "exercices",
-                description: "Cahier d'exercices progressifs pour la classe de 5ème. Corrigés détaillés inclus.",
-                image: "https://via.placeholder.com/200x280/f39c12/ffffff?text=Exercices+5ème",
-                documentUrl: "https://example.com/docs/exercices-maths-5eme.pdf",
-                documentType: "pdf",
-                price: 3500
-            },
-            // Livres de physique-chimie
-            {
-                id: 6,
-                title: "Physique-Chimie 5ème - Découverte",
-                author: "Rousseau, Blanc",
-                editor: "Éditions ESODI",
-                year: 2023,
-                level: "5ème",
-                subject: "physics",
-                type: "manuel",
-                description: "Initiation à la physique et à la chimie pour la classe de 5ème. Approche expérimentale et ludique.",
-                image: "https://via.placeholder.com/200x280/3498db/ffffff?text=Physique+5ème",
-                documentUrl: "https://example.com/docs/physique-5eme.pdf",
-                documentType: "pdf",
-                price: 4800
-            },
-            {
-                id: 7,
-                title: "Physique-Chimie 3ème - Brevet",
-                author: "Lambert, Girard",
-                editor: "ESODI Réussite",
-                year: 2023,
-                level: "3ème",
-                subject: "physics",
-                type: "revision",
-                description: "Préparation complète pour l'épreuve de physique-chimie du brevet des collèges. Fiches, exercices et sujets types.",
-                image: "https://via.placeholder.com/200x280/2ecc71/ffffff?text=Physique+3ème",
-                documentUrl: "https://example.com/docs/physique-3eme.pdf",
-                documentType: "pdf",
-                price: 5200
-            },
-            {
-                id: 8,
-                title: "Physique-Chimie Seconde - Nouveau programme",
-                author: "Morel, Durand",
-                editor: "Éditions ESODI",
-                year: 2023,
-                level: "Seconde",
-                subject: "physics",
-                type: "manuel",
-                description: "Manuel conforme au nouveau programme de physique-chimie en Seconde. Nombreuses activités expérimentales.",
-                image: "https://via.placeholder.com/200x280/9b59b6/ffffff?text=Physique+Seconde",
-                documentUrl: "https://example.com/docs/physique-seconde.pdf",
-                documentType: "pdf",
-                price: 5800
-            },
-            {
-                id: 9,
-                title: "Spécialité Physique-Chimie Première",
-                author: "Lefebvre, Mercier",
-                editor: "ESODI Sciences",
-                year: 2023,
-                level: "Première",
-                subject: "physics",
-                type: "manuel",
-                description: "Manuel complet pour la spécialité Physique-Chimie en Première. Approfondissement des concepts fondamentaux.",
-                image: "https://via.placeholder.com/200x280/e74c3c/ffffff?text=Spé+Physique+1ère",
-                documentUrl: "https://example.com/docs/spe-physique-1ere.pdf",
-                documentType: "pdf",
-                price: 6800
-            },
-            {
-                id: 10,
-                title: "Chimie Organique - Approfondissement",
-                author: "Fontaine, Leroux",
-                editor: "ESODI Chimie",
-                year: 2022,
-                level: "Terminale",
-                subject: "physics",
-                type: "approfondissement",
-                description: "Ouvrage d'approfondissement en chimie organique pour les élèves de Terminale souhaitant aller plus loin.",
-                image: "https://via.placeholder.com/200x280/f39c12/ffffff?text=Chimie+Organique",
-                documentUrl: "https://example.com/docs/chimie-organique.pdf",
-                documentType: "pdf",
-                price: 7500
-            }
-        ];
-
-        // Éléments DOM
-        const mathsBooksContainer = document.getElementById('mathsBooks');
-        const physicsBooksContainer = document.getElementById('physicsBooks');
-        const subjectFilter = document.getElementById('subject');
-        const levelFilter = document.getElementById('level');
-        const typeFilter = document.getElementById('type');
-        const searchInput = document.getElementById('searchInput');
-        const searchButton = document.getElementById('searchButton');
-        const resetFiltersButton = document.getElementById('resetFilters');
-        const bookModal = document.getElementById('bookModal');
-        const bookDetailContent = document.getElementById('bookDetailContent');
-        const documentModal = document.getElementById('documentModal');
-        const documentViewerContent = document.getElementById('documentViewerContent');
-        const orderModal = document.getElementById('orderModal');
-        const orderFormContent = document.getElementById('orderFormContent');
-        const closeModal = document.querySelector('.close-modal');
-        const closeDocumentModal = document.getElementById('closeDocumentModal');
-        const closeOrderModal = document.getElementById('closeOrderModal');
-        const totalBooksElement = document.getElementById('totalBooks');
-        const mathsBooksCountElement = document.getElementById('mathsBooksCount');
-        const physicsBooksCountElement = document.getElementById('physicsBooksCount');
-
-        // Variables pour la géolocalisation
-        let userLocation = {
-            latitude: null,
-            longitude: null,
-            address: "Non disponible",
-            isLocated: false
+        // Données des matières par classe
+        const subjectsData = {
+            "6eme": [
+                { name: "Mathématiques", icon: "calculator", link: "mathematiques_6eme.html" },
+                { name: "Français", icon: "language", link: "francais_6eme.html" },
+                { name: "Anglais", icon: "globe-americas", link: "anglais_6eme.html" },
+                { name: "SVT", icon: "seedling", link: "svt_6eme.html" },
+                { name: "Histoire-Géographie", icon: "globe-africa", link: "histoire_geo_6eme.html" }
+            ],
+            "5eme": [
+                { name: "Mathématiques", icon: "calculator", link: "mathematiques_5eme.html" },
+                { name: "Français", icon: "language", link: "francais_5eme.html" },
+                { name: "Anglais", icon: "globe-americas", link: "anglais_5eme.html" },
+                { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_5eme.html" },
+                { name: "SVT", icon: "seedling", link: "svt_5eme.html" }
+            ],
+            "4eme": [
+                { name: "Mathématiques", icon: "calculator", link: "mathematiques_4eme.html" },
+                { name: "Français", icon: "language", link: "francais_4eme.html" },
+                { name: "Anglais", icon: "globe-americas", link: "anglais_4eme.html" },
+                { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_4eme.html" },
+                { name: "SVT", icon: "seedling", link: "svt_4eme.html" }
+            ],
+            "3eme": [
+                { name: "Mathématiques", icon: "calculator", link: "mathematiques_3eme.html" },
+                { name: "Français", icon: "language", link: "francais_3eme.html" },
+                { name: "Anglais", icon: "globe-americas", link: "anglais_3eme.html" },
+                { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_3eme.html" },
+                { name: "SVT", icon: "seedling", link: "svt_3eme.html" }
+            ],
+            "2nde": [
+                { name: "Mathématiques", icon: "calculator", link: "mathematiques_2nde.html" },
+                { name: "Français", icon: "language", link: "francais_2nde.html" },
+                { name: "Anglais", icon: "globe-americas", link: "anglais_2nde.html" },
+                { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_2nde.html" },
+                { name: "SVT", icon: "seedling", link: "svt_2nde.html" }
+            ],
+            "1ere": [
+                { name: "Mathématiques", icon: "calculator", link: "mathematiques_1ere.html" },
+                { name: "Français", icon: "language", link: "francais_1ere.html" },
+                { name: "Anglais", icon: "globe-americas", link: "anglais_1ere.html" },
+                { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_1ere.html" },
+                { name: "SVT", icon: "seedling", link: "svt_1ere.html" }
+            ],
+            "tle": [
+                { name: "Mathématiques", icon: "calculator", link: "mathematiques_tle.html" },
+                { name: "Philosophie", icon: "brain", link: "philosophie_tle.html" },
+                { name: "Anglais", icon: "globe-americas", link: "anglais_tle.html" },
+                { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_tle.html" },
+                { name: "SVT", icon: "seedling", link: "svt_tle.html" }
+            ]
         };
 
-        // Frais de livraison
-        const deliveryFee = 2000;
+        // Prix des services
+        const servicePrices = {
+            "epreuves": { base: 15000, urgent: 5000, normal: 2000, standard: 0, long: 0 },
+            "documents": { base: 25000, urgent: 8000, normal: 3000, standard: 1000, long: 0 },
+            "memoires": { base: 50000, urgent: 15000, normal: 5000, standard: 2000, long: 0 },
+            "rapports": { base: 30000, urgent: 10000, normal: 4000, standard: 1500, long: 0 },
+            "latex": { base: 20000, urgent: 7000, normal: 2500, standard: 1000, long: 0 },
+            "correction": { base: 10000, urgent: 4000, normal: 1500, standard: 500, long: 0 }
+        };
 
-        // Mettre à jour les statistiques
-        function updateStats() {
-            const mathsBooks = books.filter(book => book.subject === 'mathematics');
-            const physicsBooks = books.filter(book => book.subject === 'physics');
-            
-            totalBooksElement.textContent = books.length;
-            mathsBooksCountElement.textContent = mathsBooks.length;
-            physicsBooksCountElement.textContent = physicsBooks.length;
-        }
+        // Noms des classes
+        const classNames = {
+            "6eme": "Sixième (6ème)",
+            "5eme": "Cinquième (5ème)",
+            "4eme": "Quatrième (4ème)",
+            "3eme": "Troisième (3ème)",
+            "2nde": "Seconde (2nde)",
+            "1ere": "Première (1ère)",
+            "tle": "Terminale (Tle)"
+        };
 
-        // Obtenir la géolocalisation de l'utilisateur
-        function getUserLocation() {
-            const gpsInfo = document.getElementById('gpsInfo');
-            
-            if (navigator.geolocation) {
-                gpsInfo.innerHTML = '<p><strong>Localisation en cours...</strong></p>';
-                gpsInfo.className = 'gps-info';
-                
-                navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                        userLocation.latitude = position.coords.latitude;
-                        userLocation.longitude = position.coords.longitude;
-                        userLocation.isLocated = true;
-                        
-                        // Simuler une adresse à partir des coordonnées
-                        userLocation.address = `Lat: ${userLocation.latitude.toFixed(6)}, Long: ${userLocation.longitude.toFixed(6)}`;
-                        
-                        gpsInfo.innerHTML = `
-                            <p><strong>✅ Coordonnées GPS détectées avec succès!</strong></p>
-                            <p>Latitude: ${userLocation.latitude.toFixed(6)}</p>
-                            <p>Longitude: ${userLocation.longitude.toFixed(6)}</p>
-                        `;
-                        gpsInfo.className = 'gps-info success';
-                        
-                        // Mettre à jour le prix total
-                        updateTotalPrice();
-                    },
-                    (error) => {
-                        console.error("Erreur de géolocalisation:", error);
-                        userLocation.isLocated = false;
-                        
-                        let errorMessage = "Géolocalisation non autorisée";
-                        if (error.code === error.POSITION_UNAVAILABLE) {
-                            errorMessage = "Position indisponible";
-                        } else if (error.code === error.TIMEOUT) {
-                            errorMessage = "Délai de localisation dépassé";
-                        }
-                        
-                        userLocation.address = errorMessage;
-                        
-                        gpsInfo.innerHTML = `
-                            <p><strong>❌ ${errorMessage}</strong></p>
-                            <p>Veuillez activer la géolocalisation ou cliquer sur "Générer les coordonnées GPS"</p>
-                        `;
-                        gpsInfo.className = 'gps-info error';
-                    },
-                    {
-                        enableHighAccuracy: true,
-                        timeout: 10000,
-                        maximumAge: 60000
-                    }
-                );
-            } else {
-                userLocation.isLocated = false;
-                userLocation.address = "Géolocalisation non supportée par votre navigateur";
-                
-                gpsInfo.innerHTML = `
-                    <p><strong>❌ Géolocalisation non supportée</strong></p>
-                    <p>Votre navigateur ne supporte pas la géolocalisation</p>
-                `;
-                gpsInfo.className = 'gps-info error';
-            }
-        }
+        // Variables globales
+        let selectedService = '';
+        let uploadedFiles = [];
 
-        // Générer les livres
-        function generateBooks() {
-            // Filtrer les livres selon les critères
-            const filteredBooks = books.filter(book => {
-                const subjectMatch = subjectFilter.value === 'all' || book.subject === subjectFilter.value;
-                const levelMatch = levelFilter.value === 'all' || book.level.toLowerCase().includes(levelFilter.value);
-                const typeMatch = typeFilter.value === 'all' || book.type === typeFilter.value;
-                const searchMatch = searchInput.value === '' || 
-                    book.title.toLowerCase().includes(searchInput.value.toLowerCase()) ||
-                    book.author.toLowerCase().includes(searchInput.value.toLowerCase());
-                
-                return subjectMatch && levelMatch && typeMatch && searchMatch;
+        // Éléments DOM
+        const subjectModal = document.getElementById('subjectModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const subjectModalContent = document.getElementById('subjectModalContent');
+        const closeModalBtn = document.querySelector('.close-modal');
+        const classItems = document.querySelectorAll('.class-item');
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const orderFormSection = document.getElementById('orderFormSection');
+        const serviceTitle = document.getElementById('serviceTitle');
+        const serviceTypeSelect = document.getElementById('serviceType');
+        const fileUpload = document.getElementById('fileUpload');
+        const fileList = document.getElementById('fileList');
+        const basePriceEl = document.getElementById('basePrice');
+        const urgencyPriceEl = document.getElementById('urgencyPrice');
+        const totalPriceEl = document.getElementById('totalPrice');
+        const orderForm = document.getElementById('orderForm');
+
+        // Gestion des onglets
+        function activateTab(tabId) {
+            tabContents.forEach(content => {
+                content.classList.remove('active');
             });
-
-            // Séparer les livres par matière
-            const mathsBooks = filteredBooks.filter(book => book.subject === 'mathematics');
-            const physicsBooks = filteredBooks.filter(book => book.subject === 'physics');
-
-            // Afficher les livres de mathématiques
-            mathsBooksContainer.innerHTML = '';
-            if (mathsBooks.length === 0) {
-                mathsBooksContainer.innerHTML = '<p>Aucun livre trouvé pour les critères sélectionnés.</p>';
-            } else {
-                mathsBooks.forEach(book => {
-                    mathsBooksContainer.appendChild(createBookCard(book));
-                });
-            }
-
-            // Afficher les livres de physique-chimie
-            physicsBooksContainer.innerHTML = '';
-            if (physicsBooks.length === 0) {
-                physicsBooksContainer.innerHTML = '<p>Aucun livre trouvé pour les critères sélectionnés.</p>';
-            } else {
-                physicsBooks.forEach(book => {
-                    physicsBooksContainer.appendChild(createBookCard(book));
-                });
-            }
+            
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector(`.tab-button[data-tab="${tabId}"]`).classList.add('active');
+            
+            // Mettre à jour l'URL hash
+            const hashMap = {
+                'student-tab': 'eleves',
+                'teacher-tab': 'enseignants',
+                'order-tab': 'commander'
+            };
+            window.location.hash = hashMap[tabId] || 'accueil';
         }
 
-        // Créer une carte de livre
-        function createBookCard(book) {
-            const card = document.createElement('div');
-            card.className = 'book-card';
-            card.innerHTML = `
-                <div class="book-image" style="background-image: url('${book.image}')"></div>
-                <div class="book-info">
-                    <h3 class="book-title">${book.title}</h3>
-                    <p class="book-author">Auteurs: ${book.author}</p>
-                    <div class="book-details">
-                        <span>Éditeur: ${book.editor}</span>
-                        <span>${book.year}</span>
-                    </div>
-                    <div class="book-details">
-                        <span>Prix: ${book.price.toLocaleString()} FCFA</span>
-                    </div>
-                    <span class="book-level">${book.level}</span>
-                    <div class="book-actions">
-                        <button class="btn btn-primary view-details" data-id="${book.id}">Détails</button>
-                        <button class="btn btn-warning view-document" data-id="${book.id}">Voir le document</button>
-                        <button class="btn btn-success order-book" data-id="${book.id}">Commander</button>
-                    </div>
+        // Afficher les matières pour une classe
+        function showSubjectsForClass(className) {
+            const subjects = subjectsData[className];
+            const classNameDisplay = classNames[className];
+            
+            modalTitle.textContent = `Matières - ${classNameDisplay}`;
+            
+            let html = `
+                <div class="back-button" id="backToClasses">
+                    <i class="fas fa-arrow-left"></i> Retour aux classes
                 </div>
+                
+                <div class="subject-grid" style="margin-top: 1rem;">
             `;
-            return card;
-        }
-
-        // Afficher les détails d'un livre
-        function showBookDetails(bookId) {
-            const book = books.find(b => b.id === parseInt(bookId));
-            if (book) {
-                bookDetailContent.innerHTML = `
-                    <img src="${book.image}" alt="${book.title}">
-                    <h3>${book.title}</h3>
-                    <p><strong>Auteurs:</strong> ${book.author}</p>
-                    <p><strong>Éditeur:</strong> ${book.editor}</p>
-                    <p><strong>Année:</strong> ${book.year}</p>
-                    <p><strong>Niveau:</strong> ${book.level}</p>
-                    <p><strong>Type:</strong> ${getTypeLabel(book.type)}</p>
-                    <p><strong>Prix:</strong> ${book.price.toLocaleString()} FCFA</p>
-                    <p><strong>Description:</strong> ${book.description}</p>
-                    <div class="document-actions">
-                        <button class="btn btn-warning view-document-modal" data-id="${book.id}">Voir le document</button>
-                        <button class="btn btn-success order-book-modal" data-id="${book.id}">Commander ce livre</button>
-                        <button class="btn btn-outline close-details">Fermer</button>
-                    </div>
-                `;
-                bookModal.style.display = 'flex';
-            }
-        }
-
-        // Afficher un document
-        function showDocument(bookId) {
-            const book = books.find(b => b.id === parseInt(bookId));
-            if (book) {
-                documentViewerContent.innerHTML = `
-                    <h3>${book.title}</h3>
-                    <p>Visualisation du document</p>
-                    <div class="document-viewer">
-                        <iframe src="${book.documentUrl}" title="${book.title}"></iframe>
-                    </div>
-                    <div class="document-actions">
-                        <a href="${book.documentUrl}" class="btn btn-primary" download target="_blank">Télécharger</a>
-                        <button class="btn btn-outline close-document">Fermer</button>
-                    </div>
-                `;
-                documentModal.style.display = 'flex';
-            }
-        }
-
-        // Mettre à jour le prix total
-        function updateTotalPrice() {
-            const quantity = parseInt(document.getElementById('quantity').value) || 1;
-            const book = books.find(b => b.id === parseInt(document.querySelector('.order-book-modal, .order-book').dataset.id));
             
-            const bookTotal = book.price * quantity;
-            const total = bookTotal + deliveryFee;
-            
-            document.getElementById('bookTotal').textContent = bookTotal.toLocaleString();
-            document.getElementById('deliveryFee').textContent = deliveryFee.toLocaleString();
-            document.getElementById('totalPrice').textContent = total.toLocaleString();
-        }
-
-        // Afficher le formulaire de commande
-        function showOrderForm(bookId) {
-            const book = books.find(b => b.id === parseInt(bookId));
-            if (book) {
-                const initialQuantity = 1;
-                const initialBookTotal = book.price * initialQuantity;
-                const initialTotal = initialBookTotal + deliveryFee;
-                
-                orderFormContent.innerHTML = `
-                    <h2>Bon de Commande - ${book.title}</h2>
-                    
-                    <div class="order-summary">
-                        <h4>Résumé de la commande</h4>
-                        <p><strong>Livre:</strong> ${book.title}</p>
-                        <p><strong>Prix unitaire:</strong> ${book.price.toLocaleString()} FCFA</p>
-                    </div>
-                    
-                    <div class="price-breakdown">
-                        <h4>Détail du prix</h4>
-                        <div class="price-item">
-                            <span>Prix du livre (x1):</span>
-                            <span>${book.price.toLocaleString()} FCFA</span>
+            subjects.forEach(subject => {
+                html += `
+                    <div class="subject-card">
+                        <div class="subject-header">
+                            <div class="subject-icon"><i class="fas fa-${subject.icon}</i></div>
+                            <div class="subject-name">${subject.name}</div>
+                            <div class="subject-level">${classNameDisplay}</div>
                         </div>
-                        <div class="price-item">
-                            <span>Frais de livraison:</span>
-                            <span>${deliveryFee.toLocaleString()} FCFA</span>
-                        </div>
-                        <div class="price-total">
-                            <span>Total à payer:</span>
-                            <span>${initialTotal.toLocaleString()} FCFA</span>
+                        <div class="subject-body">
+                            <div class="resource-links">
+                                <a href="${subject.link}" class="resource-link">
+                                    <div class="resource-icon"><i class="fas fa-book"></i></div>
+                                    <div class="resource-text">Cours Complets</div>
+                                </a>
+                                <a href="${subject.link.replace('.html', '_exercices.html')}" class="resource-link">
+                                    <div class="resource-icon"><i class="fas fa-pencil-alt"></i></div>
+                                    <div class="resource-text">Exercices</div>
+                                </a>
+                                <a href="${subject.link.replace('.html', '_epreuves.html')}" class="resource-link">
+                                    <div class="resource-icon"><i class="fas fa-file-alt"></i></div>
+                                    <div class="resource-text">Épreuves Types</div>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    
-                    <form id="orderForm" class="order-form">
-                        <h3>Informations du client</h3>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="customerName">Nom complet *</label>
-                                <input type="text" id="customerName" name="customerName" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="customerPhone">Téléphone *</label>
-                                <input type="tel" id="customerPhone" name="customerPhone" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="customerEmail">Email</label>
-                            <input type="email" id="customerEmail" name="customerEmail">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="customerAddress">Adresse de livraison *</label>
-                            <textarea id="customerAddress" name="customerAddress" rows="3" required></textarea>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="quantity">Nombre d'exemplaires *</label>
-                                <select id="quantity" name="quantity" required>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="10">10</option>
-                                    <option value="20">20 (lot)</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="paymentMethod">Méthode de paiement *</label>
-                                <select id="paymentMethod" name="paymentMethod" required>
-                                    <option value="especes">Espèces</option>
-                                    <option value="mobile_money">Mobile Money</option>
-                                    <option value="virement">Virement bancaire</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="gps-info" id="gpsInfo">
-                            <p><strong>Coordonnées GPS:</strong> ${userLocation.address}</p>
-                            <button type="button" id="generateGPS" class="btn btn-warning">Générer les coordonnées GPS</button>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="notes">Notes supplémentaires</label>
-                            <textarea id="notes" name="notes" rows="3" placeholder="Instructions spéciales, commentaires..."></textarea>
-                        </div>
-                        
-                        <div class="price-breakdown">
-                            <h4>Détail du prix final</h4>
-                            <div class="price-item">
-                                <span>Prix des livres:</span>
-                                <span id="bookTotal">${initialBookTotal.toLocaleString()} FCFA</span>
-                            </div>
-                            <div class="price-item">
-                                <span>Frais de livraison:</span>
-                                <span id="deliveryFee">${deliveryFee.toLocaleString()} FCFA</span>
-                            </div>
-                            <div class="price-total">
-                                <span>Total à payer:</span>
-                                <span id="totalPrice">${initialTotal.toLocaleString()} FCFA</span>
-                            </div>
-                        </div>
-                        
-                        <div class="document-actions">
-                            <button type="submit" class="btn btn-success">Envoyer la commande par WhatsApp</button>
-                            <button type="button" class="btn btn-outline close-order">Annuler</button>
-                        </div>
-                    </form>
                 `;
-                orderModal.style.display = 'flex';
-                
-                // Ajouter les événements pour le formulaire
-                document.getElementById('orderForm').addEventListener('submit', submitOrder);
-                document.getElementById('generateGPS').addEventListener('click', getUserLocation);
-                document.getElementById('quantity').addEventListener('change', updateTotalPrice);
-            }
+            });
+            
+            html += `</div>`;
+            subjectModalContent.innerHTML = html;
+            subjectModal.style.display = 'flex';
+            
+            // Ajouter l'événement pour le bouton retour
+            document.getElementById('backToClasses').addEventListener('click', () => {
+                subjectModal.style.display = 'none';
+            });
         }
 
-        // Soumettre la commande
-        function submitOrder(event) {
+        // Sélectionner un service
+        function selectService(service) {
+            selectedService = service;
+            
+            // Mettre à jour le formulaire
+            const serviceNames = {
+                'epreuves': 'Épreuves Corrigées',
+                'documents': 'Documents Scientifiques',
+                'memoires': 'Mémoires et Thèses',
+                'rapports': 'Rapports de Stage',
+                'latex': 'Saisie LaTeX',
+                'correction': 'Correction et Relecture'
+            };
+            
+            serviceTitle.textContent = `Commander: ${serviceNames[service]}`;
+            serviceTypeSelect.value = service;
+            
+            // Afficher le formulaire
+            orderFormSection.style.display = 'block';
+            
+            // Défiler vers le formulaire
+            orderFormSection.scrollIntoView({ behavior: 'smooth' });
+            
+            // Mettre à jour les prix
+            updatePrice();
+        }
+
+        // Annuler la commande
+        function cancelOrder() {
+            orderFormSection.style.display = 'none';
+            selectedService = '';
+            orderForm.reset();
+            uploadedFiles = [];
+            fileList.innerHTML = '';
+        }
+
+        // Mettre à jour les prix
+        function updatePrice() {
+            if (!selectedService || !servicePrices[selectedService]) return;
+            
+            const deadline = document.getElementById('deadline').value;
+            const prices = servicePrices[selectedService];
+            
+            let basePrice = prices.base;
+            let urgencyPrice = 0;
+            
+            if (deadline === 'urgent') {
+                urgencyPrice = prices.urgent;
+            } else if (deadline === 'normal') {
+                urgencyPrice = prices.normal;
+            } else if (deadline === 'standard') {
+                urgencyPrice = prices.standard;
+            }
+            
+            const total = basePrice + urgencyPrice + 5000; // + frais de traitement
+            
+            basePriceEl.textContent = basePrice.toLocaleString() + ' FCFA';
+            urgencyPriceEl.textContent = urgencyPrice.toLocaleString() + ' FCFA';
+            totalPriceEl.textContent = total.toLocaleString() + ' FCFA';
+        }
+
+        // Gestion des fichiers uploadés
+        function handleFileUpload(files) {
+            uploadedFiles = [...uploadedFiles, ...Array.from(files)];
+            
+            // Afficher la liste des fichiers
+            fileList.innerHTML = '';
+            uploadedFiles.forEach((file, index) => {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                fileItem.style.cssText = 'padding: 0.5rem; background: #f8f9fa; border-radius: 4px; margin-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center;';
+                fileItem.innerHTML = `
+                    <div>
+                        <i class="fas fa-file"></i> ${file.name} (${(file.size / 1024).toFixed(1)} KB)
+                    </div>
+                    <button type="button" onclick="removeFile(${index})" style="background: none; border: none; color: #e74c3c; cursor: pointer;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                fileList.appendChild(fileItem);
+            });
+        }
+
+        // Supprimer un fichier
+        function removeFile(index) {
+            uploadedFiles.splice(index, 1);
+            handleFileUpload([]); // Réafficher la liste
+        }
+
+        // Soumettre le formulaire de commande
+        function submitOrderForm(event) {
             event.preventDefault();
             
-            const form = event.target;
-            const formData = new FormData(form);
-            const book = books.find(b => b.id === parseInt(document.querySelector('.order-book-modal, .order-book').dataset.id));
-            
-            // Calculer le total
-            const quantity = parseInt(formData.get('quantity'));
-            const bookTotal = book.price * quantity;
-            const total = bookTotal + deliveryFee;
+            const formData = {
+                service: serviceTypeSelect.value,
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                deadline: document.getElementById('deadline').value,
+                description: document.getElementById('description').value,
+                notes: document.getElementById('notes').value,
+                files: uploadedFiles.length,
+                totalPrice: totalPriceEl.textContent
+            };
             
             // Préparer le message WhatsApp
             const phoneNumber = "22892871605";
-            let message = `*BON DE COMMANDE - ESODI-SCIENCES GRENIER*%0A%0A`;
-            message += `*LIVRE COMMANDÉ*%0A`;
-            message += `Titre: ${book.title}%0A`;
-            message += `Auteur: ${book.author}%0A`;
-            message += `Niveau: ${book.level}%0A`;
-            message += `Prix unitaire: ${book.price.toLocaleString()} FCFA%0A`;
-            message += `Quantité: ${quantity}%0A`;
-            message += `Sous-total: ${bookTotal.toLocaleString()} FCFA%0A`;
-            message += `Frais de livraison: ${deliveryFee.toLocaleString()} FCFA%0A`;
-            message += `*TOTAL: ${total.toLocaleString()} FCFA*%0A%0A`;
+            let message = `*NOUVELLE COMMANDE - ESODI-SCIENCES GRENIER*%0A%0A`;
+            message += `*SERVICE:* ${document.querySelector(`#serviceType option[value="${formData.service}"]`).textContent}%0A`;
+            message += `*CLIENT:* ${formData.fullName}%0A`;
+            message += `*EMAIL:* ${formData.email}%0A`;
+            message += `*TÉLÉPHONE:* ${formData.phone}%0A`;
+            message += `*DÉLAI:* ${document.querySelector(`#deadline option[value="${formData.deadline}"]`).textContent}%0A`;
+            message += `*PRIX TOTAL:* ${formData.totalPrice}%0A%0A`;
+            message += `*DESCRIPTION:*%0A${formData.description}%0A%0A`;
             
-            message += `*INFORMATIONS CLIENT*%0A`;
-            message += `Nom: ${formData.get('customerName')}%0A`;
-            message += `Téléphone: ${formData.get('customerPhone')}%0A`;
-            message += `Email: ${formData.get('customerEmail') || 'Non renseigné'}%0A`;
-            message += `Adresse: ${formData.get('customerAddress')}%0A`;
-            message += `Méthode de paiement: ${formData.get('paymentMethod')}%0A`;
-            message += `Coordonnées GPS: ${userLocation.address}%0A`;
-            message += `Notes: ${formData.get('notes') || 'Aucune'}%0A%0A`;
+            if (formData.notes) {
+                message += `*NOTES SUPPLÉMENTAIRES:*%0A${formData.notes}%0A%0A`;
+            }
             
-            message += `_Merci de traiter cette commande_`;
+            message += `*FICHIERS JOINTS:* ${formData.files} fichier(s)%0A%0A`;
+            message += `_Merci de traiter cette commande dans les plus brefs délais._`;
             
             // Ouvrir WhatsApp
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
             window.open(whatsappUrl, '_blank');
             
-            // Fermer le modal
-            orderModal.style.display = 'none';
-            
             // Afficher un message de confirmation
-            alert(`Votre commande de ${total.toLocaleString()} FCFA a été envoyée avec succès! Vous allez être redirigé vers WhatsApp pour finaliser.`);
-        }
-
-        // Obtenir le libellé du type de livre
-        function getTypeLabel(type) {
-            const typeLabels = {
-                'manuel': 'Manuel scolaire',
-                'exercices': 'Cahier d\'exercices',
-                'revision': 'Livre de révision',
-                'approfondissement': 'Ouvrage d\'approfondissement'
-            };
-            return typeLabels[type] || type;
+            alert(`Votre commande a été envoyée avec succès! Vous allez être redirigé vers WhatsApp pour finaliser.`);
+            
+            // Réinitialiser le formulaire
+            cancelOrder();
         }
 
         // Événements
-        subjectFilter.addEventListener('change', generateBooks);
-        levelFilter.addEventListener('change', generateBooks);
-        typeFilter.addEventListener('change', generateBooks);
-        searchInput.addEventListener('input', generateBooks);
-        searchButton.addEventListener('click', generateBooks);
-        resetFiltersButton.addEventListener('click', () => {
-            subjectFilter.value = 'all';
-            levelFilter.value = 'all';
-            typeFilter.value = 'all';
-            searchInput.value = '';
-            generateBooks();
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gestion des onglets
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    activateTab(tabId);
+                });
+            });
+            
+            // Vérifier l'URL au chargement
+            const hashMap = {
+                '#eleves': 'student-tab',
+                '#enseignants': 'teacher-tab',
+                '#commander': 'order-tab'
+            };
+            
+            if (hashMap[window.location.hash]) {
+                activateTab(hashMap[window.location.hash]);
+            } else {
+                activateTab('student-tab');
+            }
+            
+            // Gestion des classes
+            classItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const className = this.getAttribute('data-class');
+                    showSubjectsForClass(className);
+                });
+            });
+            
+            // Fermer le modal
+            closeModalBtn.addEventListener('click', () => {
+                subjectModal.style.display = 'none';
+            });
+            
+            window.addEventListener('click', (e) => {
+                if (e.target === subjectModal) {
+                    subjectModal.style.display = 'none';
+                }
+            });
+            
+            // Navigation active
+            const navLinks = document.querySelectorAll('nav ul li a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Gestion spéciale pour les onglets
+                    if (this.getAttribute('href') === '#eleves') {
+                        activateTab('student-tab');
+                        e.preventDefault();
+                    } else if (this.getAttribute('href') === '#enseignants') {
+                        activateTab('teacher-tab');
+                        e.preventDefault();
+                    } else if (this.getAttribute('href') === '#commander') {
+                        activateTab('order-tab');
+                        e.preventDefault();
+                    }
+                });
+            });
+            
+            // Gestion des fichiers
+            fileUpload.addEventListener('change', function(e) {
+                handleFileUpload(e.target.files);
+            });
+            
+            // Mettre à jour les prix
+            serviceTypeSelect.addEventListener('change', function() {
+                selectedService = this.value;
+                updatePrice();
+            });
+            
+            document.getElementById('deadline').addEventListener('change', updatePrice);
+            
+            // Soumettre le formulaire
+            orderForm.addEventListener('submit', submitOrderForm);
+            
+            // Animation au scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observer les cartes
+            document.querySelectorAll('.level-card, .subject-card, .service-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s, transform 0.5s';
+                observer.observe(card);
+            });
         });
 
-        // Gérer les clics sur les boutons des cartes de livre
-        document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('view-details') || e.target.classList.contains('view-document-modal')) {
-                showBookDetails(e.target.dataset.id);
-            } else if (e.target.classList.contains('view-document')) {
-                showDocument(e.target.dataset.id);
-            } else if (e.target.classList.contains('order-book') || e.target.classList.contains('order-book-modal')) {
-                showOrderForm(e.target.dataset.id);
-            } else if (e.target.classList.contains('close-details') || e.target.classList.contains('close-document') || e.target.classList.contains('close-order')) {
-                bookModal.style.display = 'none';
-                documentModal.style.display = 'none';
-                orderModal.style.display = 'none';
+        // Gestion du responsive
+        window.addEventListener('resize', function() {
+            if (window.innerWidth < 768) {
+                document.querySelectorAll('.service-card').forEach(card => {
+                    card.style.marginBottom = '1rem';
+                });
             }
         });
-
-        // Fermer les modals
-        closeModal.addEventListener('click', () => {
-            bookModal.style.display = 'none';
-        });
-
-        closeDocumentModal.addEventListener('click', () => {
-            documentModal.style.display = 'none';
-        });
-
-        closeOrderModal.addEventListener('click', () => {
-            orderModal.style.display = 'none';
-        });
-
-        window.addEventListener('click', (e) => {
-            if (e.target === bookModal) {
-                bookModal.style.display = 'none';
-            }
-            if (e.target === documentModal) {
-                documentModal.style.display = 'none';
-            }
-            if (e.target === orderModal) {
-                orderModal.style.display = 'none';
-            }
-        });
-
-        // Initialisation
-        updateStats();
-        generateBooks();
+        
+        // Initialisation pour mobile
+        if (window.innerWidth < 768) {
+            document.body.classList.add('mobile');
+        }
     </script>
 </body>
 </html>

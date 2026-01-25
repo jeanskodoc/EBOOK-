@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DocumentSecure Pro | Consultation de Documents en Ligne</title>
+    <title>COURS DE MATHS CLASSE DE 6ème | Consultation de Documents en Ligne</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -933,7 +933,7 @@
         </div>
         
         <footer>
-            <p>&copy; 2023 DocumentSecure Pro. Tous droits réservés.</p>
+            <p>&copy; 2026 DocumentSecure Pro. Tous droits réservés.</p>
             <p style="margin-top: 5px; font-size: 0.8rem;">
                 <i class="fas fa-shield-alt"></i> Accès sécurisé • 
                 <i class="fas fa-clock"></i> Expiration automatique après 30 jours • 
@@ -947,21 +947,21 @@
         const accounts = [
             { 
                 username: "admin", 
-                password: "AdminSecure2023!", 
+                password: "Admin123", 
                 fullName: "Administrateur Système", 
                 role: "Administrateur",
-                creationDate: "2023-10-01",
+                creationDate: "2026-01-21",
                 expiryDate: null, // Admin n'expire pas
                 active: true,
                 externalAccess: true
             },
             { 
-                username: "manager", 
-                password: "ManagerPass123#", 
+                username: "TOI", 
+                password: "MOI1", 
                 fullName: "Responsable Département", 
                 role: "Gestionnaire",
-                creationDate: "2023-11-15",
-                expiryDate: "2024-01-14", // 30 jours à partir d'aujourd'hui
+                creationDate: "2026-01-20",
+                expiryDate: "2026-02-19", // 30 jours à partir d'aujourd'hui
                 active: true,
                 externalAccess: true
             },
@@ -975,70 +975,11 @@
                 active: true,
                 externalAccess: true
             },
-            { 
-                username: "employe2", 
-                password: "Secure456$Emp", 
-                fullName: "Marie Martin", 
-                role: "Employé",
-                creationDate: "2023-11-01",
-                expiryDate: "2023-12-01",
-                active: false, // Expiré
-                externalAccess: false
-            },
-            { 
-                username: "client", 
-                password: "ClientAccess789!", 
-                fullName: "Pierre Lambert", 
-                role: "Client Premium",
-                creationDate: "2023-11-25",
-                expiryDate: "2024-01-24", // 30 jours à partir d'aujourd'hui
-                active: true,
-                externalAccess: true
-            }
+           
         ];
 
         // Documents disponibles
         const documents = [
-            { 
-                id: 1, 
-                title: "Rapport Annuel 2023", 
-                description: "Rapport financier et d'activité complet pour l'année 2023 avec analyse détaillée des performances.",
-                icon: "fas fa-chart-line",
-                category: "Finances",
-                restricted: ["Administrateur", "Gestionnaire"]
-            },
-            { 
-                id: 2, 
-                title: "Manuel d'Utilisation", 
-                description: "Guide complet d'utilisation des systèmes internes avec procédures détaillées et exemples.",
-                icon: "fas fa-book",
-                category: "Documentation",
-                restricted: []
-            },
-            { 
-                id: 3, 
-                title: "Politique de Confidentialité", 
-                description: "Document officiel sur la gestion des données personnelles conforme au RGPD.",
-                icon: "fas fa-shield-alt",
-                category: "Juridique",
-                restricted: []
-            },
-            { 
-                id: 4, 
-                title: "Présentation Stratégique", 
-                description: "Plan stratégique de l'entreprise pour les 5 prochaines années avec objectifs et roadmap.",
-                icon: "fas fa-bullseye",
-                category: "Stratégie",
-                restricted: ["Administrateur", "Gestionnaire"]
-            },
-            { 
-                id: 5, 
-                title: "Guide des Procédures", 
-                description: "Procédures opérationnelles standard pour tous les départements avec checklists.",
-                icon: "fas fa-tasks",
-                category: "Opérations",
-                restricted: ["Employé", "Gestionnaire", "Administrateur"]
-            },
             { 
                 id: 6, 
                 title: "Étude de Marché", 

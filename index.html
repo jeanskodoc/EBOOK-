@@ -1595,62 +1595,310 @@
     </footer>
 
     <script>
-        // Données des matières par classe
+        // Données détaillées pour chaque classe et matière avec fichiers distincts
         const subjectsData = {
             "6eme": [
-                { name: "Mathématiques", icon: "calculator", link: "mathematiques_6eme.html" },
-                { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_6eme.html" }
+                { 
+                    name: "Mathématiques", 
+                    icon: "calculator", 
+                    resources: {
+                        cours: "cours_mathematiques_6eme.html",
+                        exercices: "exercices_mathematiques_6eme.html",
+                        epreuves: "epreuves_mathematiques_6eme.html"
+                    }
+                },
+                { 
+                    name: "Physique-Chimie", 
+                    icon: "atom", 
+                    resources: {
+                        cours: "cours_physique_chimie_6eme.html",
+                        exercices: "exercices_physique_chimie_6eme.html",
+                        epreuves: "epreuves_physique_chimie_6eme.html"
+                    }
+                }
             ],
             "5eme": [
-                { name: "Mathématiques", icon: "calculator", link: "mathematiques_5eme.html" },
-                { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_5eme.html" }
+                { 
+                    name: "Mathématiques", 
+                    icon: "calculator", 
+                    resources: {
+                        cours: "cours_mathematiques_5eme.html",
+                        exercices: "exercices_mathematiques_5eme.html",
+                        epreuves: "epreuves_mathematiques_5eme.html"
+                    }
+                },
+                { 
+                    name: "Physique-Chimie", 
+                    icon: "atom", 
+                    resources: {
+                        cours: "cours_physique_chimie_5eme.html",
+                        exercices: "exercices_physique_chimie_5eme.html",
+                        epreuves: "epreuves_physique_chimie_5eme.html"
+                    }
+                }
             ],
             "4eme": [
-                { name: "Mathématiques", icon: "calculator", link: "mathematiques_4eme.html" },
-                { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_4eme.html" }
+                { 
+                    name: "Mathématiques", 
+                    icon: "calculator", 
+                    resources: {
+                        cours: "cours_mathematiques_4eme.html",
+                        exercices: "exercices_mathematiques_4eme.html",
+                        epreuves: "epreuves_mathematiques_4eme.html"
+                    }
+                },
+                { 
+                    name: "Physique-Chimie", 
+                    icon: "atom", 
+                    resources: {
+                        cours: "cours_physique_chimie_4eme.html",
+                        exercices: "exercices_physique_chimie_4eme.html",
+                        epreuves: "epreuves_physique_chimie_4eme.html"
+                    }
+                }
             ],
             "3eme": [
-                { name: "Mathématiques", icon: "calculator", link: "mathematiques_3eme.html" },
-                { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_3eme.html" },
-                { name: "SVT", icon: "seedling", link: "svt_3eme.html" }
+                { 
+                    name: "Mathématiques", 
+                    icon: "calculator", 
+                    resources: {
+                        cours: "cours_mathematiques_3eme.html",
+                        exercices: "exercices_mathematiques_3eme.html",
+                        epreuves: "epreuves_mathematiques_3eme.html"
+                    }
+                },
+                { 
+                    name: "Physique-Chimie", 
+                    icon: "atom", 
+                    resources: {
+                        cours: "cours_physique_chimie_3eme.html",
+                        exercices: "exercices_physique_chimie_3eme.html",
+                        epreuves: "epreuves_physique_chimie_3eme.html"
+                    }
+                },
+                { 
+                    name: "SVT", 
+                    icon: "seedling", 
+                    resources: {
+                        cours: "cours_svt_3eme.html",
+                        exercices: "exercices_svt_3eme.html",
+                        epreuves: "epreuves_svt_3eme.html"
+                    }
+                }
             ],
             "2ndeCD": [
-                { name: "Mathématiques", icon: "calculator", link: "mathematiques_2nde.html" },
-                { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_2nde.html" }
+                { 
+                    name: "Mathématiques", 
+                    icon: "calculator", 
+                    resources: {
+                        cours: "cours_mathematiques_2nde.html",
+                        exercices: "exercices_mathematiques_2nde.html",
+                        epreuves: "epreuves_mathematiques_2nde.html"
+                    }
+                },
+                { 
+                    name: "Physique-Chimie", 
+                    icon: "atom", 
+                    resources: {
+                        cours: "cours_physique_chimie_2nde.html",
+                        exercices: "exercices_physique_chimie_2nde.html",
+                        epreuves: "epreuves_physique_chimie_2nde.html"
+                    }
+                }
             ],
             "2ndeL": [
-                { name: "Mathématiques", icon: "calculator", link: "mathematiques_2nde.html" },
-                { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_2nde.html" }
+                { 
+                    name: "Mathématiques", 
+                    icon: "calculator", 
+                    resources: {
+                        cours: "cours_mathematiques_2nde.html",
+                        exercices: "exercices_mathematiques_2nde.html",
+                        epreuves: "epreuves_mathematiques_2nde.html"
+                    }
+                },
+                { 
+                    name: "Physique-Chimie", 
+                    icon: "atom", 
+                    resources: {
+                        cours: "cours_physique_chimie_2nde.html",
+                        exercices: "exercices_physique_chimie_2nde.html",
+                        epreuves: "epreuves_physique_chimie_2nde.html"
+                    }
+                }
             ],
             "1ereA4": [
-                { name: "Mathématiques", icon: "calculator", link: "mathematiques_1ere.html" },
-                { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_1ere.html" },
-                { name: "SVT", icon: "seedling", link: "svt_1ere.html" }
+                { 
+                    name: "Mathématiques", 
+                    icon: "calculator", 
+                    resources: {
+                        cours: "cours_mathematiques_1ere.html",
+                        exercices: "exercices_mathematiques_1ere.html",
+                        epreuves: "epreuves_mathematiques_1ere.html"
+                    }
+                },
+                { 
+                    name: "Physique-Chimie", 
+                    icon: "atom", 
+                    resources: {
+                        cours: "cours_physique_chimie_1ere.html",
+                        exercices: "exercices_physique_chimie_1ere.html",
+                        epreuves: "epreuves_physique_chimie_1ere.html"
+                    }
+                },
+                { 
+                    name: "SVT", 
+                    icon: "seedling", 
+                    resources: {
+                        cours: "cours_svt_1ere.html",
+                        exercices: "exercices_svt_1ere.html",
+                        epreuves: "epreuves_svt_1ere.html"
+                    }
+                }
             ],
             "1ereC4": [
-                { name: "Mathématiques", icon: "calculator", link: "mathematiques_1ere.html" },
-                { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_1ere.html" },
-                { name: "SVT", icon: "seedling", link: "svt_1ere.html" }
+                { 
+                    name: "Mathématiques", 
+                    icon: "calculator", 
+                    resources: {
+                        cours: "cours_mathematiques_1ere.html",
+                        exercices: "exercices_mathematiques_1ere.html",
+                        epreuves: "epreuves_mathematiques_1ere.html"
+                    }
+                },
+                { 
+                    name: "Physique-Chimie", 
+                    icon: "atom", 
+                    resources: {
+                        cours: "cours_physique_chimie_1ere.html",
+                        exercices: "exercices_physique_chimie_1ere.html",
+                        epreuves: "epreuves_physique_chimie_1ere.html"
+                    }
+                },
+                { 
+                    name: "SVT", 
+                    icon: "seedling", 
+                    resources: {
+                        cours: "cours_svt_1ere.html",
+                        exercices: "exercices_svt_1ere.html",
+                        epreuves: "epreuves_svt_1ere.html"
+                    }
+                }
             ],
             "1ereD": [
-                { name: "Mathématiques", icon: "calculator", link: "mathematiques_1ere.html" },
-                { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_1ere.html" },
-                { name: "SVT", icon: "seedling", link: "svt_1ere.html" }
+                { 
+                    name: "Mathématiques", 
+                    icon: "calculator", 
+                    resources: {
+                        cours: "cours_mathematiques_1ere.html",
+                        exercices: "exercices_mathematiques_1ere.html",
+                        epreuves: "epreuves_mathematiques_1ere.html"
+                    }
+                },
+                { 
+                    name: "Physique-Chimie", 
+                    icon: "atom", 
+                    resources: {
+                        cours: "cours_physique_chimie_1ere.html",
+                        exercices: "exercices_physique_chimie_1ere.html",
+                        epreuves: "epreuves_physique_chimie_1ere.html"
+                    }
+                },
+                { 
+                    name: "SVT", 
+                    icon: "seedling", 
+                    resources: {
+                        cours: "cours_svt_1ere.html",
+                        exercices: "exercices_svt_1ere.html",
+                        epreuves: "epreuves_svt_1ere.html"
+                    }
+                }
             ],
             "tleA4": [
-                { name: "Mathématiques", icon: "calculator", link: "mathematiques_tle.html" },
-                { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_tle.html" },
-                { name: "SVT", icon: "seedling", link: "svt_tle.html" }
+                { 
+                    name: "Mathématiques", 
+                    icon: "calculator", 
+                    resources: {
+                        cours: "cours_mathematiques_tle.html",
+                        exercices: "exercices_mathematiques_tle.html",
+                        epreuves: "epreuves_mathematiques_tle.html"
+                    }
+                },
+                { 
+                    name: "Physique-Chimie", 
+                    icon: "atom", 
+                    resources: {
+                        cours: "cours_physique_chimie_tle.html",
+                        exercices: "exercices_physique_chimie_tle.html",
+                        epreuves: "epreuves_physique_chimie_tle.html"
+                    }
+                },
+                { 
+                    name: "SVT", 
+                    icon: "seedling", 
+                    resources: {
+                        cours: "cours_svt_tle.html",
+                        exercices: "exercices_svt_tle.html",
+                        epreuves: "epreuves_svt_tle.html"
+                    }
+                }
             ],
             "tleC4": [
-                { name: "Mathématiques", icon: "calculator", link: "mathematiques_tle.html" },
-                { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_tle.html" },
-                { name: "SVT", icon: "seedling", link: "svt_tle.html" }
+                { 
+                    name: "Mathématiques", 
+                    icon: "calculator", 
+                    resources: {
+                        cours: "cours_mathematiques_tle.html",
+                        exercices: "exercices_mathematiques_tle.html",
+                        epreuves: "epreuves_mathematiques_tle.html"
+                    }
+                },
+                { 
+                    name: "Physique-Chimie", 
+                    icon: "atom", 
+                    resources: {
+                        cours: "cours_physique_chimie_tle.html",
+                        exercices: "exercices_physique_chimie_tle.html",
+                        epreuves: "epreuves_physique_chimie_tle.html"
+                    }
+                },
+                { 
+                    name: "SVT", 
+                    icon: "seedling", 
+                    resources: {
+                        cours: "cours_svt_tle.html",
+                        exercices: "exercices_svt_tle.html",
+                        epreuves: "epreuves_svt_tle.html"
+                    }
+                }
             ],
             "tleD": [
-                { name: "Mathématiques", icon: "calculator", link: "mathematiques_tle.html" },
-                { name: "Physique-Chimie", icon: "atom", link: "physique_chimie_tle.html" },
-                { name: "SVT", icon: "seedling", link: "svt_tle.html" }
+                { 
+                    name: "Mathématiques", 
+                    icon: "calculator", 
+                    resources: {
+                        cours: "cours_mathematiques_tle.html",
+                        exercices: "exercices_mathematiques_tle.html",
+                        epreuves: "epreuves_mathematiques_tle.html"
+                    }
+                },
+                { 
+                    name: "Physique-Chimie", 
+                    icon: "atom", 
+                    resources: {
+                        cours: "cours_physique_chimie_tle.html",
+                        exercices: "exercices_physique_chimie_tle.html",
+                        epreuves: "epreuves_physique_chimie_tle.html"
+                    }
+                },
+                { 
+                    name: "SVT", 
+                    icon: "seedling", 
+                    resources: {
+                        cours: "cours_svt_tle.html",
+                        exercices: "exercices_svt_tle.html",
+                        epreuves: "epreuves_svt_tle.html"
+                    }
+                }
             ]
         };
 
@@ -1749,15 +1997,15 @@
                         </div>
                         <div class="subject-body">
                             <div class="resource-links">
-                                <a href="${subject.link}" class="resource-link">
+                                <a href="${subject.resources.cours}" class="resource-link" target="_blank">
                                     <div class="resource-icon"><i class="fas fa-book"></i></div>
                                     <div class="resource-text">Cours Complets</div>
                                 </a>
-                                <a href="${subject.link.replace('mathematiques_6eme.html', '_exercices.html')}" class="resource-link">
+                                <a href="${subject.resources.exercices}" class="resource-link" target="_blank">
                                     <div class="resource-icon"><i class="fas fa-pencil-alt"></i></div>
                                     <div class="resource-text">Exercices</div>
                                 </a>
-                                <a href="${subject.link.replace('mathematiques_6eme.html', '_epreuves.html')}" class="resource-link">
+                                <a href="${subject.resources.epreuves}" class="resource-link" target="_blank">
                                     <div class="resource-icon"><i class="fas fa-file-alt"></i></div>
                                     <div class="resource-text">Épreuves Types</div>
                                 </a>

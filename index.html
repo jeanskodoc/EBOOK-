@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESODI-SCIENCES GRENIER - Système Éducatif Togolais</title>
+    <title>ESODI-SCIENCES - Système Éducatif Togolais</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary-color: #1a5276;
@@ -13,786 +14,236 @@
             --dark-color: #154360;
             --success-color: #28b463;
             --warning-color: #f39c12;
-            --gold-color: #f1c40f;
-            --teacher-color: #8e44ad;
-            --student-color: #27ae60;
             --order-color: #e67e22;
             --togo-green: #006400;
             --togo-yellow: #fcd116;
             --togo-red: #d21034;
+            --border-radius: 10px;
+            --box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
         body {
-            background-color: #f5f9fc;
-            color: #333;
-            line-height: 1.6;
+            background: linear-gradient(135deg, #f5f9fc 0%, #e8f0f5 100%);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
-        
-        .top-bar {
-            background: linear-gradient(90deg, var(--togo-green), var(--togo-yellow), var(--togo-red));
-            height: 8px;
-            width: 100%;
-        }
+
+        /* Header compact */
+        .top-bar { background: linear-gradient(90deg, var(--togo-green), var(--togo-yellow), var(--togo-red)); height: 4px; }
         
         header {
-            background-color: white;
-            color: var(--primary-color);
-            padding: 1rem 0;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            background: white;
+            padding: 0.8rem 0;
+            box-shadow: var(--box-shadow);
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 100;
         }
         
-        .container {
-            width: 95%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
         
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
             gap: 15px;
         }
         
-        .logo-icon {
-            font-size: 2.5rem;
-            color: var(--togo-green);
-        }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon { font-size: 1.8rem; color: var(--togo-green); }
+        .logo-main { font-size: 1.2rem; font-weight: 700; color: var(--primary-color); }
+        .logo-sub { font-size: 0.7rem; color: var(--togo-red); }
+        .logo-tagline { font-size: 0.65rem; color: #666; }
         
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .logo-main {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            line-height: 1.2;
-        }
-        
-        .logo-sub {
-            font-size: 0.9rem;
-            color: var(--togo-red);
-            font-weight: 500;
-        }
-        
-        .logo-tagline {
-            font-size: 0.85rem;
-            color: #666;
-            margin-top: 3px;
-        }
-        
-        .system-info {
-            text-align: center;
-            padding: 5px;
-            background: linear-gradient(90deg, #f0f8ff, #e6f2ff);
-            border-radius: 5px;
-            margin: 5px 0;
-            font-size: 0.9rem;
-            color: var(--primary-color);
-            border-left: 4px solid var(--togo-yellow);
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-            flex-wrap: wrap;
-            gap: 5px;
-        }
-        
+        /* Navigation compacte */
+        nav ul { display: flex; list-style: none; gap: 5px; flex-wrap: wrap; }
         nav ul li a {
             color: var(--primary-color);
             text-decoration: none;
             font-weight: 600;
-            padding: 8px 15px;
+            padding: 6px 12px;
             border-radius: 20px;
-            transition: all 0.3s;
-            font-size: 0.95rem;
+            font-size: 0.8rem;
+            transition: var(--transition);
             display: block;
         }
+        nav ul li a:hover, nav ul li a.active { background: var(--primary-color); color: white; }
         
-        nav ul li a:hover, nav ul li a.active {
-            background-color: var(--primary-color);
-            color: white;
-        }
-        
+        /* Hero compact */
         .hero {
-            background: linear-gradient(rgba(26, 82, 118, 0.9), rgba(21, 67, 96, 0.95)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(rgba(26,82,118,0.9), rgba(21,67,96,0.95)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800');
             background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 3rem 0;
-            text-align: center;
-            border-bottom: 5px solid var(--togo-yellow);
-        }
-        
-        .hero h1 {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .hero p {
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            opacity: 0.95;
-        }
-        
-        .stats-bar {
-            background-color: white;
-            padding: 1rem 0;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-            margin-bottom: 2rem;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            text-align: center;
-        }
-        
-        .stat-item {
-            padding: 1rem;
-            border-right: 1px solid #eee;
-        }
-        
-        .stat-item:last-child {
-            border-right: none;
-        }
-        
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            display: block;
-            line-height: 1;
-        }
-        
-        .stat-label {
-            font-size: 0.9rem;
-            color: #666;
-            margin-top: 0.5rem;
-        }
-        
-        .main-container {
-            flex: 1;
             padding: 2rem 0;
+            text-align: center;
+            color: white;
         }
+        .hero h1 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .hero p { font-size: 0.85rem; max-width: 600px; margin: 0 auto; opacity: 0.9; }
         
+        /* Stats compactes */
+        .stats-bar { background: white; padding: 0.5rem 0; box-shadow: var(--box-shadow); }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; text-align: center; }
+        .stat-number { font-size: 1.3rem; font-weight: 700; color: var(--primary-color); }
+        .stat-label { font-size: 0.7rem; color: #666; }
+        
+        /* Onglets compacts */
         .tab-container {
             background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
             overflow: hidden;
-            margin-bottom: 2rem;
+            margin: 1.5rem 0;
         }
         
         .tab-header {
             display: flex;
             background: linear-gradient(90deg, var(--togo-green), var(--togo-yellow));
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-        }
-        
-        .tab-header::-webkit-scrollbar {
-            display: none;
+            gap: 2px;
         }
         
         .tab-button {
-            padding: 1.2rem 2rem;
-            background: none;
+            padding: 10px 20px;
+            background: rgba(0,0,0,0.1);
             border: none;
-            font-size: 1.1rem;
+            font-size: 0.8rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition);
             color: white;
-            white-space: nowrap;
-            position: relative;
-            min-width: 200px;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
+        .tab-button.active { background: rgba(255,255,255,0.2); }
         
-        .tab-button::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 4px;
-            background-color: white;
-            transition: width 0.3s;
-        }
+        .tab-content { display: none; padding: 1.5rem; animation: fadeIn 0.3s; }
+        .tab-content.active { display: block; }
         
-        .tab-button.active::after {
-            width: 80%;
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        .tab-button.student {
-            background-color: rgba(39, 174, 96, 0.9);
-        }
+        /* Cartes compactes */
+        .education-levels { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+        .level-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: var(--box-shadow); border: 1px solid #eaeaea; }
+        .level-header { padding: 0.8rem; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; text-align: center; }
+        .level-header h3 { font-size: 1rem; margin-bottom: 0.2rem; }
+        .level-header .subtitle { font-size: 0.7rem; opacity: 0.9; }
+        .level-body { padding: 1rem; }
         
-        .tab-button.teacher {
-            background-color: rgba(142, 68, 173, 0.9);
-        }
-        
-        .tab-button.order {
-            background-color: rgba(230, 126, 34, 0.9);
-        }
-        
-        .tab-content {
-            display: none;
-            padding: 2rem;
-            animation: fadeIn 0.5s;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .welcome-message {
-            text-align: center;
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            border-radius: 10px;
-            border-left: 5px solid var(--togo-green);
-        }
-        
-        .welcome-message h2 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-        
-        .welcome-message p {
-            color: #555;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .education-levels {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-        
-        .level-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid #eaeaea;
-        }
-        
-        .level-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-        }
-        
-        .level-header {
-            padding: 1.2rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            text-align: center;
-        }
-        
-        .level-header h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.3rem;
-        }
-        
-        .level-header .subtitle {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-        
-        .level-body {
-            padding: 1.5rem;
-        }
-        
-        .class-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 1rem;
-        }
-        
+        .class-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 0.8rem; }
         .class-item {
             text-align: center;
-            padding: 1rem;
+            padding: 0.6rem;
             background: #f8f9fa;
-            border-radius: 8px;
-            transition: all 0.3s;
+            border-radius: 6px;
             cursor: pointer;
-            border: 2px solid transparent;
+            transition: var(--transition);
+            border: 1px solid transparent;
         }
+        .class-item:hover { background: var(--primary-color); color: white; transform: translateY(-2px); }
+        .class-item i { font-size: 1.2rem; margin-bottom: 0.3rem; display: block; }
+        .class-name { font-size: 0.8rem; font-weight: 600; }
         
-        .class-item:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: scale(1.05);
-            border-color: var(--togo-yellow);
-        }
+        /* Grille matières compacte */
+        .subject-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+        .subject-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: var(--box-shadow); border-top: 3px solid var(--success-color); }
+        .subject-header { padding: 0.8rem; background: #f8f9fa; text-align: center; }
+        .subject-icon { font-size: 1.5rem; margin-bottom: 0.3rem; color: var(--primary-color); }
+        .subject-name { font-size: 0.9rem; font-weight: 600; }
+        .subject-level { font-size: 0.7rem; color: #666; background: #e9ecef; padding: 0.15rem 0.5rem; border-radius: 12px; display: inline-block; }
+        .subject-body { padding: 0.8rem; }
         
-        .class-item i {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-        
-        .class-name {
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-        
-        .subject-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .subject-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-            border-top: 4px solid var(--togo-green);
-        }
-        
-        .subject-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-        }
-        
-        .subject-header {
-            padding: 1.2rem;
-            background: #f8f9fa;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .subject-icon {
-            font-size: 2.2rem;
-            margin-bottom: 0.8rem;
-            color: var(--primary-color);
-        }
-        
-        .subject-name {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 0.3rem;
-        }
-        
-        .subject-level {
-            font-size: 0.9rem;
-            color: #666;
-            background: #e9ecef;
-            padding: 0.2rem 0.8rem;
-            border-radius: 15px;
-            display: inline-block;
-        }
-        
-        .subject-body {
-            padding: 1.2rem;
-        }
-        
-        .resource-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-        
+        /* Ressources compactes */
+        .resource-links { display: flex; flex-direction: column; gap: 0.5rem; }
         .resource-link {
             display: flex;
             align-items: center;
-            padding: 0.8rem;
+            padding: 0.5rem;
             background: #f8f9fa;
             border-radius: 6px;
             text-decoration: none;
             color: #333;
-            transition: all 0.3s;
-            border-left: 4px solid transparent;
+            transition: var(--transition);
+            font-size: 0.75rem;
         }
+        .resource-link:hover { background: var(--primary-color); color: white; transform: translateX(3px); }
+        .resource-icon { margin-right: 8px; font-size: 0.9rem; width: 25px; }
         
-        .resource-link:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: translateX(5px);
-            border-left-color: var(--togo-yellow);
-        }
+        /* Services compacts */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+        .service-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: var(--box-shadow); border-top: 3px solid var(--order-color); }
+        .service-header { padding: 1rem; background: linear-gradient(135deg, var(--order-color), #f39c12); color: white; text-align: center; }
+        .service-header h3 { font-size: 0.9rem; }
+        .service-header p { font-size: 0.7rem; opacity: 0.9; }
+        .service-body { padding: 1rem; }
         
-        .resource-icon {
-            margin-right: 10px;
-            font-size: 1.2rem;
-            width: 25px;
-            text-align: center;
-        }
+        .service-features { list-style: none; margin-bottom: 1rem; }
+        .service-features li { padding: 0.3rem 0; font-size: 0.7rem; display: flex; align-items: center; gap: 6px; }
+        .service-features li i { color: var(--order-color); width: 18px; }
         
-        .resource-text {
-            flex: 1;
-            font-weight: 500;
-        }
-        
-        /* Styles spécifiques pour l'onglet Commander */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-        
-        .service-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-            border-top: 4px solid var(--order-color);
-        }
-        
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-        }
-        
-        .service-header {
-            padding: 1.5rem;
-            background: linear-gradient(135deg, var(--order-color), #f39c12);
-            color: white;
-            text-align: center;
-        }
-        
-        .service-header h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .service-body {
-            padding: 1.5rem;
-        }
-        
-        .service-features {
-            list-style: none;
-            margin-bottom: 1.5rem;
-        }
-        
-        .service-features li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .service-features li i {
-            color: var(--order-color);
-        }
-        
-        .order-form {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            margin-bottom: 2rem;
-        }
-        
-        .form-title {
-            color: var(--order-color);
-            margin-bottom: 1.5rem;
-            text-align: center;
-            font-size: 1.5rem;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #444;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-        
-        .form-control:focus {
-            outline: none;
-            border-color: var(--order-color);
-            box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1);
-        }
-        
-        .form-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-        
-        textarea.form-control {
-            min-height: 120px;
-            resize: vertical;
-        }
-        
-        .file-upload {
-            border: 2px dashed #ddd;
-            padding: 2rem;
-            text-align: center;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .file-upload:hover {
-            border-color: var(--order-color);
-            background: rgba(230, 126, 34, 0.05);
-        }
-        
-        .file-upload input {
-            display: none;
-        }
-        
-        .upload-icon {
-            font-size: 3rem;
-            color: var(--order-color);
-            margin-bottom: 1rem;
-        }
-        
-        .price-calculator {
-            background: #f8f9fa;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-        }
-        
-        .price-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.8rem;
-            padding-bottom: 0.8rem;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        .price-total {
-            display: flex;
-            justify-content: space-between;
-            font-weight: bold;
-            font-size: 1.2rem;
-            color: var(--order-color);
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 2px solid var(--order-color);
-        }
-        
+        /* Boutons compacts */
         .btn {
-            padding: 0.8rem 1.8rem;
+            padding: 5px 10px;
             border: none;
-            border-radius: 30px;
+            border-radius: 20px;
             cursor: pointer;
             font-weight: 600;
-            transition: all 0.3s;
-            text-decoration: none;
+            transition: var(--transition);
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-size: 1rem;
+            gap: 5px;
+            font-size: 0.7rem;
         }
+        .btn-primary { background: var(--primary-color); color: white; }
+        .btn-primary:hover { transform: translateY(-2px); }
+        .btn-success { background: var(--success-color); color: white; }
+        .btn-order { background: var(--order-color); color: white; }
+        .btn-danger { background: var(--danger-color); color: white; }
         
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-        }
+        /* Formulaire compact */
+        .order-form { background: white; border-radius: 8px; padding: 1rem; box-shadow: var(--box-shadow); margin-bottom: 1rem; }
+        .form-title { font-size: 1rem; color: var(--order-color); margin-bottom: 1rem; text-align: center; }
+        .form-group { margin-bottom: 0.8rem; }
+        .form-group label { display: block; margin-bottom: 3px; font-size: 0.7rem; font-weight: 600; color: #444; }
+        .form-control { width: 100%; padding: 6px 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 0.75rem; }
+        .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.8rem; }
         
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(26, 82, 118, 0.3);
-        }
+        .price-calculator { background: #f8f9fa; padding: 0.8rem; border-radius: 6px; margin-bottom: 1rem; }
+        .price-item { display: flex; justify-content: space-between; font-size: 0.7rem; margin-bottom: 5px; }
+        .price-total { display: flex; justify-content: space-between; font-weight: bold; font-size: 0.8rem; color: var(--order-color); margin-top: 8px; padding-top: 8px; border-top: 1px solid #ddd; }
         
-        .btn-success {
-            background: linear-gradient(135deg, var(--success-color), #2ecc71);
-            color: white;
-        }
-        
-        .btn-warning {
-            background: linear-gradient(135deg, var(--warning-color), #f1c40f);
-            color: white;
-        }
-        
-        .btn-danger {
-            background: linear-gradient(135deg, var(--togo-red), #e74c3c);
-            color: white;
-        }
-        
-        .btn-order {
-            background: linear-gradient(135deg, var(--order-color), #f39c12);
-            color: white;
-        }
-        
-        .btn-order:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3);
-        }
-        
+        /* Section CORRIG-PLUS compacte */
         .corrig-plus-section {
-            background: linear-gradient(135deg, #1a5276, #154360);
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
             color: white;
-            padding: 2rem;
-            border-radius: 12px;
+            padding: 1.2rem;
+            border-radius: 8px;
             text-align: center;
-            margin-top: 3rem;
+            margin-top: 1.5rem;
         }
+        .corrig-plus-section h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+        .corrig-plus-section p { font-size: 0.7rem; margin-bottom: 0.8rem; }
         
-        .corrig-plus-section h3 {
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
-        }
+        .btn-corrig-plus { background: var(--success-color); color: white; padding: 6px 12px; font-size: 0.7rem; }
         
-        .corrig-plus-section p {
-            margin-bottom: 1.5rem;
-            opacity: 0.9;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .btn-corrig-plus {
-            background: linear-gradient(135deg, #27ae60, #2ecc71);
-            color: white;
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-            margin-top: 1rem;
-        }
-        
+        /* Footer compact */
         footer {
             background: linear-gradient(135deg, var(--dark-color), var(--primary-color));
             color: white;
-            padding: 3rem 0 1.5rem;
-            margin-top: 3rem;
+            padding: 2rem 0 1rem;
+            margin-top: 2rem;
         }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 1rem; }
+        .footer-column h3 { font-size: 0.9rem; margin-bottom: 0.8rem; }
+        .footer-column ul { list-style: none; }
+        .footer-column ul li { margin-bottom: 0.4rem; }
+        .footer-column ul li a { color: #bbb; text-decoration: none; font-size: 0.7rem; display: flex; align-items: center; gap: 6px; }
+        .footer-column ul li a:hover { color: white; padding-left: 3px; }
+        .copyright { text-align: center; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.7rem; color: #bbb; }
         
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .footer-column h3 {
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-            color: var(--togo-yellow);
-        }
-        
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 3px;
-            background-color: var(--togo-yellow);
-        }
-        
-        .footer-column ul {
-            list-style: none;
-        }
-        
-        .footer-column ul li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-column ul li a {
-            color: #bbb;
-            text-decoration: none;
-            transition: color 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .footer-column ul li a:hover {
-            color: white;
-            padding-left: 5px;
-        }
-        
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #bbb;
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #bbb;
-            font-size: 0.9rem;
-        }
-        
-        .togo-flag {
-            display: flex;
-            height: 6px;
-            margin: 1rem 0;
-        }
-        
-        .togo-flag div {
-            flex: 1;
-        }
-        
-        .togo-flag .green { background-color: var(--togo-green); }
-        .togo-flag .yellow { background-color: var(--togo-yellow); }
-        .togo-flag .red { background-color: var(--togo-red); }
-        
-        /* Modal */
+        /* Modal compact */
         .modal {
             display: none;
             position: fixed;
@@ -800,204 +251,74 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.5);
             z-index: 1000;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 15px;
         }
-        
         .modal-content {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 15px;
-            max-width: 800px;
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            max-width: 500px;
             width: 100%;
-            max-height: 90vh;
+            max-height: 85vh;
             overflow-y: auto;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            animation: modalFade 0.3s;
         }
-        
-        @keyframes modalFade {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        
-        .close-modal {
-            float: right;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: #777;
-            transition: color 0.3s;
-            line-height: 1;
-        }
-        
-        .close-modal:hover {
-            color: var(--accent-color);
-        }
-        
-        .modal-title {
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #eee;
-        }
-        
+        .close-modal { float: right; font-size: 1.2rem; cursor: pointer; color: #777; }
         .back-button {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 0.6rem 1.2rem;
-            background: #f8f9fa;
-            border: 1px solid #ddd;
-            border-radius: 20px;
+            gap: 5px;
+            padding: 4px 10px;
+            background: #f0f0f0;
+            border-radius: 15px;
             cursor: pointer;
-            margin-bottom: 1.5rem;
-            transition: all 0.3s;
+            font-size: 0.7rem;
+            margin-bottom: 1rem;
         }
         
-        .back-button:hover {
-            background: #e9ecef;
+        /* Bouton retour compact */
+        .btn-retour {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 25px;
+            font-size: 0.7rem;
+            z-index: 100;
+            box-shadow: var(--box-shadow);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: none;
         }
         
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .container {
-                width: 97%;
-            }
-            
-            .tab-button {
-                min-width: 180px;
-                padding: 1rem 1.5rem;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 1rem;
-            }
-            
-            .logo {
-                justify-content: center;
-            }
-            
-            nav ul {
-                justify-content: center;
-            }
-            
-            .tab-button {
-                min-width: 160px;
-                padding: 0.8rem 1.2rem;
-                font-size: 1rem;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stat-item {
-                border-right: none;
-                border-bottom: 1px solid #eee;
-            }
-            
-            .education-levels {
-                grid-template-columns: 1fr;
-            }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
+        /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .tab-header {
-                flex-direction: column;
-            }
-            
-            .tab-button {
-                min-width: 100%;
-                border-bottom: 1px solid rgba(255,255,255,0.2);
-            }
-            
-            .tab-content {
-                padding: 1.5rem;
-            }
-            
-            .class-list {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .subject-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .modal-content {
-                padding: 1.5rem;
-            }
+            .container { padding: 0 12px; }
+            .header-content { flex-direction: column; text-align: center; }
+            .tab-button { padding: 8px 12px; font-size: 0.7rem; }
+            .tab-content { padding: 1rem; }
+            .class-list { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
         }
         
         @media (max-width: 480px) {
-            .hero {
-                padding: 2rem 0;
-            }
-            
-            .logo-main {
-                font-size: 1.5rem;
-            }
-            
-            .logo-icon {
-                font-size: 2rem;
-            }
-            
-            nav ul li a {
-                padding: 6px 12px;
-                font-size: 0.9rem;
-            }
-            
-            .class-list {
-                grid-template-columns: 1fr;
-            }
-            
-            .stat-number {
-                font-size: 1.5rem;
-            }
-            
-            .resource-link {
-                padding: 0.6rem;
-                font-size: 0.9rem;
-            }
+            .hero h1 { font-size: 1.2rem; }
+            .education-levels { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
         }
         
-        @media (min-width: 1600px) {
-            .container {
-                max-width: 1500px;
-            }
-            
-            .subject-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            }
-            
-            .services-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+        @media print {
+            .btn-retour, .tab-header, .stats-bar, footer, .corrig-plus-section { display: none; }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="top-bar"></div>
@@ -1006,20 +327,13 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
+                    <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
                     <div class="logo-text">
-                        <div class="logo-main">ESODI-SCIENCES GRENIER</div>
-                        <div class="logo-sub">ENSEIGNEMENTS PRIMAIRE, SECONDAIRE ET TECHNIQUE</div>
-                        <div class="logo-tagline">République Togolaise - Système Éducatif National</div>
+                        <div class="logo-main">ESODI-SCIENCES</div>
+                        <div class="logo-sub">Enseignements Primaire, Secondaire & Technique</div>
+                        <div class="logo-tagline">République Togolaise - Programme Officiel</div>
                     </div>
                 </div>
-                
-                <div class="system-info">
-                    Programme officiel de l'éducation nationale togolaise - Année scolaire 2025/2026-KOLA M.Essohouna;Enseignant de maths et Developpeur d'applications web
-                </div>
-                
                 <nav>
                     <ul>
                         <li><a href="#accueil" class="active"><i class="fas fa-home"></i> Accueil</a></li>
@@ -1036,34 +350,17 @@
     <section class="hero" id="accueil">
         <div class="container">
             <h1><i class="fas fa-flag"></i> Portail Éducatif National du Togo</h1>
-            <p>Plateforme officielle des ressources pédagogiques conformes aux programmes du Ministère de l'Éducation Nationale du Togo. Accès aux cours, exercices, épreuves et corrigés pour tous les niveaux.</p>
-            <div class="togo-flag">
-                <div class="green"></div>
-                <div class="yellow"></div>
-                <div class="red"></div>
-            </div>
+            <p>Plateforme officielle des ressources pédagogiques conformes aux programmes du MEN</p>
         </div>
     </section>
 
     <div class="stats-bar">
         <div class="container">
             <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-number">12</span>
-                    <span class="stat-label">Classes</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">3</span>
-                    <span class="stat-label">Matières</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">3</span>
-                    <span class="stat-label">Ressources</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">24/7</span>
-                    <span class="stat-label">Service Commande</span>
-                </div>
+                <div class="stat-item"><span class="stat-number">12</span><span class="stat-label">Classes</span></div>
+                <div class="stat-item"><span class="stat-number">3</span><span class="stat-label">Matières</span></div>
+                <div class="stat-item"><span class="stat-number">3</span><span class="stat-label">Ressources/classe</span></div>
+                <div class="stat-item"><span class="stat-number">24/7</span><span class="stat-label">Service</span></div>
             </div>
         </div>
     </div>
@@ -1072,445 +369,131 @@
         <div class="container">
             <div class="tab-container">
                 <div class="tab-header">
-                    <button class="tab-button student active" data-tab="student-tab">
-                        <i class="fas fa-user-graduate"></i> Espace Élèves
-                    </button>
-                    <button class="tab-button teacher" data-tab="teacher-tab">
-                        <i class="fas fa-chalkboard-teacher"></i> Espace Enseignants
-                    </button>
-                    <button class="tab-button order" data-tab="order-tab">
-                        <i class="fas fa-shopping-cart"></i> Commander
-                    </button>
+                    <button class="tab-button active" data-tab="student-tab"><i class="fas fa-user-graduate"></i> Élèves</button>
+                    <button class="tab-button" data-tab="teacher-tab"><i class="fas fa-chalkboard-teacher"></i> Enseignants</button>
+                    <button class="tab-button" data-tab="order-tab"><i class="fas fa-shopping-cart"></i> Commander</button>
                 </div>
                 
                 <!-- Onglet Élèves -->
                 <div id="student-tab" class="tab-content active">
-                    <div class="welcome-message">
-                        <h2><i class="fas fa-graduation-cap"></i> Bienvenue dans l'Espace Élèves</h2>
-                        <p>Accédez aux sujets types, épreuves corrigées et ressources d'apprentissage pour toutes les classes du système éducatif togolais. Sélectionnez votre niveau pour commencer.</p>
-                    </div>
-                    
                     <div class="education-levels">
-                        <!-- Premier Cycle (Collège) -->
                         <div class="level-card">
-                            <div class="level-header">
-                                <h3><i class="fas fa-school"></i> Premier Cycle</h3>
-                                <div class="subtitle">Enseignement Secondaire Général - Collège</div>
-                            </div>
+                            <div class="level-header"><h3><i class="fas fa-school"></i> Premier Cycle</h3><div class="subtitle">Collège (6ème - 3ème)</div></div>
                             <div class="level-body">
                                 <div class="class-list">
-                                    <div class="class-item" data-class="6eme" data-level="college">
-                                        <i class="fas fa-book"></i>
-                                        <div class="class-name">6ème</div>
-                                    </div>
-                                    <div class="class-item" data-class="5eme" data-level="college">
-                                        <i class="fas fa-book"></i>
-                                        <div class="class-name">5ème</div>
-                                    </div>
-                                    <div class="class-item" data-class="4eme" data-level="college">
-                                        <i class="fas fa-book"></i>
-                                        <div class="class-name">4ème</div>
-                                    </div>
-                                    <div class="class-item" data-class="3eme" data-level="college">
-                                        <i class="fas fa-book"></i>
-                                        <div class="class-name">3ème</div>
-                                    </div>
+                                    <div class="class-item" data-class="6eme"><i class="fas fa-book"></i><div class="class-name">6ème</div></div>
+                                    <div class="class-item" data-class="5eme"><i class="fas fa-book"></i><div class="class-name">5ème</div></div>
+                                    <div class="class-item" data-class="4eme"><i class="fas fa-book"></i><div class="class-name">4ème</div></div>
+                                    <div class="class-item" data-class="3eme"><i class="fas fa-book"></i><div class="class-name">3ème</div></div>
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- Second Cycle (Lycée) -->
                         <div class="level-card">
-                            <div class="level-header">
-                                <h3><i class="fas fa-university"></i> Second Cycle</h3>
-                                <div class="subtitle">Enseignement Secondaire Général - Lycée</div>
-                            </div>
+                            <div class="level-header"><h3><i class="fas fa-university"></i> Second Cycle</h3><div class="subtitle">Lycée (2nde - Terminale)</div></div>
                             <div class="level-body">
                                 <div class="class-list">
-                                    <div class="class-item" data-class="2ndeCD" data-level="lycee">
-                                        <i class="fas fa-graduation-cap"></i>
-                                        <div class="class-name">Seconde CD</div>
-                                    </div>
-                                    <div class="class-item" data-class="2ndeL" data-level="lycee">
-                                        <i class="fas fa-graduation-cap"></i>
-                                        <div class="class-name">Seconde L</div>
-                                    </div>
-                                    <div class="class-item" data-class="1ereA4" data-level="lycee">
-                                        <i class="fas fa-graduation-cap"></i>
-                                        <div class="class-name">Première A4</div>
-                                    </div>
-                                    <div class="class-item" data-class="1ereC4" data-level="lycee">
-                                        <i class="fas fa-graduation-cap"></i>
-                                        <div class="class-name">Première C4</div>
-                                    </div>
-                                    <div class="class-item" data-class="1ereD" data-level="lycee">
-                                        <i class="fas fa-graduation-cap"></i>
-                                        <div class="class-name">Première D</div>
-                                    </div>
-                                    <div class="class-item" data-class="tleA4" data-level="lycee">
-                                        <i class="fas fa-graduation-cap"></i>
-                                        <div class="class-name">Terminale A4</div>
-                                    </div>
-                                    <div class="class-item" data-class="tleC4" data-level="lycee">
-                                        <i class="fas fa-graduation-cap"></i>
-                                        <div class="class-name">Terminale C4</div>
-                                    </div>
-                                    <div class="class-item" data-class="tleD" data-level="lycee">
-                                        <i class="fas fa-graduation-cap"></i>
-                                        <div class="class-name">Terminale D</div>
-                                    </div>
+                                    <div class="class-item" data-class="2ndeCD"><i class="fas fa-graduation-cap"></i><div class="class-name">2nde CD</div></div>
+                                    <div class="class-item" data-class="2ndeL"><i class="fas fa-graduation-cap"></i><div class="class-name">2nde L</div></div>
+                                    <div class="class-item" data-class="1ereA4"><i class="fas fa-graduation-cap"></i><div class="class-name">1ère A4</div></div>
+                                    <div class="class-item" data-class="1ereC4"><i class="fas fa-graduation-cap"></i><div class="class-name">1ère C4</div></div>
+                                    <div class="class-item" data-class="1ereD"><i class="fas fa-graduation-cap"></i><div class="class-name">1ère D</div></div>
+                                    <div class="class-item" data-class="tleA4"><i class="fas fa-graduation-cap"></i><div class="class-name">Tle A4</div></div>
+                                    <div class="class-item" data-class="tleC4"><i class="fas fa-graduation-cap"></i><div class="class-name">Tle C4</div></div>
+                                    <div class="class-item" data-class="tleD"><i class="fas fa-graduation-cap"></i><div class="class-name">Tle D</div></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <div id="subject-container">
-                        <!-- Les matières seront chargées ici dynamiquement -->
-                    </div>
+                    <div id="subject-container"></div>
                 </div>
                 
                 <!-- Onglet Enseignants -->
                 <div id="teacher-tab" class="tab-content">
-                    <div class="welcome-message">
-                        <h2><i class="fas fa-chalkboard-teacher"></i> Bienvenue dans l'Espace Enseignants</h2>
-                        <p>Accédez aux ressources pédagogiques, fiches de leçons, progressions annuelles et outils d'évaluation conformes aux programmes officiels de l'Éducation Nationale du Togo.</p>
-                    </div>
-                    
                     <div class="subject-grid">
-                        <!-- Mathématiques -->
                         <div class="subject-card">
-                            <div class="subject-header">
-                                <div class="subject-icon"><i class="fas fa-calculator"></i></div>
-                                <div class="subject-name">Mathématiques</div>
-                                <div class="subject-level">Collège & Lycée</div>
-                            </div>
-                            <div class="subject-body">
-                                <div class="resource-links">
-                                    <a href="maths_lecons.html" class="resource-link">
-                                        <div class="resource-icon"><i class="fas fa-chalkboard"></i></div>
-                                        <div class="resource-text">Fiches de Leçons</div>
-                                    </a>
-                                    <a href="maths_exercices.html" class="resource-link">
-                                        <div class="resource-icon"><i class="fas fa-pencil-alt"></i></div>
-                                        <div class="resource-text">Exercices d'Application</div>
-                                    </a>
-                                    <a href="maths_devoirs.html" class="resource-link">
-                                        <div class="resource-icon"><i class="fas fa-home"></i></div>
-                                        <div class="resource-text">Devoirs Maison</div>
-                                    </a>
-                                    <a href="maths_progression.html" class="resource-link">
-                                        <div class="resource-icon"><i class="fas fa-calendar-alt"></i></div>
-                                        <div class="resource-text">Progressions Annuelles</div>
-                                    </a>
-                                    <a href="maths_evaluations.html" class="resource-link">
-                                        <div class="resource-icon"><i class="fas fa-clipboard-check"></i></div>
-                                        <div class="resource-text">Épreuves d'Évaluation</div>
-                                    </a>
-                                </div>
-                            </div>
+                            <div class="subject-header"><div class="subject-icon"><i class="fas fa-calculator"></i></div><div class="subject-name">Mathématiques</div><div class="subject-level">Collège & Lycée</div></div>
+                            <div class="subject-body"><div class="resource-links">
+                                <a href="#" class="resource-link"><div class="resource-icon"><i class="fas fa-chalkboard"></i></div><div class="resource-text">Fiches de Leçons</div></a>
+                                <a href="#" class="resource-link"><div class="resource-icon"><i class="fas fa-pencil-alt"></i></div><div class="resource-text">Exercices</div></a>
+                                <a href="#" class="resource-link"><div class="resource-icon"><i class="fas fa-file-alt"></i></div><div class="resource-text">Évaluations</div></a>
+                            </div></div>
                         </div>
-                        
-                        <!-- Physique-Chimie -->
                         <div class="subject-card">
-                            <div class="subject-header">
-                                <div class="subject-icon"><i class="fas fa-atom"></i></div>
-                                <div class="subject-name">Physique-Chimie</div>
-                                <div class="subject-level">Collège & Lycée</div>
-                            </div>
-                            <div class="subject-body">
-                                <div class="resource-links">
-                                    <a href="physique_lecons.html" class="resource-link">
-                                        <div class="resource-icon"><i class="fas fa-vial"></i></div>
-                                        <div class="resource-text">Cours et Expériences</div>
-                                    </a>
-                                    <a href="physique_exercices.html" class="resource-link">
-                                        <div class="resource-icon"><i class="fas fa-bolt"></i></div>
-                                        <div class="resource-text">Exercices Pratiques</div>
-                                    </a>
-                                    <a href="physique_tp.html" class="resource-link">
-                                        <div class="resource-icon"><i class="fas fa-flask"></i></div>
-                                        <div class="resource-text">Travaux Pratiques</div>
-                                    </a>
-                                    <a href="physique_protocoles.html" class="resource-link">
-                                        <div class="resource-icon"><i class="fas fa-clipboard-list"></i></div>
-                                        <div class="resource-text">Protocoles Expérimentaux</div>
-                                    </a>
-                                    <a href="physique_sujets.html" class="resource-link">
-                                        <div class="resource-icon"><i class="fas fa-file-alt"></i></div>
-                                        <div class="resource-text">Sujets d'Examen</div>
-                                    </a>
-                                </div>
-                            </div>
+                            <div class="subject-header"><div class="subject-icon"><i class="fas fa-atom"></i></div><div class="subject-name">Physique-Chimie</div><div class="subject-level">Collège & Lycée</div></div>
+                            <div class="subject-body"><div class="resource-links">
+                                <a href="#" class="resource-link"><div class="resource-icon"><i class="fas fa-flask"></i></div><div class="resource-text">Cours & TP</div></a>
+                                <a href="#" class="resource-link"><div class="resource-icon"><i class="fas fa-bolt"></i></div><div class="resource-text">Exercices</div></a>
+                                <a href="#" class="resource-link"><div class="resource-icon"><i class="fas fa-clipboard-list"></i></div><div class="resource-text">Protocoles</div></a>
+                            </div></div>
                         </div>
-                        
-                        <!-- SVT -->
                         <div class="subject-card">
-                            <div class="subject-header">
-                                <div class="subject-icon"><i class="fas fa-dna"></i></div>
-                                <div class="subject-name">Sciences de la Vie et de la Terre</div>
-                                <div class="subject-level">Collège & Lycée</div>
-                            </div>
-                            <div class="subject-body">
-                                <div class="resource-links">
-                                    <a href="svt_lecons.html" class="resource-link">
-                                        <div class="resource-icon"><i class="fas fa-seedling"></i></div>
-                                        <div class="resource-text">Fiches de Cours</div>
-                                    </a>
-                                    <a href="svt_exercices.html" class="resource-link">
-                                        <div class="resource-icon"><i class="fas fa-microscope"></i></div>
-                                        <div class="resource-text">Exercices</div>
-                                    </a>
-                                    <a href="svt_tp.html" class="resource-link">
-                                        <div class="resource-icon"><i class="fas fa-leaf"></i></div>
-                                        <div class="resource-text">Travaux Pratiques</div>
-                                    </a>
-                                    <a href="svt_activites.html" class="resource-link">
-                                        <div class="resource-icon"><i class="fas fa-chart-bar"></i></div>
-                                        <div class="resource-text">Activités Pédagogiques</div>
-                                    </a>
-                                    <a href="svt_evaluations.html" class="resource-link">
-                                        <div class="resource-icon"><i class="fas fa-file-medical"></i></div>
-                                        <div class="resource-text">Évaluations Formatives</div>
-                                    </a>
-                                </div>
-                            </div>
+                            <div class="subject-header"><div class="subject-icon"><i class="fas fa-dna"></i></div><div class="subject-name">SVT</div><div class="subject-level">Collège & Lycée</div></div>
+                            <div class="subject-body"><div class="resource-links">
+                                <a href="#" class="resource-link"><div class="resource-icon"><i class="fas fa-seedling"></i></div><div class="resource-text">Fiches de Cours</div></a>
+                                <a href="#" class="resource-link"><div class="resource-icon"><i class="fas fa-microscope"></i></div><div class="resource-text">TP & Activités</div></a>
+                                <a href="#" class="resource-link"><div class="resource-icon"><i class="fas fa-file-medical"></i></div><div class="resource-text">Évaluations</div></a>
+                            </div></div>
                         </div>
-                    </div>
-                    
-                    <div class="corrig-plus-section">
-                        <h3><i class="fas fa-tools"></i> Outils Pédagogiques pour Enseignants</h3>
-                        <p>Accédez à des ressources supplémentaires, guides pédagogiques et formations pour améliorer vos pratiques d'enseignement et préparer vos élèves aux examens nationaux.</p>
-                        
-                        <a href="pedagogie_resources.html" class="btn btn-corrig-plus">
-                            <i class="fas fa-download"></i> Télécharger les Ressources
-                        </a>
                     </div>
                 </div>
                 
                 <!-- Onglet Commander -->
                 <div id="order-tab" class="tab-content">
-                    <div class="welcome-message">
-                        <h2><i class="fas fa-shopping-cart"></i> Service de Commande de Documents</h2>
-                        <p>Commander des épreuves corrigées types, des documents scientifiques, mémoires et rapports de stage en LaTeX/PDF. Service professionnel avec livraison rapide.</p>
-                    </div>
-                    
                     <div class="services-grid">
-                        <!-- Épreuves Corrigées -->
                         <div class="service-card">
-                            <div class="service-header">
-                                <h3><i class="fas fa-file-alt"></i> Épreuves Corrigées</h3>
-                                <p>BEPC, BAC, Concours</p>
-                            </div>
+                            <div class="service-header"><h3><i class="fas fa-file-alt"></i> Épreuves</h3><p>BEPC, BAC, Concours</p></div>
                             <div class="service-body">
-                                <ul class="service-features">
-                                    <li><i class="fas fa-check"></i> Sujets types examens nationaux</li>
-                                    <li><i class="fas fa-check"></i> Corrigés détaillés</li>
-                                    <li><i class="fas fa-check"></i> Format PDF/LaTeX</li>
-                                    <li><i class="fas fa-check"></i> Livraison 24h-72h</li>
-                                </ul>
-                                <div class="price-calculator">
-                                    <div class="price-item">
-                                        <span>Prix de base:</span>
-                                        <span>250 FCFA</span>
-                                    </div>
-                                </div>
-                                <button class="btn btn-order btn-block" onclick="selectService('epreuves')">
-                                    <i class="fas fa-cart-plus"></i> Commander
-                                </button>
+                                <ul class="service-features"><li><i class="fas fa-check"></i> Sujets types</li><li><i class="fas fa-check"></i> Corrigés détaillés</li></ul>
+                                <button class="btn btn-order" onclick="selectService('epreuves')"><i class="fas fa-cart-plus"></i> Commander</button>
                             </div>
                         </div>
-                        
-                        <!-- Documents Scientifiques -->
                         <div class="service-card">
-                            <div class="service-header">
-                                <h3><i class="fas fa-flask"></i> Documents Scientifiques</h3>
-                                <p>Mémoires, Articles, Présentations</p>
-                            </div>
+                            <div class="service-header"><h3><i class="fas fa-flask"></i> Documents</h3><p>Mémoires, Articles</p></div>
                             <div class="service-body">
-                                <ul class="service-features">
-                                    <li><i class="fas fa-check"></i> Rédaction scientifique</li>
-                                    <li><i class="fas fa-check"></i> Formatage APA/MLA</li>
-                                    <li><i class="fas fa-check"></i> Bibliographie complète</li>
-                                    <li><i class="fas fa-check"></i> Relecture et correction</li>
-                                </ul>
-                                <div class="price-calculator">
-                                    <div class="price-item">
-                                        <span>Prix de base:</span>
-                                        <span>1,000 FCFA</span>
-                                    </div>
-                                </div>
-                                <button class="btn btn-order btn-block" onclick="selectService('documents')">
-                                    <i class="fas fa-cart-plus"></i> Commander
-                                </button>
+                                <ul class="service-features"><li><i class="fas fa-check"></i> Rédaction scientifique</li><li><i class="fas fa-check"></i> Formatage APA/MLA</li></ul>
+                                <button class="btn btn-order" onclick="selectService('documents')"><i class="fas fa-cart-plus"></i> Commander</button>
                             </div>
                         </div>
-                        
-                        <!-- Saisie LaTeX -->
                         <div class="service-card">
-                            <div class="service-header">
-                                <h3><i class="fas fa-keyboard"></i> Saisie LaTeX</h3>
-                                <p>Conversion manuscrit → LaTeX</p>
-                            </div>
+                            <div class="service-header"><h3><i class="fas fa-keyboard"></i> Saisie LaTeX</h3><p>Conversion manuscrit</p></div>
                             <div class="service-body">
-                                <ul class="service-features">
-                                    <li><i class="fas fa-check"></i> Saisie d'équations complexes</li>
-                                    <li><i class="fas fa-check"></i> Mise en page professionnelle</li>
-                                    <li><i class="fas fa-check"></i> Graphiques et schémas</li>
-                                    <li><i class="fas fa-check"></i> PDF haute qualité</li>
-                                </ul>
-                                <div class="price-calculator">
-                                    <div class="price-item">
-                                        <span>Prix de base:</span>
-                                        <span>500 FCFA</span>
-                                    </div>
-                                </div>
-                                <button class="btn btn-order btn-block" onclick="selectService('latex')">
-                                    <i class="fas fa-cart-plus"></i> Commander
-                                </button>
+                                <ul class="service-features"><li><i class="fas fa-check"></i> Équations complexes</li><li><i class="fas fa-check"></i> PDF qualité pro</li></ul>
+                                <button class="btn btn-order" onclick="selectService('latex')"><i class="fas fa-cart-plus"></i> Commander</button>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Formulaire de commande (caché par défaut) -->
-                    <div id="orderFormSection" style="display: none;">
+                    <div id="orderFormSection" style="display:none;">
                         <div class="order-form">
-                            <h3 id="serviceTitle" class="form-title">Commander un service</h3>
-                            
+                            <h3 id="serviceTitle" class="form-title">Commander</h3>
                             <form id="orderForm">
                                 <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="serviceType"><i class="fas fa-cube"></i> Type de service</label>
-                                        <select id="serviceType" class="form-control" required>
-                                            <option value="">Sélectionnez un service</option>
-                                            <option value="epreuves">Épreuves Corrigées</option>
-                                            <option value="documents">Documents Scientifiques</option>
-                                            <option value="memoires">Mémoires et Thèses</option>
-                                            <option value="rapports">Rapports de Stage</option>
-                                            <option value="latex">Saisie LaTeX</option>
-                                            <option value="correction">Correction et Relecture</option>
-                                        </select>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="deadline"><i class="fas fa-clock"></i> Délai de livraison</label>
-                                        <select id="deadline" class="form-control" required>
-                                            <option value="">Choisissez un délai</option>
-                                            <option value="urgent">Urgent (24h) Standard</option>
-                                            <option value="normal">Normal (48h) Standard</option>
-                                        </select>
-                                    </div>
+                                    <div class="form-group"><label>Service</label><select id="serviceType" class="form-control" required><option value="">Sélectionner</option><option value="epreuves">Épreuves Corrigées</option><option value="documents">Documents Scientifiques</option><option value="latex">Saisie LaTeX</option></select></div>
+                                    <div class="form-group"><label>Délai</label><select id="deadline" class="form-control" required><option value="normal">Normal (48h)</option><option value="urgent">Urgent (24h)</option></select></div>
                                 </div>
-                                
                                 <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="fullName"><i class="fas fa-user"></i> Nom complet</label>
-                                        <input type="text" id="fullName" class="form-control" placeholder="Votre nom et prénom" required>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="email"><i class="fas fa-envelope"></i> Adresse email</label>
-                                        <input type="email" id="email" class="form-control" placeholder="votre@email.com" required>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="phone"><i class="fas fa-phone"></i> Téléphone</label>
-                                        <input type="tel" id="phone" class="form-control" placeholder="+228 XX XX XX XX" required>
-                                    </div>
+                                    <div class="form-group"><label>Nom complet</label><input type="text" id="fullName" class="form-control" required></div>
+                                    <div class="form-group"><label>Téléphone</label><input type="tel" id="phone" class="form-control" required></div>
                                 </div>
-                                
-                                <div class="form-group">
-                                    <label for="description"><i class="fas fa-file-alt"></i> Description détaillée</label>
-                                    <textarea id="description" class="form-control" placeholder="Décrivez votre commande en détail (matière, niveau, exigences spécifiques, etc.)" required></textarea>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label><i class="fas fa-paperclip"></i> Fichiers joints (optionnel)</label>
-                                    <div class="file-upload" onclick="document.getElementById('fileUpload').click()">
-                                        <div class="upload-icon">
-                                            <i class="fas fa-cloud-upload-alt"></i>
-                                        </div>
-                                        <p>Cliquez pour télécharger des fichiers</p>
-                                        <p style="font-size: 0.9rem; color: #666;">PDF, Word, images, etc.</p>
-                                        <input type="file" id="fileUpload" multiple>
-                                    </div>
-                                    <div id="fileList"></div>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="notes"><i class="fas fa-sticky-note"></i> Notes supplémentaires</label>
-                                    <textarea id="notes" class="form-control" placeholder="Informations complémentaires, instructions spéciales..."></textarea>
-                                </div>
-                                
+                                <div class="form-group"><label>Description</label><textarea id="description" class="form-control" rows="2" required></textarea></div>
                                 <div class="price-calculator">
-                                    <div class="price-item">
-                                        <span>Prix du service:</span>
-                                        <span id="basePrice">0 FCFA</span>
-                                    </div>
-                                    <div class="price-item">
-                                        <span>Supplément délai:</span>
-                                        <span id="urgencyPrice">0 FCFA</span>
-                                    </div>
-                                    <div class="price-item">
-                                        <span>Frais de traitement:</span>
-                                        <span>0 FCFA</span>
-                                    </div>
-                                    <div class="price-total">
-                                        <span>TOTAL:</span>
-                                        <span id="totalPrice">0 FCFA</span>
-                                    </div>
+                                    <div class="price-item"><span>Prix de base:</span><span id="basePrice">0 FCFA</span></div>
+                                    <div class="price-total"><span>TOTAL:</span><span id="totalPrice">0 FCFA</span></div>
                                 </div>
-                                
-                                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
-                                    <button type="button" class="btn btn-danger" onclick="cancelOrder()">
-                                        <i class="fas fa-times"></i> Annuler
-                                    </button>
-                                    <button type="submit" class="btn btn-success">
-                                        <i class="fab fa-whatsapp"></i> Envoyer sur WhatsApp
-                                    </button>
+                                <div style="display:flex; gap:0.5rem; justify-content:center;">
+                                    <button type="button" class="btn btn-danger" onclick="cancelOrder()">Annuler</button>
+                                    <button type="submit" class="btn btn-success"><i class="fab fa-whatsapp"></i> WhatsApp</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                     
-                    <!-- Section CORRIG-PLUS -->
                     <div class="corrig-plus-section">
-                        <h3><i class="fas fa-star"></i> CORRIG-PLUS : Plateforme d'Épreuves Corrigées</h3>
-                        <p>Accédez à notre bibliothèque en ligne d'épreuves corrigées types, exercices résolus et ressources pédagogiques pour tous les niveaux du système éducatif togolais.</p>
-                        
-                        <a href="https://jeanskodoc.github.io/CORRIG-PLUS/" target="_blank" class="btn btn-corrig-plus">
-                            <i class="fas fa-external-link-alt"></i> Visiter CORRIG-PLUS
-                        </a>
-                        
-                        <div style="margin-top: 1.5rem;">
-                            <p><strong>Services disponibles sur CORRIG-PLUS:</strong></p>
-                            <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
-                                <span style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 20px;">
-                                    <i class="fas fa-file-pdf"></i> Épreuves BEPC
-                                </span>
-                                <span style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 20px;">
-                                    <i class="fas fa-file-contract"></i> Épreuves BAC
-                                </span>
-                                <span style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 20px;">
-                                    <i class="fas fa-calculator"></i> Exercices résolus
-                                </span>
-                                <span style="background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 20px;">
-                                    <i class="fas fa-book"></i> Fiches de révision
-                                </span>
-                            </div>
-                        </div>
+                        <h3><i class="fas fa-star"></i> CORRIG-PLUS</h3>
+                        <p>Plateforme d'épreuves corrigées types - BEPC, BAC, Concours</p>
+                        <a href="#" class="btn btn-corrig-plus"><i class="fas fa-external-link-alt"></i> Visiter CORRIG-PLUS</a>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal pour la sélection des matières -->
-    <div id="subjectModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2 class="modal-title" id="modalTitle">Sélectionnez une matière</h2>
-            <div id="subjectModalContent">
-                <!-- Contenu chargé dynamiquement -->
             </div>
         </div>
     </div>
@@ -1519,763 +502,147 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>ESODI-SCIENCES GRENIER</h3>
-                    <p>Plateforme officielle ESODI des Enseignements Primaire, Secondaire et Technique de la République Togolaise.</p>
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>ESODI, KARA, Togo</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>+228 92 87 16 05</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>jeanskodoc22@gmail.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-clock"></i>
-                            <span>Service: 24h/24, 7j/7</span>
-                        </div>
+                    <h3>ESODI-SCIENCES</h3>
+                    <p style="font-size:0.7rem;">Plateforme officielle des Enseignements de la République Togolaise</p>
+                    <div class="contact-info" style="margin-top:0.8rem;">
+                        <div><i class="fas fa-phone"></i> +228 92 87 16 05</div>
+                        <div><i class="fas fa-envelope"></i> jeanskodoc22@gmail.com</div>
                     </div>
                 </div>
-                
                 <div class="footer-column">
-                    <h3>Services de Commande</h3>
-                    <ul>
-                        <li><a href="#commander"><i class="fas fa-file-alt"></i> Épreuves corrigées</a></li>
-                        <li><a href="#commander"><i class="fas fa-flask"></i> Documents scientifiques</a></li>
-                        <li><a href="#commander"><i class="fas fa-graduation-cap"></i> Mémoires et thèses</a></li>
-                        <li><a href="#commander"><i class="fas fa-briefcase"></i> Rapports de stage</a></li>
-                        <li><a href="#commander"><i class="fas fa-keyboard"></i> Saisie LaTeX</a></li>
-                        <li><a href="#commander"><i class="fas fa-check-double"></i> Correction et relecture</a></li>
-                    </ul>
+                    <h3>Services</h3>
+                    <ul><li><a href="#"><i class="fas fa-file-alt"></i> Épreuves corrigées</a></li><li><a href="#"><i class="fas fa-flask"></i> Documents scientifiques</a></li><li><a href="#"><i class="fas fa-keyboard"></i> Saisie LaTeX</a></li></ul>
                 </div>
-                
                 <div class="footer-column">
-                    <h3>Liens Utiles</h3>
-                    <ul>
-                        <li><a href="https://jeanskodoc.github.io/CORRIG-PLUS/" target="_blank"><i class="fas fa-external-link-alt"></i> CORRIG-PLUS</a></li>
-                        <li><a href="#"><i class="fas fa-university"></i> Universités du Togo</a></li>
-                        <li><a href="#"><i class="fas fa-newspaper"></i> Actualités Éducatives</a></li>
-                        <li><a href="#"><i class="fas fa-download"></i> Téléchargements</a></li>
-                        <li><a href="#"><i class="fas fa-question-circle"></i> FAQ & Support</a></li>
-                        <li><a href="#"><i class="fas fa-gavel"></i> Mentions légales</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Suivez-nous</h3>
-                    <ul>
-                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
-                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
-                        <li><a href="https://wa.me/22892871605" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
-                        <li><a href="mailto:jeanskodoc22@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
-                    </ul>
-                    <div style="margin-top: 1.5rem;">
-                        <p style="font-size: 0.9rem; color: #bbb;">Paiements acceptés:</p>
-                        <div style="display: flex; gap: 10px; margin-top: 10px;">
-                            <span style="background: rgba(255,255,255,0.1); padding: 5px 10px; border-radius: 5px; font-size: 0.8rem;">
-                                <i class="fas fa-mobile-alt"></i> Mobile Money
-                            </span>
-                            <span style="background: rgba(255,255,255,0.1); padding: 5px 10px; border-radius: 5px; font-size: 0.8rem;">
-                                <i class="fas fa-university"></i> Virement Bancaire
-                            </span>
-                        </div>
-                    </div>
+                    <h3>Liens</h3>
+                    <ul><li><a href="#"><i class="fab fa-whatsapp"></i> WhatsApp</a></li><li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li><li><a href="#"><i class="fas fa-envelope"></i> Email</a></li></ul>
                 </div>
             </div>
-            
-            <div class="copyright">
-                <p>&copy; 2026 République Togolaise -Enseignements Primaire, Secondaire et Technique. Tous droits réservés.</p>
-                <p>Service de commande disponible 24h/24 et 7j/7. Paiement Mobile Money et virement bancaire acceptés.</p>
-                 <p>KOLA M.Essohouna;Enseignant de maths et Developpeur d'applications web</p>
-            </div>
+            <div class="copyright"><p>&copy; 2026 République Togolaise - Enseignements Primaire, Secondaire et Technique</p></div>
         </div>
     </footer>
 
+    <button class="btn-retour" onclick="history.back()"><i class="fas fa-arrow-left"></i> Retour</button>
+
+    <div id="subjectModal" class="modal"><div class="modal-content"><span class="close-modal">&times;</span><h2 id="modalTitle" style="font-size:1rem; margin-bottom:0.8rem;">Matières</h2><div id="subjectModalContent"></div></div></div>
+
     <script>
-        // Données détaillées pour chaque classe et matière avec fichiers distincts
         const subjectsData = {
-            "6eme": [
-                { 
-                    name: "Mathématiques", 
-                    icon: "calculator", 
-                    resources: {
-                        cours: "cours_mathematiques_6eme.html",
-                        exercices: "exercices_mathematiques_6eme.html",
-                        epreuves: "epreuves_mathematiques_6eme.html"
-                    }
-                },
-                { 
-                    name: "Physique-Chimie", 
-                    icon: "atom", 
-                    resources: {
-                        cours: "cours_physique_chimie_6eme.html",
-                        exercices: "exercices_physique_chimie_6eme.html",
-                        epreuves: "epreuves_physique_chimie_6eme.html"
-                    }
-                }
-            ],
-            "5eme": [
-                { 
-                    name: "Mathématiques", 
-                    icon: "calculator", 
-                    resources: {
-                        cours: "cours_mathematiques_5eme.html",
-                        exercices: "exercices_mathematiques_5eme.html",
-                        epreuves: "epreuves_mathematiques_5eme.html"
-                    }
-                },
-                { 
-                    name: "Physique-Chimie", 
-                    icon: "atom", 
-                    resources: {
-                        cours: "cours_physique_chimie_5eme.html",
-                        exercices: "exercices_physique_chimie_5eme.html",
-                        epreuves: "epreuves_physique_chimie_5eme.html"
-                    }
-                }
-            ],
-            "4eme": [
-                { 
-                    name: "Mathématiques", 
-                    icon: "calculator", 
-                    resources: {
-                        cours: "cours_mathematiques_4eme.html",
-                        exercices: "exercices_mathematiques_4eme.html",
-                        epreuves: "epreuves_mathematiques_4eme.html"
-                    }
-                },
-                { 
-                    name: "Physique-Chimie", 
-                    icon: "atom", 
-                    resources: {
-                        cours: "cours_physique_chimie_4eme.html",
-                        exercices: "exercices_physique_chimie_4eme.html",
-                        epreuves: "epreuves_physique_chimie_4eme.html"
-                    }
-                }
-            ],
-            "3eme": [
-                { 
-                    name: "Mathématiques", 
-                    icon: "calculator", 
-                    resources: {
-                        cours: "cours_mathematiques_3eme.html",
-                        exercices: "exercices_mathematiques_3eme.html",
-                        epreuves: "epreuves_mathematiques_3eme.html"
-                    }
-                },
-                { 
-                    name: "Physique-Chimie", 
-                    icon: "atom", 
-                    resources: {
-                        cours: "cours_physique_chimie_3eme.html",
-                        exercices: "exercices_physique_chimie_3eme.html",
-                        epreuves: "epreuves_physique_chimie_3eme.html"
-                    }
-                },
-                { 
-                    name: "SVT", 
-                    icon: "seedling", 
-                    resources: {
-                        cours: "cours_svt_3eme.html",
-                        exercices: "exercices_svt_3eme.html",
-                        epreuves: "epreuves_svt_3eme.html"
-                    }
-                }
-            ],
-            "2ndeCD": [
-                { 
-                    name: "Mathématiques", 
-                    icon: "calculator", 
-                    resources: {
-                        cours: "cours_mathematiques_2nde.html",
-                        exercices: "exercices_mathematiques_2nde.html",
-                        epreuves: "epreuves_mathematiques_2nde.html"
-                    }
-                },
-                { 
-                    name: "Physique-Chimie", 
-                    icon: "atom", 
-                    resources: {
-                        cours: "cours_physique_chimie_2nde.html",
-                        exercices: "exercices_physique_chimie_2nde.html",
-                        epreuves: "epreuves_physique_chimie_2nde.html"
-                    }
-                }
-            ],
-            "2ndeL": [
-                { 
-                    name: "Mathématiques", 
-                    icon: "calculator", 
-                    resources: {
-                        cours: "cours_mathematiques_2nde.html",
-                        exercices: "exercices_mathematiques_2nde.html",
-                        epreuves: "epreuves_mathematiques_2nde.html"
-                    }
-                },
-                { 
-                    name: "Physique-Chimie", 
-                    icon: "atom", 
-                    resources: {
-                        cours: "cours_physique_chimie_2nde.html",
-                        exercices: "exercices_physique_chimie_2nde.html",
-                        epreuves: "epreuves_physique_chimie_2nde.html"
-                    }
-                }
-            ],
-            "1ereA4": [
-                { 
-                    name: "Mathématiques", 
-                    icon: "calculator", 
-                    resources: {
-                        cours: "cours_mathematiques_1ere.html",
-                        exercices: "exercices_mathematiques_1ere.html",
-                        epreuves: "epreuves_mathematiques_1ere.html"
-                    }
-                },
-                { 
-                    name: "Physique-Chimie", 
-                    icon: "atom", 
-                    resources: {
-                        cours: "cours_physique_chimie_1ere.html",
-                        exercices: "exercices_physique_chimie_1ere.html",
-                        epreuves: "epreuves_physique_chimie_1ere.html"
-                    }
-                },
-                { 
-                    name: "SVT", 
-                    icon: "seedling", 
-                    resources: {
-                        cours: "cours_svt_1ere.html",
-                        exercices: "exercices_svt_1ere.html",
-                        epreuves: "epreuves_svt_1ere.html"
-                    }
-                }
-            ],
-            "1ereC4": [
-                { 
-                    name: "Mathématiques", 
-                    icon: "calculator", 
-                    resources: {
-                        cours: "cours_mathematiques_1ere.html",
-                        exercices: "exercices_mathematiques_1ere.html",
-                        epreuves: "epreuves_mathematiques_1ere.html"
-                    }
-                },
-                { 
-                    name: "Physique-Chimie", 
-                    icon: "atom", 
-                    resources: {
-                        cours: "cours_physique_chimie_1ere.html",
-                        exercices: "exercices_physique_chimie_1ere.html",
-                        epreuves: "epreuves_physique_chimie_1ere.html"
-                    }
-                },
-                { 
-                    name: "SVT", 
-                    icon: "seedling", 
-                    resources: {
-                        cours: "cours_svt_1ere.html",
-                        exercices: "exercices_svt_1ere.html",
-                        epreuves: "epreuves_svt_1ere.html"
-                    }
-                }
-            ],
-            "1ereD": [
-                { 
-                    name: "Mathématiques", 
-                    icon: "calculator", 
-                    resources: {
-                        cours: "cours_mathematiques_1ere.html",
-                        exercices: "exercices_mathematiques_1ere.html",
-                        epreuves: "epreuves_mathematiques_1ere.html"
-                    }
-                },
-                { 
-                    name: "Physique-Chimie", 
-                    icon: "atom", 
-                    resources: {
-                        cours: "cours_physique_chimie_1ere.html",
-                        exercices: "exercices_physique_chimie_1ere.html",
-                        epreuves: "epreuves_physique_chimie_1ere.html"
-                    }
-                },
-                { 
-                    name: "SVT", 
-                    icon: "seedling", 
-                    resources: {
-                        cours: "cours_svt_1ere.html",
-                        exercices: "exercices_svt_1ere.html",
-                        epreuves: "epreuves_svt_1ere.html"
-                    }
-                }
-            ],
-            "tleA4": [
-                { 
-                    name: "Mathématiques", 
-                    icon: "calculator", 
-                    resources: {
-                        cours: "cours_mathematiques_tle.html",
-                        exercices: "exercices_mathematiques_tle.html",
-                        epreuves: "epreuves_mathematiques_tle.html"
-                    }
-                },
-                { 
-                    name: "Physique-Chimie", 
-                    icon: "atom", 
-                    resources: {
-                        cours: "cours_physique_chimie_tle.html",
-                        exercices: "exercices_physique_chimie_tle.html",
-                        epreuves: "epreuves_physique_chimie_tle.html"
-                    }
-                },
-                { 
-                    name: "SVT", 
-                    icon: "seedling", 
-                    resources: {
-                        cours: "cours_svt_tle.html",
-                        exercices: "exercices_svt_tle.html",
-                        epreuves: "epreuves_svt_tle.html"
-                    }
-                }
-            ],
-            "tleC4": [
-                { 
-                    name: "Mathématiques", 
-                    icon: "calculator", 
-                    resources: {
-                        cours: "cours_mathematiques_tle.html",
-                        exercices: "exercices_mathematiques_tle.html",
-                        epreuves: "epreuves_mathematiques_tle.html"
-                    }
-                },
-                { 
-                    name: "Physique-Chimie", 
-                    icon: "atom", 
-                    resources: {
-                        cours: "cours_physique_chimie_tle.html",
-                        exercices: "exercices_physique_chimie_tle.html",
-                        epreuves: "epreuves_physique_chimie_tle.html"
-                    }
-                },
-                { 
-                    name: "SVT", 
-                    icon: "seedling", 
-                    resources: {
-                        cours: "cours_svt_tle.html",
-                        exercices: "exercices_svt_tle.html",
-                        epreuves: "epreuves_svt_tle.html"
-                    }
-                }
-            ],
-            "tleD": [
-                { 
-                    name: "Mathématiques", 
-                    icon: "calculator", 
-                    resources: {
-                        cours: "cours_mathematiques_tle.html",
-                        exercices: "exercices_mathematiques_tle.html",
-                        epreuves: "epreuves_mathematiques_tle.html"
-                    }
-                },
-                { 
-                    name: "Physique-Chimie", 
-                    icon: "atom", 
-                    resources: {
-                        cours: "cours_physique_chimie_tle.html",
-                        exercices: "exercices_physique_chimie_tle.html",
-                        epreuves: "epreuves_physique_chimie_tle.html"
-                    }
-                },
-                { 
-                    name: "SVT", 
-                    icon: "seedling", 
-                    resources: {
-                        cours: "cours_svt_tle.html",
-                        exercices: "exercices_svt_tle.html",
-                        epreuves: "epreuves_svt_tle.html"
-                    }
-                }
-            ]
+            "6eme":[{name:"Mathématiques",icon:"calculator",resources:{cours:"#",exercices:"#",epreuves:"#"}},{name:"Physique-Chimie",icon:"atom",resources:{cours:"#",exercices:"#",epreuves:"#"}}],
+            "5eme":[{name:"Mathématiques",icon:"calculator",resources:{cours:"#",exercices:"#",epreuves:"#"}},{name:"Physique-Chimie",icon:"atom",resources:{cours:"#",exercices:"#",epreuves:"#"}}],
+            "4eme":[{name:"Mathématiques",icon:"calculator",resources:{cours:"#",exercices:"#",epreuves:"#"}},{name:"Physique-Chimie",icon:"atom",resources:{cours:"#",exercices:"#",epreuves:"#"}}],
+            "3eme":[{name:"Mathématiques",icon:"calculator",resources:{cours:"#",exercices:"#",epreuves:"#"}},{name:"Physique-Chimie",icon:"atom",resources:{cours:"#",exercices:"#",epreuves:"#"}},{name:"SVT",icon:"seedling",resources:{cours:"#",exercices:"#",epreuves:"#"}}],
+            "2ndeCD":[{name:"Mathématiques",icon:"calculator",resources:{cours:"#",exercices:"#",epreuves:"#"}},{name:"Physique-Chimie",icon:"atom",resources:{cours:"#",exercices:"#",epreuves:"#"}}],
+            "2ndeL":[{name:"Mathématiques",icon:"calculator",resources:{cours:"#",exercices:"#",epreuves:"#"}},{name:"Physique-Chimie",icon:"atom",resources:{cours:"#",exercices:"#",epreuves:"#"}}],
+            "1ereA4":[{name:"Mathématiques",icon:"calculator",resources:{cours:"#",exercices:"#",epreuves:"#"}},{name:"Physique-Chimie",icon:"atom",resources:{cours:"#",exercices:"#",epreuves:"#"}},{name:"SVT",icon:"seedling",resources:{cours:"#",exercices:"#",epreuves:"#"}}],
+            "1ereC4":[{name:"Mathématiques",icon:"calculator",resources:{cours:"#",exercices:"#",epreuves:"#"}},{name:"Physique-Chimie",icon:"atom",resources:{cours:"#",exercices:"#",epreuves:"#"}},{name:"SVT",icon:"seedling",resources:{cours:"#",exercices:"#",epreuves:"#"}}],
+            "1ereD":[{name:"Mathématiques",icon:"calculator",resources:{cours:"#",exercices:"#",epreuves:"#"}},{name:"Physique-Chimie",icon:"atom",resources:{cours:"#",exercices:"#",epreuves:"#"}},{name:"SVT",icon:"seedling",resources:{cours:"#",exercices:"#",epreuves:"#"}}],
+            "tleA4":[{name:"Mathématiques",icon:"calculator",resources:{cours:"#",exercices:"#",epreuves:"#"}},{name:"Physique-Chimie",icon:"atom",resources:{cours:"#",exercices:"#",epreuves:"#"}},{name:"SVT",icon:"seedling",resources:{cours:"#",exercices:"#",epreuves:"#"}}],
+            "tleC4":[{name:"Mathématiques",icon:"calculator",resources:{cours:"#",exercices:"#",epreuves:"#"}},{name:"Physique-Chimie",icon:"atom",resources:{cours:"#",exercices:"#",epreuves:"#"}},{name:"SVT",icon:"seedling",resources:{cours:"#",exercices:"#",epreuves:"#"}}],
+            "tleD":[{name:"Mathématiques",icon:"calculator",resources:{cours:"#",exercices:"#",epreuves:"#"}},{name:"Physique-Chimie",icon:"atom",resources:{cours:"#",exercices:"#",epreuves:"#"}},{name:"SVT",icon:"seedling",resources:{cours:"#",exercices:"#",epreuves:"#"}}]
         };
 
-        // Prix des services
-        const servicePrices = {
-            "epreuves": { base: 250, urgent: 250, normal: 250, standard: 250, long: 0 },
-            "documents": { base: 1000, urgent: 1000, normal: 1000, standard: 1000, long: 0 },
-            "memoires": { base: 1000, urgent: 1000, normal: 1000, standard: 1000, long: 0 },
-            "rapports":  { base: 1000, urgent: 1000, normal: 1000, standard: 1000, long: 0 },
-            "latex": { base: 500, urgent: 500, normal: 500, standard: 500, long: 0 },
-            "correction":  { base: 1000, urgent: 1000, normal: 1000, standard: 1000, long: 0 },
-        };
+        const classNames = {"6eme":"6ème","5eme":"5ème","4eme":"4ème","3eme":"3ème","2ndeCD":"Seconde CD","2ndeL":"Seconde L","1ereA4":"1ère A4","1ereC4":"1ère C4","1ereD":"1ère D","tleA4":"Terminale A4","tleC4":"Terminale C4","tleD":"Terminale D"};
+        const servicePrices = { epreuves:250, documents:1000, latex:500 };
 
-        // Noms des classes
-        const classNames = {
-            "6eme": "Sixième (6ème)",
-            "5eme": "Cinquième (5ème)",
-            "4eme": "Quatrième (4ème)",
-            "3eme": "Troisième (3ème)",
-            "2ndeCD": "Seconde (2ndeCD)",
-            "2ndeL": "Seconde (2ndeL)",
-            "1ereA4": "Première (1èreA4)",
-            "1ereC4": "Première (1èreC4)",
-            "1ereD": "Première (1èreD)",
-            "tleA4": "Terminale (TleA4)",
-            "tleC4": "Terminale (TleC4)",
-            "tleD": "Terminale (TleD)"
-        };
-
-        // Variables globales
         let selectedService = '';
-        let uploadedFiles = [];
-
-        // Éléments DOM
-        const subjectModal = document.getElementById('subjectModal');
+        const modal = document.getElementById('subjectModal');
         const modalTitle = document.getElementById('modalTitle');
-        const subjectModalContent = document.getElementById('subjectModalContent');
-        const closeModalBtn = document.querySelector('.close-modal');
-        const classItems = document.querySelectorAll('.class-item');
-        const tabButtons = document.querySelectorAll('.tab-button');
-        const tabContents = document.querySelectorAll('.tab-content');
+        const modalContent = document.getElementById('subjectModalContent');
         const orderFormSection = document.getElementById('orderFormSection');
         const serviceTitle = document.getElementById('serviceTitle');
-        const serviceTypeSelect = document.getElementById('serviceType');
-        const fileUpload = document.getElementById('fileUpload');
-        const fileList = document.getElementById('fileList');
         const basePriceEl = document.getElementById('basePrice');
-        const urgencyPriceEl = document.getElementById('urgencyPrice');
         const totalPriceEl = document.getElementById('totalPrice');
-        const orderForm = document.getElementById('orderForm');
 
-        // Gestion des onglets
         function activateTab(tabId) {
-            tabContents.forEach(content => {
-                content.classList.remove('active');
-            });
-            
-            tabButtons.forEach(button => {
-                button.classList.remove('active');
-            });
-            
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
             document.querySelector(`.tab-button[data-tab="${tabId}"]`).classList.add('active');
-            
-            // Mettre à jour l'URL hash
-            const hashMap = {
-                'student-tab': 'eleves',
-                'teacher-tab': 'enseignants',
-                'order-tab': 'commander'
-            };
-            window.location.hash = hashMap[tabId] || 'accueil';
         }
 
-        // Afficher les matières pour une classe
-        function showSubjectsForClass(className) {
-            const subjects = subjectsData[className];
-            const classNameDisplay = classNames[className];
-            
-            modalTitle.textContent = `Matières - ${classNameDisplay}`;
-            
-            let html = `
-                <div class="back-button" id="backToClasses">
-                    <i class="fas fa-arrow-left"></i> Retour aux classes
-                </div>
-                
-                <div class="subject-grid" style="margin-top: 1rem;">
-            `;
-            
-            subjects.forEach(subject => {
-                html += `
-                    <div class="subject-card">
-                        <div class="subject-header">
-                            <div class="subject-icon"><i class="fas fa-${subject.icon}"></i></div>
-                            <div class="subject-name">${subject.name}</div>
-                            <div class="subject-level">${classNameDisplay}</div>
-                        </div>
-                        <div class="subject-body">
-                            <div class="resource-links">
-                                <a href="${subject.resources.cours}" class="resource-link" target="_blank">
-                                    <div class="resource-icon"><i class="fas fa-book"></i></div>
-                                    <div class="resource-text">Cours Complets</div>
-                                </a>
-                                <a href="${subject.resources.exercices}" class="resource-link" target="_blank">
-                                    <div class="resource-icon"><i class="fas fa-pencil-alt"></i></div>
-                                    <div class="resource-text">Exercices</div>
-                                </a>
-                                <a href="${subject.resources.epreuves}" class="resource-link" target="_blank">
-                                    <div class="resource-icon"><i class="fas fa-file-alt"></i></div>
-                                    <div class="resource-text">Épreuves Types</div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            html += `</div>`;
-            subjectModalContent.innerHTML = html;
-            subjectModal.style.display = 'flex';
-            
-            // Ajouter l'événement pour le bouton retour
-            document.getElementById('backToClasses').addEventListener('click', () => {
-                subjectModal.style.display = 'none';
-            });
-        }
+        document.querySelectorAll('.tab-button').forEach(btn => {
+            btn.addEventListener('click', () => activateTab(btn.dataset.tab));
+        });
 
-        // Sélectionner un service
-        function selectService(service) {
-            selectedService = service;
-            
-            // Mettre à jour le formulaire
-            const serviceNames = {
-                'epreuves': 'Épreuves Corrigées',
-                'documents': 'Documents Scientifiques',
-                'memoires': 'Mémoires et Thèses',
-                'rapports': 'Rapports de Stage',
-                'latex': 'Saisie LaTeX',
-                'correction': 'Correction et Relecture'
-            };
-            
-            serviceTitle.textContent = `Commander: ${serviceNames[service]}`;
-            serviceTypeSelect.value = service;
-            
-            // Afficher le formulaire
-            orderFormSection.style.display = 'block';
-            
-            // Défiler vers le formulaire
-            orderFormSection.scrollIntoView({ behavior: 'smooth' });
-            
-            // Mettre à jour les prix
-            updatePrice();
-        }
-
-        // Annuler la commande
-        function cancelOrder() {
-            orderFormSection.style.display = 'none';
-            selectedService = '';
-            orderForm.reset();
-            uploadedFiles = [];
-            fileList.innerHTML = '';
-        }
-
-        // Mettre à jour les prix
-        function updatePrice() {
-            if (!selectedService || !servicePrices[selectedService]) return;
-            
-            const deadline = document.getElementById('deadline').value;
-            const prices = servicePrices[selectedService];
-            
-            let basePrice = prices.base;
-            let urgencyPrice = 0;
-            
-            if (deadline === 'urgent') {
-                urgencyPrice = prices.urgent;
-            } else if (deadline === 'normal') {
-                urgencyPrice = prices.normal;
-            } else if (deadline === 'standard') {
-                urgencyPrice = prices.standard;
-            }
-            
-            const total = basePrice + urgencyPrice + 0; // + frais de traitement
-            
-            basePriceEl.textContent = basePrice.toLocaleString() + ' FCFA';
-            urgencyPriceEl.textContent = urgencyPrice.toLocaleString() + ' FCFA';
-            totalPriceEl.textContent = total.toLocaleString() + ' FCFA';
-        }
-
-        // Gestion des fichiers uploadés
-        function handleFileUpload(files) {
-            uploadedFiles = [...uploadedFiles, ...Array.from(files)];
-            
-            // Afficher la liste des fichiers
-            fileList.innerHTML = '';
-            uploadedFiles.forEach((file, index) => {
-                const fileItem = document.createElement('div');
-                fileItem.className = 'file-item';
-                fileItem.style.cssText = 'padding: 0.5rem; background: #f8f9fa; border-radius: 4px; margin-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center;';
-                fileItem.innerHTML = `
-                    <div>
-                        <i class="fas fa-file"></i> ${file.name} (${(file.size / 1024).toFixed(1)} KB)
-                    </div>
-                    <button type="button" onclick="removeFile(${index})" style="background: none; border: none; color: #e74c3c; cursor: pointer;">
-                        <i class="fas fa-times"></i>
-                    </button>
-                `;
-                fileList.appendChild(fileItem);
-            });
-        }
-
-        // Supprimer un fichier
-        function removeFile(index) {
-            uploadedFiles.splice(index, 1);
-            handleFileUpload([]); // Réafficher la liste
-        }
-
-        // Soumettre le formulaire de commande
-        function submitOrderForm(event) {
-            event.preventDefault();
-            
-            const formData = {
-                service: serviceTypeSelect.value,
-                fullName: document.getElementById('fullName').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                deadline: document.getElementById('deadline').value,
-                description: document.getElementById('description').value,
-                notes: document.getElementById('notes').value,
-                files: uploadedFiles.length,
-                totalPrice: totalPriceEl.textContent
-            };
-            
-            // Préparer le message WhatsApp
-            const phoneNumber = "22892871605";
-            let message = `*NOUVELLE COMMANDE - ESODI-SCIENCES GRENIER*%0A%0A`;
-            message += `*SERVICE:* ${document.querySelector(`#serviceType option[value="${formData.service}"]`).textContent}%0A`;
-            message += `*CLIENT:* ${formData.fullName}%0A`;
-            message += `*EMAIL:* ${formData.email}%0A`;
-            message += `*TÉLÉPHONE:* ${formData.phone}%0A`;
-            message += `*DÉLAI:* ${document.querySelector(`#deadline option[value="${formData.deadline}"]`).textContent}%0A`;
-            message += `*PRIX TOTAL:* ${formData.totalPrice}%0A%0A`;
-            message += `*DESCRIPTION:*%0A${formData.description}%0A%0A`;
-            
-            if (formData.notes) {
-                message += `*NOTES SUPPLÉMENTAIRES:*%0A${formData.notes}%0A%0A`;
-            }
-            
-            message += `*FICHIERS JOINTS:* ${formData.files} fichier(s)%0A%0A`;
-            message += `_Merci de traiter cette commande dans les plus brefs délais._`;
-            
-            // Ouvrir WhatsApp
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
-            window.open(whatsappUrl, '_blank');
-            
-            // Afficher un message de confirmation
-            alert(`Votre commande a été envoyée avec succès! Vous allez être redirigé vers WhatsApp pour finaliser.`);
-            
-            // Réinitialiser le formulaire
-            cancelOrder();
-        }
-
-        // Événements
-        document.addEventListener('DOMContentLoaded', function() {
-            // Gestion des onglets
-            tabButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const tabId = this.getAttribute('data-tab');
-                    activateTab(tabId);
-                });
-            });
-            
-            // Vérifier l'URL au chargement
-            const hashMap = {
-                '#eleves': 'student-tab',
-                '#enseignants': 'teacher-tab',
-                '#commander': 'order-tab'
-            };
-            
-            if (hashMap[window.location.hash]) {
-                activateTab(hashMap[window.location.hash]);
-            } else {
-                activateTab('student-tab');
-            }
-            
-            // Gestion des classes
-            classItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    const className = this.getAttribute('data-class');
-                    showSubjectsForClass(className);
-                });
-            });
-            
-            // Fermer le modal
-            closeModalBtn.addEventListener('click', () => {
-                subjectModal.style.display = 'none';
-            });
-            
-            window.addEventListener('click', (e) => {
-                if (e.target === subjectModal) {
-                    subjectModal.style.display = 'none';
+        document.querySelectorAll('.class-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const className = item.dataset.class;
+                const subjects = subjectsData[className];
+                if(subjects) {
+                    modalTitle.textContent = `Matières - ${classNames[className]}`;
+                    let html = `<div class="back-button" id="backToClasses"><i class="fas fa-arrow-left"></i> Retour</div><div class="subject-grid">`;
+                    subjects.forEach(s => {
+                        html += `<div class="subject-card"><div class="subject-header"><div class="subject-icon"><i class="fas fa-${s.icon}"></i></div><div class="subject-name">${s.name}</div></div>
+                                <div class="subject-body"><div class="resource-links">
+                                <a href="${s.resources.cours}" class="resource-link"><i class="fas fa-book"></i> Cours</a>
+                                <a href="${s.resources.exercices}" class="resource-link"><i class="fas fa-pencil-alt"></i> Exercices</a>
+                                <a href="${s.resources.epreuves}" class="resource-link"><i class="fas fa-file-alt"></i> Épreuves</a>
+                                </div></div></div>`;
+                    });
+                    html += `</div>`;
+                    modalContent.innerHTML = html;
+                    modal.style.display = 'flex';
+                    document.getElementById('backToClasses').onclick = () => modal.style.display = 'none';
                 }
             });
-            
-            // Navigation active
-            const navLinks = document.querySelectorAll('nav ul li a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Gestion spéciale pour les onglets
-                    if (this.getAttribute('href') === '#eleves') {
-                        activateTab('student-tab');
-                        e.preventDefault();
-                    } else if (this.getAttribute('href') === '#enseignants') {
-                        activateTab('teacher-tab');
-                        e.preventDefault();
-                    } else if (this.getAttribute('href') === '#commander') {
-                        activateTab('order-tab');
-                        e.preventDefault();
-                    }
-                });
-            });
-            
-            // Gestion des fichiers
-            fileUpload.addEventListener('change', function(e) {
-                handleFileUpload(e.target.files);
-            });
-            
-            // Mettre à jour les prix
-            serviceTypeSelect.addEventListener('change', function() {
-                selectedService = this.value;
-                updatePrice();
-            });
-            
-            document.getElementById('deadline').addEventListener('change', updatePrice);
-            
-            // Soumettre le formulaire
-            orderForm.addEventListener('submit', submitOrderForm);
-            
-            // Animation au scroll
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-            
-            // Observer les cartes
-            document.querySelectorAll('.level-card, .subject-card, .service-card').forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'opacity 0.5s, transform 0.5s';
-                observer.observe(card);
+        });
+
+        document.querySelector('.close-modal').onclick = () => modal.style.display = 'none';
+        window.onclick = (e) => { if(e.target === modal) modal.style.display = 'none'; };
+
+        function selectService(service) {
+            selectedService = service;
+            const names = { epreuves:'Épreuves Corrigées', documents:'Documents Scientifiques', latex:'Saisie LaTeX' };
+            serviceTitle.textContent = `Commander: ${names[service]}`;
+            document.getElementById('serviceType').value = service;
+            orderFormSection.style.display = 'block';
+            updatePrice();
+            orderFormSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function cancelOrder() { orderFormSection.style.display = 'none'; selectedService = ''; document.getElementById('orderForm').reset(); }
+
+        function updatePrice() {
+            if(!selectedService || !servicePrices[selectedService]) return;
+            const total = servicePrices[selectedService];
+            basePriceEl.textContent = total + ' FCFA';
+            totalPriceEl.textContent = total + ' FCFA';
+        }
+
+        document.getElementById('serviceType').addEventListener('change', (e) => { selectedService = e.target.value; updatePrice(); });
+        document.getElementById('deadline').addEventListener('change', updatePrice);
+
+        document.getElementById('orderForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const service = document.getElementById('serviceType').value;
+            const fullName = document.getElementById('fullName').value;
+            const phone = document.getElementById('phone').value;
+            const description = document.getElementById('description').value;
+            if(!service || !fullName || !phone || !description) { alert('Veuillez remplir tous les champs'); return; }
+            const message = `*NOUVELLE COMMANDE*%0A%0A*Service:* ${document.querySelector(`#serviceType option[value="${service}"]`).textContent}%0A*Client:* ${fullName}%0A*Tél:* ${phone}%0A*Description:* ${description}%0A*Prix:* ${totalPriceEl.textContent}`;
+            window.open(`https://wa.me/22892871605?text=${message}`, '_blank');
+            alert('Commande envoyée! Vous allez être redirigé vers WhatsApp.');
+            cancelOrder();
+        });
+
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                document.querySelectorAll('nav ul li a').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                if(link.getAttribute('href') === '#eleves') { e.preventDefault(); activateTab('student-tab'); }
+                else if(link.getAttribute('href') === '#enseignants') { e.preventDefault(); activateTab('teacher-tab'); }
+                else if(link.getAttribute('href') === '#commander') { e.preventDefault(); activateTab('order-tab'); }
             });
         });
 
-        // Gestion du responsive
-        window.addEventListener('resize', function() {
-            if (window.innerWidth < 768) {
-                document.querySelectorAll('.service-card').forEach(card => {
-                    card.style.marginBottom = '1rem';
-                });
-            }
+        // Animation d'entrée
+        document.querySelectorAll('.level-card, .subject-card, .service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(15px)';
+            card.style.transition = 'opacity 0.4s, transform 0.4s';
+            setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }, 100);
         });
-        
-        // Initialisation pour mobile
-        if (window.innerWidth < 768) {
-            document.body.classList.add('mobile');
-        }
     </script>
 </body>
 </html>
